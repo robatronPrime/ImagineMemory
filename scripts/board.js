@@ -97,6 +97,7 @@ var MatchGame = function(targetID) {
 	var card = document.createElement("div");
 	card.innerHTML = "<img src=\"cards/back.png\">";
 	
+    if (document.getElementByID('stage').style))
 	for(var i=0; i < 16; i++) {
 		var newCard = card.cloneNode(true);
 		
