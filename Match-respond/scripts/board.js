@@ -7,6 +7,8 @@ var MatchGame = function(targetID) {
 	var matches_found = 0;
 	var card1 = false, card2 = false;
 	
+	var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+	
 	//turn card face down
 	var hideCard = function(id) {
 		cards[id].firstChild.src = "cards/back.png";
@@ -15,18 +17,32 @@ var MatchGame = function(targetID) {
 		}
 	};
 	
+	
 	// move card to pack
-	var moveToPack = function(id) {
-		hideCard(id);
-		cards[id].matched = true;
-		with(cards[id].style) {
-			zIndex = "1000";
-			top = "100px";
-			left = "-140px";
-			WebkitTransform = MozTransform = OTransform = msTransform = "rotate(0deg)";
-			zIndex = "0";
-		}
-	};
+		var moveToPack = function(id) {
+			hideCard(id);
+			cards[id].matched = true;
+			with(cards[id].style) {
+				zIndex = "1000";
+				top = "100px";
+				left = "-140px";
+				WebkitTransform = MozTransform = OTransform = msTransform = "rotate(0deg)";
+				zIndex = "0";
+			}
+		};
+	
+	// move card to pack
+		var moveToPackMobile = function(id) {
+			hideCard(id);
+			cards[id].matched = true;
+			with(cards[id].style) {
+				zIndex = "1000";
+				top = "-110px";
+				left = "140px";
+				WebkitTransform = MozTransform = OTransform = msTransform = "rotate(0deg)";
+				zIndex = "0";
+			}
+		};
 	
 	// deal card
 	var moveToPlace = function(id) {
@@ -54,7 +70,15 @@ var MatchGame = function(targetID) {
 			card2 = id;
 			if(parseInt(card_value[card1]) == parseInt(card_value[card2])) { //match found
 				(function(card1, card2){
-					setTimeout(function() {moveToPack(card1); moveToPack(card2);}, 1000);
+					setTimeout(function() { 
+						if (w >= 640) {
+							console.log("foo");
+							moveToPack(card1); moveToPack(card2);
+						} else if (w <= 640) {
+							console.log("bar");
+							moveToPackMobile(card1); moveToPackMobile(card2);
+						} 
+					}, 1000 );
 				})(card1, card2);
 				if(++matches_found == 8) { //game over, reset
 					matches_found = 0;
@@ -97,17 +121,35 @@ var MatchGame = function(targetID) {
 	var card = document.createElement("div");
 	card.innerHTML = "<img src=\"cards/back.png\">";
 	
-	for(var i=0; i < 16; i++) {
-		var newCard = card.cloneNode(true);
+	if (w <= 640) {
 		
-		newCard.fromtop = 1 + 7 * Math.floor(i/4);
-		newCard.fromleft = 1 + 7 * (i%4);
-		(function(idx){
-			newCard.addEventListener("click", function() {cardClick(idx); }, false);
-		})(i);
+		for(var i=0; i < 16; i++) {
+			var newCard = card.cloneNode(true);
 		
-		felt.appendChild(newCard);
-		cards.push(newCard);
+			newCard.fromtop = 1 + 7 * Math.floor(i/4);
+			newCard.fromleft = 1 + 4.5 * (i%4);
+			(function(idx){
+				newCard.addEventListener("click", function() {cardClick(idx); }, false);
+			})(i);
+		
+			felt.appendChild(newCard);
+			cards.push(newCard);
+		}
+		
+	} else {
+		
+		for( i=0; i < 16; i++) {
+			newCard = card.cloneNode(true);
+		
+			newCard.fromtop = 1 + 5 * Math.floor(i/4);
+			newCard.fromleft = 1 + 4 * (i%4);
+			(function(idx){
+				newCard.addEventListener("click", function() {cardClick(idx); }, false);
+			})(i);
+		
+			felt.appendChild(newCard);
+			cards.push(newCard);
+		}
+		
 	}
-	
 }
