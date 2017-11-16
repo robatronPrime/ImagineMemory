@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+	<title>ImagineMemory/Match</title>
+	<meta charset="utf-8">
+	<!--External CSS files-->
+	<link rel="stylesheet" type="text/css" href="css/style.css"/>
+	<script src="scripts/viewport.js"></script>
+	<meta name="viewport" content="width=device-width">
+</head>
+	
+<body>
+    <section id="head">
+        <section id="title">
+            <h2>ImagineMemory</h2>
+        </section>
+        <ul id="nav-links">
+            <p>Game Library</p>
+            <li id="link-home">
+                <a href="index.html">Home Page</a>
+            </li>
+            <li id="link-mind">
+                <a href="mind.html">Play Mastermind</a>
+            </li>
+            <li id="link-sudoku">
+                <a href="sudoku.html">Play Sudoku</a>
+            </li>
+        </ul>
+    </section>
+    <div id="stage"> </div>
+	
+	<script src="scripts/board.js"></script>
+	<script>
+		var game = new MatchGame("stage");
+	</script>
+	
+</body>
+</html>
