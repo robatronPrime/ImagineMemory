@@ -138,10 +138,10 @@ var MatchGame = function (targetID) {
   };
 
   //initialise
-
   var stage = document.getElementById(targetID);
   var felt = document.createElement("div");
   var exit = document.createElement("span");
+  var hide = document.getElementById("hide");
 
   felt.id = "felt";
   stage.appendChild(felt);
@@ -154,11 +154,16 @@ var MatchGame = function (targetID) {
   exit.addEventListener("click", function () {
     document.getElementById("felt").remove();
     document.getElementById("exit").remove();
+    seconds = 0;
+    minutes = 0;
+    sec = 0;
+    started = false;
+    content.appendChild(hide);
   });
 
   //template for card
   var card = document.createElement("div");
-  card.innerHTML = "<img src=\"cards/back.png\">";
+  card.innerHTML = '<img src="cards/back.png">';
 
   if (w <= 640) {
 
@@ -338,10 +343,10 @@ var MatchGameMedi = function (targetID) {
   };
 
   //initialise
-
   var stage = document.getElementById(targetID);
   var felt = document.createElement("div");
   var exit = document.createElement("span");
+  var hide = document.getElementById("hide");
 
   felt.id = "felt";
   stage.appendChild(felt);
@@ -354,6 +359,11 @@ var MatchGameMedi = function (targetID) {
   exit.addEventListener("click", function () {
     document.getElementById("felt").remove();
     document.getElementById("exit").remove();
+    seconds = 0;
+    minutes = 0;
+    sec = 0;
+    started = false;
+    content.appendChild(hide);
   });
 
   //template for card
@@ -538,13 +548,14 @@ var MatchGameEasy = function (targetID) {
   };
 
   //initialise
-
   var stage = document.getElementById(targetID);
   var felt = document.createElement("div");
   var exit = document.createElement("span");
+  var hide = document.getElementById("hide");
 
   felt.id = "felt";
   stage.appendChild(felt);
+
   exit.id = "exit";
   stage.appendChild(exit);
 
@@ -553,6 +564,11 @@ var MatchGameEasy = function (targetID) {
   exit.addEventListener("click", function () {
     document.getElementById("felt").remove();
     document.getElementById("exit").remove();
+    seconds = 0;
+    minutes = 0;
+    sec = 0;
+    started = false;
+    content.appendChild(hide);
   });
 
   //template for card

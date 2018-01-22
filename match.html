@@ -10,31 +10,43 @@
   <script defer src="https://use.fontawesome.com/releases/v5.0.2/js/all.js"></script>
 </head>
   <body>
-    <section id="head">
-      <section id="title">
-       <h2>ImagineMemory</h2>
-      </section>
-      <ul id="nav-links">
-        <p>Game Library</p>
-        <li id="link-home">
-          <a href="index.html">Home Page</a>
-        </li>
-      </ul>
-    </section>
+    <section id="content">
+      <section id="hide">
+        <section id="head">
+          <section id="title">
+            <h2>ImagineMemory</h2>
+          </section>
+          <ul id="nav-links">
+            <p>Game Library</p>
+            <li id="link-home">
+              <a href="index.html">Home Page</a>
+            </li>
+          </ul>
+        </section>
 
-    <section id="rules">
-      <h1>How to Play Match</h1>
-      <section id="title-sec">
-        <h2 id="titleT"></h2>
+        <section id="rules">
+          <h1>How to Play Match</h1>
+          <section id="title-sec">
+            <h2 id="titleT"></h2>
+          </section>
+          <section id="content-sec">
+            <p id="contentT"></p>
+          </section>
+
+          <span id="prev" class="ruleArr" onclick="prevStep();">
+            <i class="fas fa-angle-left"></i>
+          </span>
+          <span id="next" class="ruleArr" onclick="nextStep();">
+            <i class="fas fa-angle-right"></i>
+          </span>
+        </section>
+
+        <section id="diffSelect">
+          <span id="easy" onclick="easyGame();" class="dif">Easy</span>
+          <span id="medi" onclick="mediGame();" class="dif">Medium</span>
+          <span id="hard" onclick="hardGame();" class="dif">Hard</span>
+        </section>
       </section>
-      <section id="content-sec">
-        <p id="contentT"></p>
-      </section>
-      <span id="prev" class="ruleArr" onclick="prevStep();"><i class="fas fa-angle-left"></i></span>
-      <span id="next" class="ruleArr" onclick="nextStep();"><i class="fas fa-angle-right"></i></span>
-      <span id="easy" onclick="easyGame();" class="dif">Easy</span>
-      <span id="medi" onclick="mediGame();" class="dif">Medium</span>
-      <span id="hard" onclick="hardGame();" class="dif">Hard</span>
     </section>
 
     <section id="stage">
@@ -57,12 +69,13 @@
           }
         }
 
+        var content = document.getElementById("content");
+
         function hardGame(){
           if (!document.getElementById("felt")) {
-            console.log("foo");
             var game = new MatchGame("stage");
+            document.getElementById("hide").remove();
           } else {
-            console.log("bar");
             document.getElementById("felt").remove();
             document.getElementById("exit").remove();
             var game = new MatchGame("stage");
@@ -71,10 +84,9 @@
 
         function mediGame(){
           if (!document.getElementById("felt")) {
-            console.log("foo");
             var game = new MatchGameMedi("stage");
+            document.getElementById("hide").remove();
           } else {
-            console.log("bar");
             document.getElementById("felt").remove();
             document.getElementById("exit").remove();
             var game = new MatchGameMedi("stage");
@@ -83,10 +95,9 @@
 
         function easyGame(){
           if (!document.getElementById("felt")) {
-            console.log("foo");
             var game = new MatchGameEasy("stage");
+            document.getElementById("hide").remove();
           } else {
-            console.log("bar");
             document.getElementById("felt").remove();
             document.getElementById("exit").remove();
             var game = new MatchGameEasy("stage");
