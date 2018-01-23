@@ -16,12 +16,29 @@
           <section id="title">
             <h2>ImagineMemory</h2>
           </section>
-          <ul id="nav-links">
-            <p>Game Library</p>
-            <li id="link-home">
-              <a href="index.html">Home Page</a>
-            </li>
-          </ul>
+          <span id="nav-hide">
+            <ul id="nav-links">
+              <p>Game Library</p>
+              <li id="link-home">
+                <a href="index.html">Home Page</a>
+              </li>
+            </ul>
+          </span>
+
+          <div id="sideNav" class="sideNav">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">
+              &times;
+            </a>
+            <ul id="sideNav-links">
+              <p>Game Library</p>
+              <li id="link-home">
+                <a href="index.html">Home Page</a>
+              </li>
+          </div>
+
+          <span id="nav-burg" onclick="openNav();">
+            <i class="fas fa-bars"></i>
+          </span>
         </section>
 
         <section id="rules">
@@ -71,6 +88,7 @@
 
         var content = document.getElementById("content");
 
+        //Change Difficulty
         function hardGame(){
           if (!document.getElementById("felt")) {
             var game = new MatchGame("stage");
@@ -109,14 +127,23 @@
   </body>
 
   <script>
+    //Burger navigation menu
+    function openNav() {
+      document.getElementById("sideNav").style.width = "250px";
+    }
+
+    function closeNav() {
+      document.getElementById("sideNav").style.width = "0";
+    }
+
+    //instrutions
     var titleText = "Step 1";
     var contentText = "Click the pack of card to start the game and the timer starts.";
-
 
     function updateHTML(id, text) {
       var elem = document.getElementById(id);
       elem.innerHTML=text;
-    };
+    }
 
     window.onload = updateHTML('titleT', titleText), updateHTML('contentT', contentText);
 
@@ -149,7 +176,7 @@
       document.getElementById("titleT").innerHTML = steps[curStep];
       document.getElementById("contentT").innerHTML = text[curStep];
       console.log("foo");
-    };
+    }
 
     function prevStep(){
       curStep--;
