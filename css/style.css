@@ -77,7 +77,8 @@ p {
 }
 
 .ruleArr{
-  margin: 5em;
+  margin: 3em;
+  font-size: 30px;
 }
 
 .ruleArr:hover{
@@ -140,6 +141,10 @@ p {
     display: block;
     font-size: 30px;
     cursor: pointer;
+  }
+
+  .ruleArr {
+    margin: 2em;
   }
 }
 
