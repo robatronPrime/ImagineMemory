@@ -1,0 +1,61 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+<head>
+  <title>ImagineMemory</title>
+  <meta charset="utf-8">
+  <!--External CSS files-->
+  <link rel="stylesheet" type="text/css" href="css/style.css" />
+  <meta name="viewport" content="width=device-width">
+  <script defer src="https://use.fontawesome.com/releases/v5.0.2/js/all.js"></script>
+</head>
+
+<body>
+  <section id="content">
+    <section id="hide">
+      <section id="head">
+        <section id="title">
+          <h2>ImagineMemory</h2>
+        </section>
+        <span id="nav-hide">
+          <ul id="nav-links">
+            <p>Game Library</p>
+            <li id="link-match">
+              <a href="match.html">Play Match</a>
+            </li>
+            <li id="link-mind">
+              <a href="mind.html">Play Mastermind</a>
+            </li>
+          </ul>
+        </span>
+
+        <div id="sideNav" class="sideNav">
+          <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">
+            &times;
+          </a>
+          <ul id="sideNav-links">
+            <p>Game Library</p>
+            <li id="link-match">
+              <a href="match.html">Play Match</a>
+            </li>
+            <li id="link-mind">
+              <a href="mind.html">Play Mastermind</a>
+            </li>
+        </div>
+
+        <span id="nav-burg" onclick="openNav();">
+          <i class="fas fa-bars"></i>
+        </span>
+      </section>
+    </body>
+    <script>
+      //Burger navigation menu
+      function openNav() {
+        document.getElementById("sideNav").style.width = "250px";
+      }
+
+      function closeNav() {
+        document.getElementById("sideNav").style.width = "0";
+      }
+    </script>
+</html>
