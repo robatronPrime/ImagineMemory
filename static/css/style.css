@@ -101,17 +101,17 @@ p {
     z-index: 1;
     top: 0;
     left: 0;
-    background-color: #111;
+    background-color: #555555;
     overflow-x: hidden;
     transition: 0.5s;
     padding-top: 60px;
 }
 
 .sideNav a {
-    padding: 8px 8px 8px 32px;
+    padding: 8px 8px 8px 9px;
     text-decoration: none;
     font-size: 25px;
-    color: #818181;
+    color: #000000;
     display: block;
     transition: 0.3s;
 }
@@ -120,12 +120,60 @@ p {
     color: #f1f1f1;
 }
 
+.sideNav li {
+  list-style: none;
+}
+
 .sideNav .closebtn {
     position: absolute;
     top: 0;
     right: 25px;
     font-size: 36px;
     margin-left: 50px;
+}
+
+#games-list li {
+  list-style: none;
+}
+
+#game-match .gameImg {
+  float: left;
+  height: 15em;
+  position: absolute;
+  display: inline-block;
+}
+
+#hoverText {
+  float: left;
+  height: 15em;
+  position: absolute;
+  background:#FFF;
+	opacity:0;
+}
+
+#game-match h3 {
+  float: right;
+  position: relative;
+  margin-right: 20.6em;
+  color: #000000;
+}
+
+#game-match p {
+  float: right;
+  position: inherit;
+  margin-left: 29.4em;
+  color: #000000;
+}
+
+#game-match a {
+  text-decoration: none;
+  display: block;
+}
+
+#game-match:hover .hoverText{
+  opacity:1;
+	text-align:justify;
+	color:#000000;
 }
 
 @media screen and (max-height: 450px) {
