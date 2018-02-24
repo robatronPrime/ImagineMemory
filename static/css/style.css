@@ -47,6 +47,7 @@ body {
   /* with addition viewport-relative growth */
   line-height: calc(1.1em + 0.5vw);
   margin: .5em;
+  background-color: #f0f8ea;
 }
 
 h1 {
@@ -72,7 +73,11 @@ p {
   margin: .5em 0;
 }
 
-#nav-burg{
+.logo {
+  height: 7em;
+}
+
+#nav-burg {
   display: none;
 }
 
@@ -136,6 +141,15 @@ p {
   list-style: none;
 }
 
+.gameLink {
+  height: 15em;
+}
+
+.gameLink:hover {
+  cursor: pointer;
+  background-color: #bcd8c1;
+}
+
 #game-match .gameImg {
   float: left;
   height: 15em;
@@ -143,18 +157,10 @@ p {
   display: inline-block;
 }
 
-#hoverText {
-  float: left;
-  height: 15em;
-  position: absolute;
-  background:#FFF;
-	opacity:0;
-}
-
 #game-match h3 {
   float: right;
   position: relative;
-  margin-right: 20.6em;
+  margin-right: 12.5em;
   color: #000000;
 }
 
