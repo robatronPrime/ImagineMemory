@@ -166,7 +166,6 @@ var MatchGame = function (targetID) {
   card.innerHTML = '<img src="cards/back.png">';
 
   if (w <= 640) {
-
     for (var i = 0; i < 16; i++) {
       var newCard = card.cloneNode(true);
 
@@ -181,9 +180,7 @@ var MatchGame = function (targetID) {
       felt.appendChild(newCard);
       cards.push(newCard);
     }
-
   } else {
-
     for (i = 0; i < 16; i++) {
       newCard = card.cloneNode(true);
 
@@ -198,7 +195,6 @@ var MatchGame = function (targetID) {
       felt.appendChild(newCard);
       cards.push(newCard);
     }
-
   }
 };
 

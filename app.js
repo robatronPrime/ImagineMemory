@@ -2,8 +2,8 @@ const express = require('express');
 
 const app = express();
 
-/* Use for backend */
-//app.use('/api', require('./api'));
+/* Backend */
+app.use('/api', require('./api'));
 
 app.use(express.static('static', { extensions: ['html'] }));
 
