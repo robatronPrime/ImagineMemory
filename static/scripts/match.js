@@ -1,83 +1,130 @@
-var MatchGame = function (targetID) {
-  //private variables
-  var cards = []
-  var card_value = ["1A", "2A", "3A", "4A", "5A", "6A", "7A", "8A", "1B", "2B", "3B", "4B", "5B", "6B", "7B", "8B"];
+//private variables
+var cards = []
+var Hard_card_value = ["1A", "2A", "3A", "4A", "5A", "6A", "7A", "8A", "1B", "2B", "3B", "4B", "5B", "6B", "7B", "8B"];
+var Medi_card_value = ["1A", "2A", "3A", "4A", "5A", "6A", "1B", "2B", "3B", "4B", "5B", "6B"];
+var Easy_card_value = ["1A", "2A", "3A", "4A", "1B", "2B", "3B", "4B"];
 
-  var started = false;
-  var matches_found = 0;
-  var card1 = false,
-      card2 = false;
+var started = false;
+var matches_found = 0;
+var card1 = false,
+    card2 = false;
 
-  var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
 
-  var sec = 0;
+var sec = 0;
 
-  //turn card face down
-  var hideCard = function (id) {
-    cards[id].firstChild.src = "cards/back.png";
-    with(cards[id].style) {
-      WebkitTransform = MozTransform = OTransform = msTransform = "scale(1.0) rotate(0deg)";
+//turn card face down
+function hideCard(id) {
+  cards[id].firstChild.src = "cards/back.png";
+  with(cards[id].style) {
+    WebkitTransform = MozTransform = OTransform = msTransform = "scale(1.0) rotate(0deg)";
+  }
+};
+
+// move card to pack
+function moveToPack(id) {
+  hideCard(id);
+  cards[id].matched = true;
+  with(cards[id].style) {
+    zIndex = "1000";
+    top = "100px";
+    left = "-140px";
+    WebkitTransform = MozTransform = OTransform = msTransform = "rotate(0deg)";
+    zIndex = "0";
+  }
+};
+// move card to pack
+function moveToPackMobile(id) {
+  hideCard(id);
+  cards[id].matched = true;
+  with(cards[id].style) {
+    zIndex = "1000";
+    top = "-110px";
+    left = "140px";
+    WebkitTransform = MozTransform = OTransform = msTransform = "rotate(0deg)";
+    zIndex = "0";
+  }
+};
+
+// deal card
+function moveToPlace(id) {
+  cards[id].matched = false;
+  with(cards[id].style) {
+    zIndex = "1000";
+    top = cards[id].fromtop + "em";
+    left = cards[id].fromleft + "em";
+    WebkitTransform = MozTransform = OTransform = msTransform = "rotate(0deg)";
+    zIndex = "0";
+  }
+};
+
+//Timer
+function pad(val) {
+  return val > 9 ? val : "0" + val;
+};
+
+setInterval(function () {
+  if (started) {
+    var seconds = document.getElementById("seconds").innerHTML = pad(++sec % 60);
+    var minutes = document.getElementById("minutes").innerHTML = pad(parseInt(sec / 60, 10));
+    started = true;
+  }
+  return seconds, minutes
+}, 1000);
+
+//end of game api
+function endGame(seconds, minutes){
+  if (typeof(Storage) !== "undefined") {
+
+  } else {
+    console.log("No Web Storage for you!");
+    alert("Web Storage is not available for your browser!");
+  }
+}
+
+function clickCounter() {
+  if (typeof(Storage) !== "undefined") {
+    if (localStorage.clickcount) {
+      localStorage.clickcount = Number(localStorage.clickcount)+1;
+    } else {
+      localStorage.clickcount = 1;
     }
-  };
+    document.getElementById("clickCountResult").innerHTML = "You have clicked " + localStorage.clickcount + " time(s).";
+  } else {
+    console.log("No Web Storage for you!");
+    alert("Web Storage is not available for your browser!");
+  }
+}
 
-  // move card to pack
-  var moveToPack = function (id) {
-    hideCard(id);
-    cards[id].matched = true;
-    with(cards[id].style) {
-      zIndex = "1000";
-      top = "100px";
-      left = "-140px";
-      WebkitTransform = MozTransform = OTransform = msTransform = "rotate(0deg)";
-      zIndex = "0";
-    }
-  };
-
-  // move card to pack
-  var moveToPackMobile = function (id) {
-    hideCard(id);
-    cards[id].matched = true;
-    with(cards[id].style) {
-      zIndex = "1000";
-      top = "-110px";
-      left = "140px";
-      WebkitTransform = MozTransform = OTransform = msTransform = "rotate(0deg)";
-      zIndex = "0";
-    }
-  };
-
-  // deal card
-  var moveToPlace = function (id) {
-    cards[id].matched = false;
-    with(cards[id].style) {
-      zIndex = "1000";
-      top = cards[id].fromtop + "em";
-      left = cards[id].fromleft + "em";
-      WebkitTransform = MozTransform = OTransform = msTransform = "rotate(0deg)";
-      zIndex = "0";
-    }
-  };
-
-  //Timer
-  function pad(val) {
-    return val > 9 ? val : "0" + val;
-  };
-
-  setInterval(function () {
+/* Hard Game Initialise */
+function MatchGame(targetID) {
+  //clicking the cards
+  function cardClick(id) {
     if (started) {
-      var seconds = document.getElementById("seconds").innerHTML = pad(++sec % 60);
-      var minutes = document.getElementById("minutes").innerHTML = pad(parseInt(sec / 60, 10));
+      showCard(id);
+    } else {
+      //shuffle and deal cards
+      Hard_card_value.sort(function () {
+        return Math.round(Math.random()) - 0.5;
+      });
+      for (i = 0; i < 16; i++) {
+        (function (idx) {
+          setTimeout(function () {
+            moveToPlace(idx);
+          }, idx * 100);
+        })(i);
+      }
       started = true;
     }
-    return seconds, minutes
-  }, 1000);
+  };
 
   // turn card face up, check for match
-  var showCard = function (id) {
+  function showCard(id) {
     if (id === card1) return
     if (cards[id].matched) return;
+    clickCounter();
 
-    cards[id].firstChild.src = "cards/" + card_value[id] + ".png";
+    cards[id].firstChild.src = "cards/" + Hard_card_value[id] + ".png";
 
     with(cards[id].style) {
       WebkitTransform = MozTransform = OTransform = msTransform = "scale(1.2) rotate(0deg)";
@@ -85,7 +132,7 @@ var MatchGame = function (targetID) {
 
     if (card1 !== false) {
       card2 = id;
-      if (parseInt(card_value[card1]) == parseInt(card_value[card2])) { //match found
+      if (parseInt(Hard_card_value[card1]) == parseInt(Hard_card_value[card2])) { //match found
         (function (card1, card2) {
           setTimeout(function () {
             if (w >= 640) {
@@ -98,6 +145,7 @@ var MatchGame = function (targetID) {
           }, 1000);
         })(card1, card2);
         if (++matches_found == 8) { //game over, reset
+          endGame(seconds, minutes);
           matches_found = 0;
           started = false;
           seconds = 0;
@@ -115,25 +163,6 @@ var MatchGame = function (targetID) {
       card1 = card2 = false;
     } else { // first card turned over
       card1 = id;
-    }
-  };
-
-  var cardClick = function (id) {
-    if (started) {
-      showCard(id);
-    } else {
-      //shuffle and deal cards
-      card_value.sort(function () {
-        return Math.round(Math.random()) - 0.5;
-      });
-      for (i = 0; i < 16; i++) {
-        (function (idx) {
-          setTimeout(function () {
-            moveToPlace(idx);
-          }, idx * 100);
-        })(i);
-      }
-      started = true;
     }
   };
 
@@ -200,85 +229,13 @@ var MatchGame = function (targetID) {
 
 //Medium game
 var MatchGameMedi = function (targetID) {
-  //private variables
-  var cards = []
-  var card_value = ["1A", "2A", "3A", "4A", "5A", "6A", "1B", "2B", "3B", "4B", "5B", "6B"];
-
-  var started = false;
-  var matches_found = 0;
-  var card1 = false,
-      card2 = false;
-
-  var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
-
-  var sec = 0;
-
-  //turn card face down
-  var hideCard = function (id) {
-    cards[id].firstChild.src = "cards/back.png";
-    with(cards[id].style) {
-      WebkitTransform = MozTransform = OTransform = msTransform = "scale(1.0) rotate(0deg)";
-    }
-  };
-
-  // move card to pack
-  var moveToPack = function (id) {
-    hideCard(id);
-    cards[id].matched = true;
-    with(cards[id].style) {
-      zIndex = "1000";
-      top = "100px";
-      left = "-140px";
-      WebkitTransform = MozTransform = OTransform = msTransform = "rotate(0deg)";
-      zIndex = "0";
-    }
-  };
-
-  // move card to pack
-  var moveToPackMobile = function (id) {
-    hideCard(id);
-    cards[id].matched = true;
-    with(cards[id].style) {
-      zIndex = "1000";
-      top = "-110px";
-      left = "140px";
-      WebkitTransform = MozTransform = OTransform = msTransform = "rotate(0deg)";
-      zIndex = "0";
-    }
-  };
-
-  // deal card
-  var moveToPlace = function (id) {
-    cards[id].matched = false;
-    with(cards[id].style) {
-      zIndex = "1000";
-      top = cards[id].fromtop + "em";
-      left = cards[id].fromleft + "em";
-      WebkitTransform = MozTransform = OTransform = msTransform = "rotate(0deg)";
-      zIndex = "0";
-    }
-  };
-
-  //Timer
-  function pad(val) {
-    return val > 9 ? val : "0" + val;
-  };
-
-  setInterval(function () {
-    if (started) {
-      var seconds = document.getElementById("seconds").innerHTML = pad(++sec % 60);
-      var minutes = document.getElementById("minutes").innerHTML = pad(parseInt(sec / 60, 10));
-      started = true;
-    }
-    return seconds, minutes
-  }, 1000);
-
   // turn card face up, check for match
   var showCard = function (id) {
     if (id === card1) return
     if (cards[id].matched) return;
+    clickCounter();
 
-    cards[id].firstChild.src = "cards/" + card_value[id] + ".png";
+    cards[id].firstChild.src = "cards/" + Medi_card_value[id] + ".png";
 
     with(cards[id].style) {
       WebkitTransform = MozTransform = OTransform = msTransform = "scale(1.2) rotate(0deg)";
@@ -286,7 +243,7 @@ var MatchGameMedi = function (targetID) {
 
     if (card1 !== false) {
       card2 = id;
-      if (parseInt(card_value[card1]) == parseInt(card_value[card2])) { //match found
+      if (parseInt(Medi_card_value[card1]) == parseInt(Medi_card_value[card2])) { //match found
         (function (card1, card2) {
           setTimeout(function () {
             if (w >= 640) {
@@ -324,7 +281,7 @@ var MatchGameMedi = function (targetID) {
       showCard(id);
     } else {
       //shuffle and deal cards
-      card_value.sort(function () {
+      Medi_card_value.sort(function () {
         return Math.round(Math.random()) - 0.5;
       });
       for (i = 0; i < 12; i++) {
@@ -405,85 +362,13 @@ var MatchGameMedi = function (targetID) {
 
 //Easy game
 var MatchGameEasy = function (targetID) {
-  //private variables
-  var cards = []
-  var card_value = ["1A", "2A", "3A", "4A", "1B", "2B", "3B", "4B"];
-
-  var started = false;
-  var matches_found = 0;
-  var card1 = false,
-      card2 = false;
-
-  var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
-
-  var sec = 0;
-
-  //turn card face down
-  var hideCard = function (id) {
-    cards[id].firstChild.src = "cards/back.png";
-    with(cards[id].style) {
-      WebkitTransform = MozTransform = OTransform = msTransform = "scale(1.0) rotate(0deg)";
-    }
-  };
-
-  // move card to pack
-  var moveToPack = function (id) {
-    hideCard(id);
-    cards[id].matched = true;
-    with(cards[id].style) {
-      zIndex = "1000";
-      top = "100px";
-      left = "-140px";
-      WebkitTransform = MozTransform = OTransform = msTransform = "rotate(0deg)";
-      zIndex = "0";
-    }
-  };
-
-  // move card to pack
-  var moveToPackMobile = function (id) {
-    hideCard(id);
-    cards[id].matched = true;
-    with(cards[id].style) {
-      zIndex = "1000";
-      top = "-110px";
-      left = "140px";
-      WebkitTransform = MozTransform = OTransform = msTransform = "rotate(0deg)";
-      zIndex = "0";
-    }
-  };
-
-  // deal card
-  var moveToPlace = function (id) {
-    cards[id].matched = false;
-    with(cards[id].style) {
-      zIndex = "1000";
-      top = cards[id].fromtop + "em";
-      left = cards[id].fromleft + "em";
-      WebkitTransform = MozTransform = OTransform = msTransform = "rotate(0deg)";
-      zIndex = "0";
-    }
-  };
-
-  //Timer
-  function pad(val) {
-    return val > 9 ? val : "0" + val;
-  };
-
-  setInterval(function () {
-    if (started) {
-      var seconds = document.getElementById("seconds").innerHTML = pad(++sec % 60);
-      var minutes = document.getElementById("minutes").innerHTML = pad(parseInt(sec / 60, 10));
-      started = true;
-    }
-    return seconds, minutes
-  }, 1000);
-
   // turn card face up, check for match
   var showCard = function (id) {
     if (id === card1) return
     if (cards[id].matched) return;
+    clickCounter();
 
-    cards[id].firstChild.src = "cards/" + card_value[id] + ".png";
+    cards[id].firstChild.src = "cards/" + Easy_card_value[id] + ".png";
 
     with(cards[id].style) {
       WebkitTransform = MozTransform = OTransform = msTransform = "scale(1.2) rotate(0deg)";
@@ -491,7 +376,7 @@ var MatchGameEasy = function (targetID) {
 
     if (card1 !== false) {
       card2 = id;
-      if (parseInt(card_value[card1]) == parseInt(card_value[card2])) { //match found
+      if (parseInt(Easy_card_value[card1]) == parseInt(Easy_card_value[card2])) { //match found
         (function (card1, card2) {
           setTimeout(function () {
             if (w >= 640) {
@@ -529,7 +414,7 @@ var MatchGameEasy = function (targetID) {
       showCard(id);
     } else {
       //shuffle and deal cards
-      card_value.sort(function () {
+      Easy_card_value.sort(function () {
         return Math.round(Math.random()) - 0.5;
       });
       for (i = 0; i < 8; i++) {
