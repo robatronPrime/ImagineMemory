@@ -172,12 +172,6 @@ function MatchGame(targetID) {
   var exit = document.createElement("span");
   var hide = document.getElementById("hide");
 
-  felt.id = "felt";
-  stage.appendChild(felt);
-
-  exit.id = "exit";
-  stage.appendChild(exit);
-
   //exit game button
   exit.innerHTML = "Quit Game";
   exit.addEventListener("click", function () {
@@ -189,6 +183,12 @@ function MatchGame(targetID) {
     started = false;
     content.appendChild(hide);
   });
+
+  exit.id = "exit";
+  stage.appendChild(exit);
+
+  felt.id = "felt";
+  stage.appendChild(felt);
 
   //template for card
   var card = document.createElement("div");
@@ -227,7 +227,7 @@ function MatchGame(targetID) {
   }
 };
 
-//Medium game
+/* Medium game */
 var MatchGameMedi = function (targetID) {
   // turn card face up, check for match
   var showCard = function (id) {
@@ -301,12 +301,6 @@ var MatchGameMedi = function (targetID) {
   var exit = document.createElement("span");
   var hide = document.getElementById("hide");
 
-  felt.id = "felt";
-  stage.appendChild(felt);
-
-  exit.id = "exit";
-  stage.appendChild(exit);
-
   //exit game button
   exit.innerHTML = "Quit Game";
   exit.addEventListener("click", function () {
@@ -318,6 +312,13 @@ var MatchGameMedi = function (targetID) {
     started = false;
     content.appendChild(hide);
   });
+
+  exit.id = "exit";
+  stage.appendChild(exit);
+
+
+  felt.id = "felt";
+  stage.appendChild(felt);
 
   //template for card
   var card = document.createElement("div");
@@ -360,7 +361,7 @@ var MatchGameMedi = function (targetID) {
   }
 };
 
-//Easy game
+/* Easy game */
 var MatchGameEasy = function (targetID) {
   // turn card face up, check for match
   var showCard = function (id) {
@@ -434,12 +435,6 @@ var MatchGameEasy = function (targetID) {
   var exit = document.createElement("span");
   var hide = document.getElementById("hide");
 
-  felt.id = "felt";
-  stage.appendChild(felt);
-
-  exit.id = "exit";
-  stage.appendChild(exit);
-
   //exit game button
   exit.innerHTML = "Quit Game";
   exit.addEventListener("click", function () {
@@ -451,6 +446,12 @@ var MatchGameEasy = function (targetID) {
     started = false;
     content.appendChild(hide);
   });
+
+  exit.id = "exit";
+  stage.appendChild(exit);
+
+  felt.id = "felt";
+  stage.appendChild(felt);
 
   //template for card
   var card = document.createElement("div");
