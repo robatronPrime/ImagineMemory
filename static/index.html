@@ -6,12 +6,31 @@
   <meta charset="utf-8">
   <!--External CSS files-->
   <link rel="stylesheet" type="text/css" href="css/style.css" />
-  <meta name="viewport" content="width=device-width">
+  <meta name="viewport" content="width=device-width" name="google-signin-client_id" content="562468116276-b6cal6rfdkjsm8r92butjr9jdmvi46s4.apps.googleusercontent.com">
   <script defer src="https://use.fontawesome.com/releases/v5.0.2/js/all.js"></script>
 </head>
 
 <body>
   <section id="content">
+    <section class="auth">
+      <h3>Auth</h3>
+      <div class="login">
+        Press the button to sign in:
+        <span class="g-signin2" data-onsuccess="onSignIn"></span>
+      </div>
+      <p class="greeting">
+        Signed in as: <span class="name">error</span>
+        <button onclick="signOut();">Sign out</button>
+      </p>
+      <p>
+        Roles: <span class="roles">not loaded</span>
+        <button onclick="loadRoles();">Refresh</button>
+        <button onclick="register();">Request authorization</button> <span class="register-status"></span>
+      </p>
+      <p>
+        Common error codes: 401 Unauthorized (not logged in), 403 Forbidden (not allowed).
+      </p>
+    </section>
       <section id="head">
         <section id="title">
           <img class="logo" src="images/Logo.png" alt="Website logo ImagineMemory">
