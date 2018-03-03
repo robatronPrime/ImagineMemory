@@ -1,5 +1,3 @@
-window.addEventListener('load', init);
-
 function onSignIn(googleUser) { // eslint-disable-line no-unused-vars
   if (runningTests) {
     resolveGlobalPromise();
