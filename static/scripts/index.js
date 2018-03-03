@@ -74,3 +74,35 @@ async function register() { // eslint-disable-line no-unused-vars
     console.error(e);
   }
 }
+
+// a helper method that calls the API at the given path, with the given method and optional data
+// it returns the fetch() response
+// it gets the Google ID token
+async function callAPI(method, path, data) {
+  const idToken = gapi.auth2.getAuthInstance().currentUser.get().getAuthResponse().id_token;
+
+  const fetchOptions = {
+    credentials: 'same-origin',
+    method: method || 'GET',
+    body: data,
+    headers: { Authorization: 'Bearer ' + idToken },
+  };
+
+  return fetch(path, fetchOptions);
+}
+
+// react to computer sleeps, get a new token, because it seems gapi doesn't do this reliably
+// eslint-disable-next-line max-len
+// adapted from http://stackoverflow.com/questions/4079115/can-any-desktop-browsers-detect-when-the-computer-resumes-from-sleep/4080174#4080174
+(function () {
+  const CHECK_DELAY = 2000;
+  let lastTime = Date.now();
+
+  setInterval(() => {
+    const currentTime = Date.now();
+    if (currentTime > (lastTime + (CHECK_DELAY*2))) { // ignore small delays
+      gapi.auth2.getAuthInstance().currentUser.get().reloadAuthResponse();
+    }
+    lastTime = currentTime;
+  }, CHECK_DELAY);
+}());
