@@ -21,31 +21,23 @@
       </section>
     </section>
     <section class="auth">
-      <h3>Auth</h3>
+      <h2>Login</h2>
       <div class="login">
-        Press the button to sign in:
+        <p>Press the button to sign in:</p>
         <span class="g-signin2" data-onsuccess="onSignIn"></span>
       </div>
       <p class="greeting">
-        Signed in as: <span class="name">error</span>
-        <button onclick="signOut();">Sign out</button>
-      </p>
-      <p>
-        Roles: <span class="roles">not loaded</span>
-        <button onclick="loadRoles();">Refresh</button>
-        <button onclick="register();">Request authorization</button> <span class="register-status"></span>
-      </p>
-      <p>
-        Common error codes: 401 Unauthorized (not logged in), 403 Forbidden (not allowed).
+        <p>Signed in as:</p> <span class="name">error</span>
+        <button onclick="signOut();"><p>Sign out</p></button>
       </p>
     </section>
     <section id="content-games">
       <ul id="games-list">
         <li id="game-match" class="gameLink">
           <a href="match.html">
+            <img id="matchImg" class="gameImg" src="images/matchImg.png">
             <h3>Click Here to Play Match!</h3>
             <p>Play a fun game of Match! Where you have to match 2 pairs of cards togeather untill you've matched them all!</p>
-            <img id="matchImg" class="gameImg" src="images/matchImg.png">
           </a>
         </li>
       </ul>
