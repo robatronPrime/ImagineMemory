@@ -233,6 +233,12 @@ p {
     padding-top: 60px;
 }
 
+.signed {
+  width: 18%;
+  margin: 4px;
+  float: left;
+}
+
 .sideNav a {
     padding: 8px 8px 8px 9px;
     text-decoration: none;
