@@ -47,6 +47,7 @@ body {
   /* with addition viewport-relative growth */
   line-height: calc(1.1em + 0.5vw);
   margin: .5em;
+  background-color: #f0f8ea;
 }
 
 h1 {
@@ -72,26 +73,151 @@ p {
   margin: .5em 0;
 }
 
-#nav-burg{
-  display: none;
+.logo {
+  height: 7em;
 }
 
-.ruleArr{
-  margin: 3em;
+#nav-links {
+  list-style: none;
+  border: 1px outset #ccc;
+  width: 22em;
+  margin: 0.5em;
+  float: left;
+}
+
+#nav-links p {
   font-size: 30px;
 }
 
+#nav-links li {
+  width: 13em;
+  margin-bottom: 15px;
+  margin-top: 15px
+}
+
+#nav-links a {
+  text-decoration: none;
+  font-size: 25px;
+  color: #000000;
+  display: block;
+  transition: 0.3s;
+  padding-left: 3em;
+  padding-right: 3em;
+}
+
+#nav-links a:hover {
+  cursor: pointer;
+  background-color: #bcd8c1;
+}
+
+#rules {
+  width: 31.7em;
+  height: 12em;
+  margin: 0px;
+  border: 1px outset #ccc;
+  margin: 0.5em;
+  float: right;
+}
+
+#contentT {
+  height: 5em;
+}
+
+.ruleArr{
+  padding-left: 5em;
+  padding-right: 5em;
+  font-size: 30px;
+  display: block;
+  transition: 0.3s;
+  float: left;
+}
+
 .ruleArr:hover{
-  background-color: #b4bfb6;
+  cursor: pointer;
+  background-color: #bcd8c1;
+}
+
+#diffSelect {
+  float: left;
+  width: 100%;
 }
 
 .dif{
-  margin: 3em;
+  padding-left: 3em;
+  padding-right: 3em;
   cursor: default;
+  font-size: larger;
+  float: left;
+  transition: 0.3s;
+
 }
 
 .dif:hover{
-  background-color: #b4bfb6;
+  cursor: pointer;
+  background-color: #bcd8c1;
+}
+
+.auth {
+  border: 1px outset #ccc;
+  width: 30em;
+}
+
+#games-list li {
+  list-style: none;
+}
+
+.gameLink {
+  height: 15em;
+}
+
+.gameLink:hover {
+  cursor: pointer;
+  background-color: #bcd8c1;
+}
+
+#games-list {
+  padding-left: 0px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+
+#game-match {
+  float: left;
+  border: 1px outset #ccc;
+  overflow: auto;
+}
+
+#game-match .gameImg {
+  float: left;
+  height: 15em;
+  position: relative;
+  display: inline-block;
+}
+
+#game-match h3 {
+  float: right;
+  position: relative;
+  color: #000000;
+  width: 24em;
+  display: inline-block;
+}
+
+#game-match p {
+  float: right;
+  position: relative;
+  color: #000000;
+  width: 28em;
+  display: inline-block;
+}
+
+#game-match a {
+  text-decoration: none;
+  display: block;
+}
+
+/* Burger Mobile Navigation*/
+#nav-burg {
+  display: none;
 }
 
 .sideNav {
@@ -101,7 +227,7 @@ p {
     z-index: 1;
     top: 0;
     left: 0;
-    background-color: #555555;
+    background-color: #808f87;
     overflow-x: hidden;
     transition: 0.5s;
     padding-top: 60px;
@@ -132,74 +258,11 @@ p {
     margin-left: 50px;
 }
 
-#games-list li {
-  list-style: none;
-}
-
-#game-match .gameImg {
-  float: left;
-  height: 15em;
-  position: absolute;
-  display: inline-block;
-}
-
-#hoverText {
-  float: left;
-  height: 15em;
-  position: absolute;
-  background:#FFF;
-	opacity:0;
-}
-
-#game-match h3 {
-  float: right;
-  position: relative;
-  margin-right: 20.6em;
-  color: #000000;
-}
-
-#game-match p {
-  float: right;
-  position: inherit;
-  margin-left: 29.4em;
-  color: #000000;
-}
-
-#game-match a {
-  text-decoration: none;
-  display: block;
-}
-
-#game-match:hover .hoverText{
-  opacity:1;
-	text-align:justify;
-	color:#000000;
-}
-
-@media screen and (max-height: 450px) {
-  .sidenav {padding-top: 15px;}
-  .sidenav a {font-size: 18px;}
-}
-
-@media (max-width: 640px) {
-  #nav-hide {
-    display: none;
-  }
-  #nav-burg {
-    display: block;
-    font-size: 30px;
-    cursor: pointer;
-  }
-
-  .ruleArr {
-    margin: 2em;
-  }
-}
-
 /*Match the cards css*/
-
 #stage {
   border: 1px outset #ccc;
+  float: left;
+  width: 100%;
 }
 
 #felt {
@@ -228,22 +291,92 @@ p {
   -webkit-transition-timing-function: ease-out, ease-out, ease-in-out;
 }
 
+#exit {
+  padding-left: 4em;
+  padding-right: 4em;
+  padding-top: 0.1em;
+  padding-bottom: 0.1em;
+  width: 2em;
+  margin: 0.2em;
+  cursor: default;
+  transition: 0.3s;
+}
+
+#exit:hover {
+  background-color: #bcd8c1;
+}
+
+/*Resposive*/
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+
 @media (max-width: 640px) {
+  p, h1, h2, h3 {
+    font-size: 30px;
+  }
+
+  #nav-hide {
+    display: none;
+  }
+  #nav-burg {
+    display: block;
+    font-size: 30px;
+    cursor: pointer;
+  }
+
   #felt {
     margin: 6em 0 0 0;
   }
+
   #felt div {
     left: 140px;
     top: -110px;
   }
-}
 
-#exit {
-  margin: 3em;
-  cursor: default;
-}
+  #rules {
+    width: 19em;
+  }
 
-#exit:hover {
-  background-color: #b4bfb6;
+  .ruleArr {
+    margin: 0px;
+    margin-right: 0.1em;
+    margin-left: 0.1em;
+    padding-left: 2em;
+    padding-right: 2em;
+    background-color: #bcd8c1;
+  }
+
+  .dif {
+    padding-left: 5em;
+    padding-right: 4em;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    background-color: #bcd8c1;
+    width: 6em;
+    margin: 0.2em;
+  }
+
+  #game-match h3 {
+    width: 25em;
+    float: left;
+  }
+
+  #game-match p {
+    width: 18em;
+    float: left;
+  }
+
+  #game-match {
+    height: 25em;
+  }
+
+  #exit {
+    background-color: #bcd8c1;
+  }
+
+  #contentT {
+    height: 2.5em;
+  }
 }
-/*End of match the cards css*/
