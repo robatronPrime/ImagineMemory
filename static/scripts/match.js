@@ -6,8 +6,7 @@ var Easy_card_value = ["1A", "2A", "3A", "4A", "1B", "2B", "3B", "4B"];
 
 var started = false;
 var matches_found = 0;
-var card1 = false,
-    card2 = false;
+var card1 = false,  card2 = false;
 
 var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
 
@@ -273,25 +272,6 @@ var MatchGameMedi = function (targetID) {
       card1 = card2 = false;
     } else { // first card turned over
       card1 = id;
-    }
-  };
-
-  var cardClick = function (id) {
-    if (started) {
-      showCard(id);
-    } else {
-      //shuffle and deal cards
-      Medi_card_value.sort(function () {
-        return Math.round(Math.random()) - 0.5;
-      });
-      for (i = 0; i < 12; i++) {
-        (function (idx) {
-          setTimeout(function () {
-            moveToPlace(idx);
-          }, idx * 100);
-        })(i);
-      }
-      started = true;
     }
   };
 
