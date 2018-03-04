@@ -40,13 +40,13 @@ async function signOut() {
 async function loadRoles() {
   if (runningTests) return; // ignoring
   const el = document.querySelector('.auth .roles');
-  el.textContent = 'loading…';
+  //el.textContent = 'loading…';
 
   const response = await callAPI('GET', '/api/user/roles');
 
   if (!response.ok) {
     // handle the error
-    el.textContent = 'error: ' + response.status;
+    //el.textContent = 'error: ' + response.status;
     return;
   }
 
@@ -106,7 +106,7 @@ async function loadRandom() {
     const data = await response.text();
     el.textContent = data;
   } catch (e) {
-    el.textContent = 'error: ' + e;
+    //el.textContent = 'error: ' + e;
     console.error(e);
   }
 }
