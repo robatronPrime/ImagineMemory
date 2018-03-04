@@ -1,9 +1,10 @@
 const express = require('express');
-
 const app = express();
+const googleauth = require('simple-google-openid');
+const users = [{"email": "robstow94@gmail.com", "roles": ["user", "admin"]}];
 
-/* Use for backend */
-//app.use('/api', require('./api'));
+/* Backend */
+app.use('/api', require('./api'));
 
 app.use(express.static('static', { extensions: ['html'] }));
 

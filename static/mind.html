@@ -21,7 +21,7 @@
         </li>
       </ul>
     </section>
-  
+
     <section id="rules">
       <h1>How to Play Mastermind</h1>
       <section id="title-sec">
@@ -34,37 +34,28 @@
       <span id="next" class="ruleArr" onclick="nextStep();"><i class="fas fa-angle-right"></i></span>
     </section>
 
-    <section id="stage">
-      <span id="minutes"></span>:<span id="seconds"></span>
-    </section>
-
-    <section id="board">
-      <script src="scripts/match.js"></script>
-      <script>
-        var game = new MatchGame("stage");
-      </script>
-    </section>
+    
   </body>
-  
+
   <script>
     var titleText = "Step 1";
     var contentText = "Click the pack of card to start the game and the timer starts.";
-    
-    
+
+
     function updateHTML(id, text) {
       var elem = document.getElementById(id);
-      elem.innerHTML=text; 
+      elem.innerHTML=text;
     };
-    
+
     window.onload = updateHTML('titleT', titleText), updateHTML('contentT', contentText);
-    
+
     //elements
     var elemT = document.getElementById('titleT');
     var elemC = document.getElementById('contentT');
-      
+
     //current steps
     var curStep = 0;
-      
+
     //text
     var steps = [
       ['Step 1'],
@@ -80,7 +71,7 @@
       ["If it's a match the selected cards go back to the deck. If the cards are not a match they flip back over."],
       ["Once all of the cards are matched the game ends and the timer stops. Try to get a shorter time to improve!"]
     ];
-      
+
     function nextStep(){
       curStep++;
       if(curStep == steps.length) curStep = 0;
@@ -88,7 +79,7 @@
       document.getElementById("contentT").innerHTML = text[curStep];
       console.log("foo");
     };
-    
+
     function prevStep(){
       curStep--;
       if(curStep == -1) curStep = 4;
@@ -96,7 +87,7 @@
       document.getElementById("contentT").innerHTML = text[curStep];
       console.log("bar");
     }
-      
+
   </script>
-  
+
 </html>
