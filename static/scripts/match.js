@@ -1,61 +1,6 @@
-//private variables
-var cards = []
-var Hard_card_value = ["1A", "2A", "3A", "4A", "5A", "6A", "7A", "8A", "1B", "2B", "3B", "4B", "5B", "6B", "7B", "8B"];
-var Medi_card_value = ["1A", "2A", "3A", "4A", "5A", "6A", "1B", "2B", "3B", "4B", "5B", "6B"];
-var Easy_card_value = ["1A", "2A", "3A", "4A", "1B", "2B", "3B", "4B"];
-
-var started = false;
-var matches_found = 0;
-var card1 = false,  card2 = false;
-
-var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
-
-var sec = 0;
-
-//turn card face down
-function hideCard(id) {
-  cards[id].firstChild.src = "cards/back.png";
-  with(cards[id].style) {
-    WebkitTransform = MozTransform = OTransform = msTransform = "scale(1.0) rotate(0deg)";
-  }
-};
-
-// move card to pack
-function moveToPack(id) {
-  hideCard(id);
-  cards[id].matched = true;
-  with(cards[id].style) {
-    zIndex = "1000";
-    top = "100px";
-    left = "-140px";
-    WebkitTransform = MozTransform = OTransform = msTransform = "rotate(0deg)";
-    zIndex = "0";
-  }
-};
-// move card to pack
-function moveToPackMobile(id) {
-  hideCard(id);
-  cards[id].matched = true;
-  with(cards[id].style) {
-    zIndex = "1000";
-    top = "-110px";
-    left = "140px";
-    WebkitTransform = MozTransform = OTransform = msTransform = "rotate(0deg)";
-    zIndex = "0";
-  }
-};
-
-// deal card
-function moveToPlace(id) {
-  cards[id].matched = false;
-  with(cards[id].style) {
-    zIndex = "1000";
-    top = cards[id].fromtop + "em";
-    left = cards[id].fromleft + "em";
-    WebkitTransform = MozTransform = OTransform = msTransform = "rotate(0deg)";
-    zIndex = "0";
-  }
-};
+var hard_card_value = ["1A", "2A", "3A", "4A", "5A", "6A", "7A", "8A", "1B", "2B", "3B", "4B", "5B", "6B", "7B", "8B"];
+var medi_card_value = ["1A", "2A", "3A", "4A", "5A", "6A", "1B", "2B", "3B", "4B", "5B", "6B"];
+var easy_card_value = ["1A", "2A", "3A", "4A", "1B", "2B", "3B", "4B"];
 
 //Timer
 function pad(val) {
@@ -74,7 +19,7 @@ setInterval(function () {
 //end of game api
 function endGame(seconds, minutes){
   if (typeof(Storage) !== "undefined") {
-
+    localStorage.clickcount = sessionStorage;
   } else {
     console.log("No Web Storage for you!");
     alert("Web Storage is not available for your browser!");
@@ -83,10 +28,10 @@ function endGame(seconds, minutes){
 
 function clickCounter() {
   if (typeof(Storage) !== "undefined") {
-    if (localStorage.clickcount) {
-      localStorage.clickcount = Number(localStorage.clickcount)+1;
+    if (sessionStorage.clickcount) {
+      sessionStorage.clickcount = Number(sessionStorage.clickcount)+1;
     } else {
-      localStorage.clickcount = 1;
+      sessionStorage.clickcount = 1;
     }
     document.getElementById("clickCountResult").innerHTML = "You have clicked " + localStorage.clickcount + " time(s).";
   } else {
@@ -95,35 +40,73 @@ function clickCounter() {
   }
 }
 
-/* Hard Game Initialise */
-function MatchGame(targetID) {
-  //clicking the cards
-  function cardClick(id) {
-    if (started) {
-      showCard(id);
-    } else {
-      //shuffle and deal cards
-      Hard_card_value.sort(function () {
-        return Math.round(Math.random()) - 0.5;
-      });
-      for (i = 0; i < 16; i++) {
-        (function (idx) {
-          setTimeout(function () {
-            moveToPlace(idx);
-          }, idx * 100);
-        })(i);
-      }
-      started = true;
+
+/*Hard game*/
+var MatchGame = function (targetID) {
+  //private variables
+  var cards = []
+  var started = false;
+  var matches_found = 0;
+  var card1 = false,
+      card2 = false;
+
+  var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+
+  var sec = 0;
+
+  //turn card face down
+  var hideCard = function (id) {
+    cards[id].firstChild.src = "cards/back.png";
+    with(cards[id].style) {
+      WebkitTransform = MozTransform = OTransform = msTransform = "scale(1.0) rotate(0deg)";
+    }
+  };
+
+  // move card to pack
+  var moveToPack = function (id) {
+    hideCard(id);
+    cards[id].matched = true;
+    with(cards[id].style) {
+      zIndex = "1000";
+      top = "100px";
+      left = "-140px";
+      WebkitTransform = MozTransform = OTransform = msTransform = "rotate(0deg)";
+      zIndex = "0";
+    }
+  };
+
+  // move card to pack
+  var moveToPackMobile = function (id) {
+    hideCard(id);
+    cards[id].matched = true;
+    with(cards[id].style) {
+      zIndex = "1000";
+      top = "-110px";
+      left = "140px";
+      WebkitTransform = MozTransform = OTransform = msTransform = "rotate(0deg)";
+      zIndex = "0";
+    }
+  };
+
+  // deal card
+  var moveToPlace = function (id) {
+    cards[id].matched = false;
+    with(cards[id].style) {
+      zIndex = "1000";
+      top = cards[id].fromtop + "em";
+      left = cards[id].fromleft + "em";
+      WebkitTransform = MozTransform = OTransform = msTransform = "rotate(0deg)";
+      zIndex = "0";
     }
   };
 
   // turn card face up, check for match
-  function showCard(id) {
+  var showCard = function (id) {
     if (id === card1) return
     if (cards[id].matched) return;
     clickCounter();
 
-    cards[id].firstChild.src = "cards/" + Hard_card_value[id] + ".png";
+    cards[id].firstChild.src = "cards/" + hard_card_value[id] + ".png";
 
     with(cards[id].style) {
       WebkitTransform = MozTransform = OTransform = msTransform = "scale(1.2) rotate(0deg)";
@@ -131,7 +114,7 @@ function MatchGame(targetID) {
 
     if (card1 !== false) {
       card2 = id;
-      if (parseInt(Hard_card_value[card1]) == parseInt(Hard_card_value[card2])) { //match found
+      if (parseInt(hard_card_value[card1]) == parseInt(hard_card_value[card2])) { //match found
         (function (card1, card2) {
           setTimeout(function () {
             if (w >= 640) {
@@ -144,7 +127,6 @@ function MatchGame(targetID) {
           }, 1000);
         })(card1, card2);
         if (++matches_found == 8) { //game over, reset
-          endGame(seconds, minutes);
           matches_found = 0;
           started = false;
           seconds = 0;
@@ -165,11 +147,36 @@ function MatchGame(targetID) {
     }
   };
 
+  var cardClick = function (id) {
+    if (started) {
+      showCard(id);
+    } else {
+      //shuffle and deal cards
+      hard_card_value.sort(function () {
+        return Math.round(Math.random()) - 0.5;
+      });
+      for (i = 0; i < 16; i++) {
+        (function (idx) {
+          setTimeout(function () {
+            moveToPlace(idx);
+          }, idx * 100);
+        })(i);
+      }
+      started = true;
+    }
+  };
+
   //initialise
   var stage = document.getElementById(targetID);
   var felt = document.createElement("div");
   var exit = document.createElement("span");
   var hide = document.getElementById("hide");
+
+  exit.id = "exit";
+  stage.appendChild(exit);
+
+  felt.id = "felt";
+  stage.appendChild(felt);
 
   //exit game button
   exit.innerHTML = "Quit Game";
@@ -182,12 +189,6 @@ function MatchGame(targetID) {
     started = false;
     content.appendChild(hide);
   });
-
-  exit.id = "exit";
-  stage.appendChild(exit);
-
-  felt.id = "felt";
-  stage.appendChild(felt);
 
   //template for card
   var card = document.createElement("div");
@@ -226,15 +227,73 @@ function MatchGame(targetID) {
   }
 };
 
-/* Medium game */
+//Medium game
 var MatchGameMedi = function (targetID) {
+  //private variables
+  var cards = []
+
+  var started = false;
+  var matches_found = 0;
+  var card1 = false,
+      card2 = false;
+
+  var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+
+  var sec = 0;
+
+  //turn card face down
+  var hideCard = function (id) {
+    cards[id].firstChild.src = "cards/back.png";
+    with(cards[id].style) {
+      WebkitTransform = MozTransform = OTransform = msTransform = "scale(1.0) rotate(0deg)";
+    }
+  };
+
+  // move card to pack
+  var moveToPack = function (id) {
+    hideCard(id);
+    cards[id].matched = true;
+    with(cards[id].style) {
+      zIndex = "1000";
+      top = "100px";
+      left = "-140px";
+      WebkitTransform = MozTransform = OTransform = msTransform = "rotate(0deg)";
+      zIndex = "0";
+    }
+  };
+
+  // move card to pack
+  var moveToPackMobile = function (id) {
+    hideCard(id);
+    cards[id].matched = true;
+    with(cards[id].style) {
+      zIndex = "1000";
+      top = "-110px";
+      left = "140px";
+      WebkitTransform = MozTransform = OTransform = msTransform = "rotate(0deg)";
+      zIndex = "0";
+    }
+  };
+
+  // deal card
+  var moveToPlace = function (id) {
+    cards[id].matched = false;
+    with(cards[id].style) {
+      zIndex = "1000";
+      top = cards[id].fromtop + "em";
+      left = cards[id].fromleft + "em";
+      WebkitTransform = MozTransform = OTransform = msTransform = "rotate(0deg)";
+      zIndex = "0";
+    }
+  };
+
   // turn card face up, check for match
   var showCard = function (id) {
     if (id === card1) return
     if (cards[id].matched) return;
     clickCounter();
 
-    cards[id].firstChild.src = "cards/" + Medi_card_value[id] + ".png";
+    cards[id].firstChild.src = "cards/" + medi_card_value[id] + ".png";
 
     with(cards[id].style) {
       WebkitTransform = MozTransform = OTransform = msTransform = "scale(1.2) rotate(0deg)";
@@ -242,7 +301,7 @@ var MatchGameMedi = function (targetID) {
 
     if (card1 !== false) {
       card2 = id;
-      if (parseInt(Medi_card_value[card1]) == parseInt(Medi_card_value[card2])) { //match found
+      if (parseInt(medi_card_value[card1]) == parseInt(medi_card_value[card2])) { //match found
         (function (card1, card2) {
           setTimeout(function () {
             if (w >= 640) {
@@ -275,11 +334,36 @@ var MatchGameMedi = function (targetID) {
     }
   };
 
+  var cardClick = function (id) {
+    if (started) {
+      showCard(id);
+    } else {
+      //shuffle and deal cards
+      medi_card_value.sort(function () {
+        return Math.round(Math.random()) - 0.5;
+      });
+      for (i = 0; i < 12; i++) {
+        (function (idx) {
+          setTimeout(function () {
+            moveToPlace(idx);
+          }, idx * 100);
+        })(i);
+      }
+      started = true;
+    }
+  };
+
   //initialise
   var stage = document.getElementById(targetID);
   var felt = document.createElement("div");
   var exit = document.createElement("span");
   var hide = document.getElementById("hide");
+
+  exit.id = "exit";
+  stage.appendChild(exit);
+
+  felt.id = "felt";
+  stage.appendChild(felt);
 
   //exit game button
   exit.innerHTML = "Quit Game";
@@ -292,13 +376,6 @@ var MatchGameMedi = function (targetID) {
     started = false;
     content.appendChild(hide);
   });
-
-  exit.id = "exit";
-  stage.appendChild(exit);
-
-
-  felt.id = "felt";
-  stage.appendChild(felt);
 
   //template for card
   var card = document.createElement("div");
@@ -341,15 +418,74 @@ var MatchGameMedi = function (targetID) {
   }
 };
 
-/* Easy game */
+//Easy game
 var MatchGameEasy = function (targetID) {
+  //private variables
+  var cards = []
+
+  var started = false;
+  var matches_found = 0;
+  var card1 = false,
+      card2 = false;
+
+  var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+
+  var sec = 0;
+
+  //turn card face down
+  var hideCard = function (id) {
+    cards[id].firstChild.src = "cards/back.png";
+    with(cards[id].style) {
+      WebkitTransform = MozTransform = OTransform = msTransform = "scale(1.0) rotate(0deg)";
+    }
+  };
+
+  // move card to pack
+  var moveToPack = function (id) {
+    hideCard(id);
+    cards[id].matched = true;
+    with(cards[id].style) {
+      zIndex = "1000";
+      top = "100px";
+      left = "-140px";
+      WebkitTransform = MozTransform = OTransform = msTransform = "rotate(0deg)";
+      zIndex = "0";
+    }
+  };
+
+  // move card to pack
+  var moveToPackMobile = function (id) {
+    hideCard(id);
+    cards[id].matched = true;
+    with(cards[id].style) {
+      zIndex = "1000";
+      top = "-110px";
+      left = "140px";
+      WebkitTransform = MozTransform = OTransform = msTransform = "rotate(0deg)";
+      zIndex = "0";
+    }
+  };
+
+  // deal card
+  var moveToPlace = function (id) {
+    cards[id].matched = false;
+    with(cards[id].style) {
+      zIndex = "1000";
+      top = cards[id].fromtop + "em";
+      left = cards[id].fromleft + "em";
+      WebkitTransform = MozTransform = OTransform = msTransform = "rotate(0deg)";
+      zIndex = "0";
+    }
+  };
+
+
   // turn card face up, check for match
   var showCard = function (id) {
     if (id === card1) return
     if (cards[id].matched) return;
     clickCounter();
 
-    cards[id].firstChild.src = "cards/" + Easy_card_value[id] + ".png";
+    cards[id].firstChild.src = "cards/" + easy_card_value[id] + ".png";
 
     with(cards[id].style) {
       WebkitTransform = MozTransform = OTransform = msTransform = "scale(1.2) rotate(0deg)";
@@ -357,7 +493,7 @@ var MatchGameEasy = function (targetID) {
 
     if (card1 !== false) {
       card2 = id;
-      if (parseInt(Easy_card_value[card1]) == parseInt(Easy_card_value[card2])) { //match found
+      if (parseInt(easy_card_value[card1]) == parseInt(easy_card_value[card2])) { //match found
         (function (card1, card2) {
           setTimeout(function () {
             if (w >= 640) {
@@ -395,7 +531,7 @@ var MatchGameEasy = function (targetID) {
       showCard(id);
     } else {
       //shuffle and deal cards
-      Easy_card_value.sort(function () {
+      easy_card_value.sort(function () {
         return Math.round(Math.random()) - 0.5;
       });
       for (i = 0; i < 8; i++) {
@@ -415,6 +551,12 @@ var MatchGameEasy = function (targetID) {
   var exit = document.createElement("span");
   var hide = document.getElementById("hide");
 
+  exit.id = "exit";
+  stage.appendChild(exit);
+
+  felt.id = "felt";
+  stage.appendChild(felt);
+
   //exit game button
   exit.innerHTML = "Quit Game";
   exit.addEventListener("click", function () {
@@ -426,12 +568,6 @@ var MatchGameEasy = function (targetID) {
     started = false;
     content.appendChild(hide);
   });
-
-  exit.id = "exit";
-  stage.appendChild(exit);
-
-  felt.id = "felt";
-  stage.appendChild(felt);
 
   //template for card
   var card = document.createElement("div");
