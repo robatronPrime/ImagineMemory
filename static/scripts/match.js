@@ -17,9 +17,16 @@ setInterval(function () {
 }, 1000);
 
 //end of game api
-function endGame(seconds, minutes){
+function gameComplete(seconds, minutes) {
   if (typeof(Storage) !== "undefined") {
-    localStorage.clickcount = sessionStorage;
+    if (localStorage.clicktotal) {
+      sessionStorage.clickcount = 0;
+      localStorage.clicktotal = clickcount;
+      localStorage.savesec = seconds;
+      localStorage.savemin = minutes;
+    } else {
+      localStorage.clickcount = 0;
+    }
   } else {
     console.log("No Web Storage for you!");
     alert("Web Storage is not available for your browser!");
@@ -132,6 +139,7 @@ var MatchGame = function (targetID) {
           seconds = 0;
           minutes = 0;
           sec = 0;
+          gameComplete(seconds, minutes);
         }
       } else { //no match
         (function (card1, card2) {
@@ -319,6 +327,7 @@ var MatchGameMedi = function (targetID) {
           seconds = 0;
           minutes = 0;
           sec = 0;
+          gameComplete(seconds, minutes);
         }
       } else { //no match
         (function (card1, card2) {
@@ -511,6 +520,7 @@ var MatchGameEasy = function (targetID) {
           seconds = 0;
           minutes = 0;
           sec = 0;
+          gameComplete(seconds, minutes);
         }
       } else { //no match
         (function (card1, card2) {
