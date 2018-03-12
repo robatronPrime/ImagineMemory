@@ -1,68 +1,22 @@
-var hard_card_value = ["1A", "2A", "3A", "4A", "5A", "6A", "7A", "8A", "1B", "2B", "3B", "4B", "5B", "6B", "7B", "8B"];
-var medi_card_value = ["1A", "2A", "3A", "4A", "5A", "6A", "1B", "2B", "3B", "4B", "5B", "6B"];
-var easy_card_value = ["1A", "2A", "3A", "4A", "1B", "2B", "3B", "4B"];
-
-//Timer
-function pad(val) {
-  return val > 9 ? val : "0" + val;
-};
-
-setInterval(function () {
-  if (started) {
-    var seconds = document.getElementById("seconds").innerHTML = pad(++sec % 60);
-    var minutes = document.getElementById("minutes").innerHTML = pad(parseInt(sec / 60, 10));
-    started = true;
-  }
-  return seconds, minutes
-}, 1000);
-
-//end of game api
-function gameComplete(seconds, minutes) {
-  if (typeof(Storage) !== "undefined") {
-    if (localStorage.clicktotal) {
-      sessionStorage.clickcount = 0;
-      localStorage.clicktotal = clickcount;
-      localStorage.savesec = seconds;
-      localStorage.savemin = minutes;
-    } else {
-      localStorage.clickcount = 0;
-    }
-  } else {
-    console.log("No Web Storage for you!");
-    alert("Web Storage is not available for your browser!");
-  }
-}
-
-function clickCounter() {
-  if (typeof(Storage) !== "undefined") {
-    if (sessionStorage.clickcount) {
-      sessionStorage.clickcount = Number(sessionStorage.clickcount)+1;
-    } else {
-      sessionStorage.clickcount = 1;
-    }
-    document.getElementById("clickCountResult").innerHTML = "You have clicked " + localStorage.clickcount + " time(s).";
-  } else {
-    console.log("No Web Storage for you!");
-    alert("Web Storage is not available for your browser!");
-  }
-}
-
+const hard_card_value = ["1A", "2A", "3A", "4A", "5A", "6A", "7A", "8A", "1B", "2B", "3B", "4B", "5B", "6B", "7B", "8B"];
+const medi_card_value = ["1A", "2A", "3A", "4A", "5A", "6A", "1B", "2B", "3B", "4B", "5B", "6B"];
+const easy_card_value = ["1A", "2A", "3A", "4A", "1B", "2B", "3B", "4B"];
 
 /*Hard game*/
-var MatchGame = function (targetID) {
+const MatchGame = function (targetID) {
   //private variables
-  var cards = []
-  var started = false;
-  var matches_found = 0;
-  var card1 = false,
-      card2 = false;
+  let cards = []
+  let started = false;
+  let matches_found = 0;
+  let card1 = false;
+  let card2 = false;
 
-  var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+  const w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
 
-  var sec = 0;
+  let sec = 0;
 
   //turn card face down
-  var hideCard = function (id) {
+  const hideCard = function (id) {
     cards[id].firstChild.src = "cards/back.png";
     with(cards[id].style) {
       WebkitTransform = MozTransform = OTransform = msTransform = "scale(1.0) rotate(0deg)";
@@ -70,7 +24,7 @@ var MatchGame = function (targetID) {
   };
 
   // move card to pack
-  var moveToPack = function (id) {
+  const moveToPack = function (id) {
     hideCard(id);
     cards[id].matched = true;
     with(cards[id].style) {
@@ -83,7 +37,7 @@ var MatchGame = function (targetID) {
   };
 
   // move card to pack
-  var moveToPackMobile = function (id) {
+  const moveToPackMobile = function (id) {
     hideCard(id);
     cards[id].matched = true;
     with(cards[id].style) {
@@ -96,7 +50,7 @@ var MatchGame = function (targetID) {
   };
 
   // deal card
-  var moveToPlace = function (id) {
+  const moveToPlace = function (id) {
     cards[id].matched = false;
     with(cards[id].style) {
       zIndex = "1000";
@@ -108,7 +62,7 @@ var MatchGame = function (targetID) {
   };
 
   // turn card face up, check for match
-  var showCard = function (id) {
+  const showCard = function (id) {
     if (id === card1) return
     if (cards[id].matched) return;
     clickCounter();
@@ -155,7 +109,7 @@ var MatchGame = function (targetID) {
     }
   };
 
-  var cardClick = function (id) {
+  const cardClick = function (id) {
     if (started) {
       showCard(id);
     } else {
@@ -174,11 +128,56 @@ var MatchGame = function (targetID) {
     }
   };
 
+  //Timer
+  function pad(val) {
+    return val > 9 ? val : "0" + val;
+  };
+
+  setInterval(function () {
+    if (started) {
+      let seconds = document.getElementById("seconds").innerHTML = pad(++sec % 60);
+      let minutes = document.getElementById("minutes").innerHTML = pad(parseInt(sec / 60, 10));
+      started = true;
+    }
+    return seconds, minutes
+  }, 1000);
+
+  //end of game api
+  function gameComplete(seconds, minutes) {
+    if (typeof(Storage) !== "undefined") {
+      if (localStorage.clicktotal) {
+        sessionStorage.clickcount = 0;
+        localStorage.clicktotal = clickcount;
+        localStorage.savesec = seconds;
+        localStorage.savemin = minutes;
+      } else {
+        localStorage.clickcount = 0;
+      }
+    } else {
+      console.log("No Web Storage for you!");
+      alert("Web Storage is not available for your browser!");
+    }
+  }
+
+  function clickCounter() {
+    if (typeof(Storage) !== "undefined") {
+      if (sessionStorage.clickcount) {
+        sessionStorage.clickcount = Number(sessionStorage.clickcount)+1;
+      } else {
+        sessionStorage.clickcount = 1;
+      }
+      document.getElementById("clickCountResult").innerHTML = "You have clicked " + localStorage.clickcount + " time(s).";
+    } else {
+      console.log("No Web Storage for you!");
+      alert("Web Storage is not available for your browser!");
+    }
+  }
+
   //initialise
-  var stage = document.getElementById(targetID);
-  var felt = document.createElement("div");
-  var exit = document.createElement("span");
-  var hide = document.getElementById("hide");
+  const stage = document.getElementById(targetID);
+  const felt = document.createElement("div");
+  const exit = document.createElement("span");
+  const hide = document.getElementById("hide");
 
   exit.id = "exit";
   stage.appendChild(exit);
@@ -199,12 +198,12 @@ var MatchGame = function (targetID) {
   });
 
   //template for card
-  var card = document.createElement("div");
+  let card = document.createElement("div");
   card.innerHTML = '<img src="cards/back.png">';
 
   if (w <= 640) {
-    for (var i = 0; i < 16; i++) {
-      var newCard = card.cloneNode(true);
+    for (let i = 0; i < 16; i++) {
+      let newCard = card.cloneNode(true);
 
       newCard.fromtop = 1 + 7 * Math.floor(i / 4);
       newCard.fromleft = 1 + 4.5 * (i % 4);
@@ -236,21 +235,21 @@ var MatchGame = function (targetID) {
 };
 
 //Medium game
-var MatchGameMedi = function (targetID) {
+const MatchGameMedi = function (targetID) {
   //private variables
-  var cards = []
+  let cards = []
 
-  var started = false;
-  var matches_found = 0;
-  var card1 = false,
-      card2 = false;
+  let started = false;
+  let matches_found = 0;
+  let card1 = false;
+  let card2 = false;
 
-  var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+  const w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
 
-  var sec = 0;
+  let sec = 0;
 
   //turn card face down
-  var hideCard = function (id) {
+  const hideCard = function (id) {
     cards[id].firstChild.src = "cards/back.png";
     with(cards[id].style) {
       WebkitTransform = MozTransform = OTransform = msTransform = "scale(1.0) rotate(0deg)";
@@ -258,7 +257,7 @@ var MatchGameMedi = function (targetID) {
   };
 
   // move card to pack
-  var moveToPack = function (id) {
+  const moveToPack = function (id) {
     hideCard(id);
     cards[id].matched = true;
     with(cards[id].style) {
@@ -271,7 +270,7 @@ var MatchGameMedi = function (targetID) {
   };
 
   // move card to pack
-  var moveToPackMobile = function (id) {
+  const moveToPackMobile = function (id) {
     hideCard(id);
     cards[id].matched = true;
     with(cards[id].style) {
@@ -284,7 +283,7 @@ var MatchGameMedi = function (targetID) {
   };
 
   // deal card
-  var moveToPlace = function (id) {
+  const moveToPlace = function (id) {
     cards[id].matched = false;
     with(cards[id].style) {
       zIndex = "1000";
@@ -296,7 +295,7 @@ var MatchGameMedi = function (targetID) {
   };
 
   // turn card face up, check for match
-  var showCard = function (id) {
+  const showCard = function (id) {
     if (id === card1) return
     if (cards[id].matched) return;
     clickCounter();
@@ -343,7 +342,7 @@ var MatchGameMedi = function (targetID) {
     }
   };
 
-  var cardClick = function (id) {
+  const cardClick = function (id) {
     if (started) {
       showCard(id);
     } else {
@@ -362,11 +361,56 @@ var MatchGameMedi = function (targetID) {
     }
   };
 
+  //Timer
+  function pad(val) {
+    return val > 9 ? val : "0" + val;
+  };
+
+  setInterval(function () {
+    if (started) {
+      let seconds = document.getElementById("seconds").innerHTML = pad(++sec % 60);
+      let minutes = document.getElementById("minutes").innerHTML = pad(parseInt(sec / 60, 10));
+      started = true;
+    }
+    return seconds, minutes
+  }, 1000);
+
+  //end of game api
+  function gameComplete(seconds, minutes) {
+    if (typeof(Storage) !== "undefined") {
+      if (localStorage.clicktotal) {
+        sessionStorage.clickcount = 0;
+        localStorage.clicktotal = clickcount;
+        localStorage.savesec = seconds;
+        localStorage.savemin = minutes;
+      } else {
+        localStorage.clickcount = 0;
+      }
+    } else {
+      console.log("No Web Storage for you!");
+      alert("Web Storage is not available for your browser!");
+    }
+  }
+
+  function clickCounter() {
+    if (typeof(Storage) !== "undefined") {
+      if (sessionStorage.clickcount) {
+        sessionStorage.clickcount = Number(sessionStorage.clickcount)+1;
+      } else {
+        sessionStorage.clickcount = 1;
+      }
+      document.getElementById("clickCountResult").innerHTML = "You have clicked " + localStorage.clickcount + " time(s).";
+    } else {
+      console.log("No Web Storage for you!");
+      alert("Web Storage is not available for your browser!");
+    }
+  }
+
   //initialise
-  var stage = document.getElementById(targetID);
-  var felt = document.createElement("div");
-  var exit = document.createElement("span");
-  var hide = document.getElementById("hide");
+  const stage = document.getElementById(targetID);
+  const felt = document.createElement("div");
+  const exit = document.createElement("span");
+  const hide = document.getElementById("hide");
 
   exit.id = "exit";
   stage.appendChild(exit);
@@ -428,21 +472,21 @@ var MatchGameMedi = function (targetID) {
 };
 
 //Easy game
-var MatchGameEasy = function (targetID) {
+const MatchGameEasy = function (targetID) {
   //private variables
-  var cards = []
+  let cards = []
 
-  var started = false;
-  var matches_found = 0;
-  var card1 = false,
-      card2 = false;
+  let started = false;
+  let matches_found = 0;
+  let card1 = false;
+  let card2 = false;
 
-  var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+  const w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
 
-  var sec = 0;
+  let sec = 0;
 
   //turn card face down
-  var hideCard = function (id) {
+  const hideCard = function (id) {
     cards[id].firstChild.src = "cards/back.png";
     with(cards[id].style) {
       WebkitTransform = MozTransform = OTransform = msTransform = "scale(1.0) rotate(0deg)";
@@ -450,7 +494,7 @@ var MatchGameEasy = function (targetID) {
   };
 
   // move card to pack
-  var moveToPack = function (id) {
+  const moveToPack = function (id) {
     hideCard(id);
     cards[id].matched = true;
     with(cards[id].style) {
@@ -463,7 +507,7 @@ var MatchGameEasy = function (targetID) {
   };
 
   // move card to pack
-  var moveToPackMobile = function (id) {
+  const moveToPackMobile = function (id) {
     hideCard(id);
     cards[id].matched = true;
     with(cards[id].style) {
@@ -476,7 +520,7 @@ var MatchGameEasy = function (targetID) {
   };
 
   // deal card
-  var moveToPlace = function (id) {
+  const moveToPlace = function (id) {
     cards[id].matched = false;
     with(cards[id].style) {
       zIndex = "1000";
@@ -487,9 +531,8 @@ var MatchGameEasy = function (targetID) {
     }
   };
 
-
   // turn card face up, check for match
-  var showCard = function (id) {
+  const showCard = function (id) {
     if (id === card1) return
     if (cards[id].matched) return;
     clickCounter();
@@ -536,7 +579,7 @@ var MatchGameEasy = function (targetID) {
     }
   };
 
-  var cardClick = function (id) {
+  const cardClick = function (id) {
     if (started) {
       showCard(id);
     } else {
@@ -555,11 +598,56 @@ var MatchGameEasy = function (targetID) {
     }
   };
 
+  //Timer
+  function pad(val) {
+    return val > 9 ? val : "0" + val;
+  };
+
+  setInterval(function () {
+    if (started) {
+      let seconds = document.getElementById("seconds").innerHTML = pad(++sec % 60);
+      let minutes = document.getElementById("minutes").innerHTML = pad(parseInt(sec / 60, 10));
+      started = true;
+    }
+    return seconds, minutes
+  }, 1000);
+
+  //end of game api
+  function gameComplete(seconds, minutes) {
+    if (typeof(Storage) !== "undefined") {
+      if (localStorage.clicktotal) {
+        sessionStorage.clickcount = 0;
+        localStorage.clicktotal = clickcount;
+        localStorage.savesec = seconds;
+        localStorage.savemin = minutes;
+      } else {
+        localStorage.clickcount = 0;
+      }
+    } else {
+      console.log("No Web Storage for you!");
+      alert("Web Storage is not available for your browser!");
+    }
+  }
+
+  function clickCounter() {
+    if (typeof(Storage) !== "undefined") {
+      if (sessionStorage.clickcount) {
+        sessionStorage.clickcount = Number(sessionStorage.clickcount)+1;
+      } else {
+        sessionStorage.clickcount = 1;
+      }
+      document.getElementById("clickCountResult").innerHTML = "You have clicked " + localStorage.clickcount + " time(s).";
+    } else {
+      console.log("No Web Storage for you!");
+      alert("Web Storage is not available for your browser!");
+    }
+  }
+
   //initialise
-  var stage = document.getElementById(targetID);
-  var felt = document.createElement("div");
-  var exit = document.createElement("span");
-  var hide = document.getElementById("hide");
+  const stage = document.getElementById(targetID);
+  const felt = document.createElement("div");
+  const exit = document.createElement("span");
+  const hide = document.getElementById("hide");
 
   exit.id = "exit";
   stage.appendChild(exit);
@@ -580,7 +668,7 @@ var MatchGameEasy = function (targetID) {
   });
 
   //template for card
-  var card = document.createElement("div");
+  let card = document.createElement("div");
   card.innerHTML = "<img src=\"cards/back.png\">";
 
   if (w <= 640) {
