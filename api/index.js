@@ -8,7 +8,7 @@ module.exports = api;
 
 //Google authentication with simple-google-openid.
 const googleauth = require('simple-google-openid');
-api.use(googleauth("562468116276-b6cal6rfdkjsm8r92butjr9jdmvi46s4.apps.googleusercontent.com"));
+api.use(googleauth("562468116276-f2bjqopstgrgehc4p51u0q20vilso5v5.apps.googleusercontent.com"));
 api.use(googleauth.guardMiddleware({realm: 'jwt'}));
 
 //json array of users.

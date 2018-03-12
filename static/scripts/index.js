@@ -5,11 +5,6 @@ function init() {
   keepLoadingRandom();
 }
 
-async function keepLoadingRandom() {
-  if (!runningTests) await loadRandom();
-  setTimeout(keepLoadingRandom, 1000);
-}
-
 function onSignIn(googleUser) { // eslint-disable-line no-unused-vars
   if (runningTests) {
     resolveGlobalPromise();
