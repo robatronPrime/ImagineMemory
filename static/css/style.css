@@ -76,6 +76,7 @@ p {
 
 .logo {
   height: 7em;
+  margin-left: 35%;
 }
 
 #nav-links {
@@ -83,6 +84,8 @@ p {
   border: 1px outset #ccc;
   width: 22em;
   margin: 0.5em;
+  margin-right: 100%;
+  margin-left: 25%;
   float: left;
   box-shadow: 5px 10px 18px #888888;
 }
@@ -117,8 +120,9 @@ p {
   height: 12em;
   margin: 0px;
   border: 1px outset #ccc;
-  margin: 0.5em;
-  float: right;
+  margin-right: 100%;
+  margin-left: 25%;
+  float: left;
   box-shadow: 5px 10px 18px #888888;
 }
 
@@ -141,8 +145,13 @@ p {
 }
 
 #diffSelect {
+  width: 31.7em;
+  margin: 0px;
+  border: 1px outset #ccc;
+  margin-right: 100%;
+  margin-left: 25%;
   float: left;
-  width: 100%;
+  box-shadow: 5px 10px 18px #888888;
 }
 
 .dif{
@@ -165,6 +174,19 @@ p {
   border: 1px outset #ccc;
   width: 22em;
   margin: 0.5em;
+  margin-right: 100%;
+  margin-left: 25%;
+  float: left;
+  box-shadow: 5px 10px 18px #888888;
+}
+
+#gameResults {
+  list-style: none;
+  border: 1px outset #ccc;
+  width: 22em;
+  margin: 0.5em;
+  margin-right: 100%;
+  margin-left: 25%;
   float: left;
   box-shadow: 5px 10px 18px #888888;
 }
@@ -197,25 +219,18 @@ p {
 
 #game-match .gameImg {
   float: left;
-  height: 15em;
+  width: 50%;
   position: relative;
   display: inline-block;
 }
 
-#game-match h3 {
-  float: right;
+#match-content {
+  float: left;
   position: relative;
   color: #000000;
-  width: 24em;
+  width: 48%;
   display: inline-block;
-}
-
-#game-match p {
-  float: right;
-  position: relative;
-  color: #000000;
-  width: 28em;
-  display: inline-block;
+  margin: 0.5em;
 }
 
 #game-match a {
@@ -393,5 +408,66 @@ p {
 
   #contentT {
     height: 2.5em;
+  }
+
+  #game-match .gameImg {
+    width: 30%;
+  }
+}
+
+@media (max-width: 900px) {
+  #nav-links {
+    margin-left: 15%;
+  }
+
+  .auth {
+    margin-left: 15%;
+  }
+
+  #rules {
+    margin-left: 15%;
+  }
+
+  #gameResults {
+    margin-left: 15%;
+  }
+
+  #diffSelect {
+    margin-left: 15%;
+  }
+
+  #game-match .gameImg {
+    width: 70%;
+  }
+}
+
+@media (max-width: 770px) {
+  #nav-links {
+    margin-left: 5%;
+  }
+
+  .auth {
+    margin-left: 5%;
+  }
+
+  #rules {
+    margin-left: 5%;
+  }
+
+  #gameResults {
+    margin-left: 5%;
+  }
+
+  #diffSelect {
+    margin-left: 5%;
+  }
+
+  .ruleArr {
+    padding-left: 3em;
+    padding-right: 3em;
+  }
+
+  #game-match .gameImg {
+    width: 90%;
   }
 }

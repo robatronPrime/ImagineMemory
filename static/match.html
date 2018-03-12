@@ -50,13 +50,6 @@
           </p>
         </section>
 
-        <section id="gameResults">
-          <h2>Here are you game results for Match!</h2>
-          <p>Easy Games Played: </p><spanid="eWinCount"></span>
-          <p>Medium Games Played: </p><spanid="hWinCount"></span>
-          <p>Hard Games Played: </p><spanid="hWinCount"></span>
-        </section>
-
         <section id="rules">
           <h1>How to Play Match</h1>
           <section id="title-sec">
@@ -74,7 +67,16 @@
           </span>
         </section>
 
+        <section id="gameResults">
+          <h2>Here are you game results for Match!</h2>
+          <p>Easy Games Played: </p><spanid="eWinCount"></span>
+          <p>Medium Games Played: </p><spanid="hWinCount"></span>
+          <p>Hard Games Played: </p><spanid="hWinCount"></span>
+        </section>
+
+
         <section id="diffSelect">
+          <h2>Difficulty Selection</h2>
           <span id="easy" onclick="easyGame();" class="dif">Easy</span>
           <span id="medi" onclick="mediGame();" class="dif">Medium</span>
           <span id="hard" onclick="hardGame();" class="dif">Hard</span>
@@ -155,7 +157,7 @@
 
     //instrutions
     var titleText = "Step 1";
-    var contentText = "Click the pack of card to start the game and the timer starts.";
+    var contentText = "First choose the difficulty you want to play at.";
 
     function updateHTML(id, text) {
       var elem = document.getElementById(id);
@@ -177,9 +179,11 @@
       ['Step 2'],
       ['Step 3'],
       ['Step 4'],
-      ['Step 5']
+      ['Step 5'],
+      ['Step 6']
     ];
     var text = [
+      ["First choose the difficulty you want to play at."],
       ["Click the pack of card to start the game and the timer starts."],
       ["Once the cards are delt, click a card to flip it and show the shape on the card."],
       ["Click an other card to show the shape on that card."],
@@ -197,7 +201,7 @@
 
     function prevStep(){
       curStep--;
-      if(curStep == -1) curStep = 4;
+      if(curStep == -1) curStep = 5;
       document.getElementById("titleT").innerHTML = steps[curStep];
       document.getElementById("contentT").innerHTML = text[curStep];
       console.log("bar");
