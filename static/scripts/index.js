@@ -87,31 +87,6 @@ async function register() { // eslint-disable-line no-unused-vars
   }
 }
 
-
-async function loadRandom() {
-  if (runningTests) return; // ignoring
-  const el = document.querySelector('.random .currvalue');
-  try {
-    el.textContent = 'loading…';
-
-    const response = await callAPI('GET', '/api/random');
-
-    if (!response.ok) {
-      // handle the error
-      el.textContent = 'error: ' + response.status;
-      return;
-    }
-
-    // handle the response
-    const data = await response.text();
-    el.textContent = data;
-  } catch (e) {
-    //el.textContent = 'error: ' + e;
-    console.error(e);
-  }
-}
-
-
 async function loadLists() {
   if (runningTests) return; // ignoring
   // load list of known users
