@@ -2,6 +2,8 @@ const hard_card_value = ["1A", "2A", "3A", "4A", "5A", "6A", "7A", "8A", "1B", "
 const medi_card_value = ["1A", "2A", "3A", "4A", "5A", "6A", "1B", "2B", "3B", "4B", "5B", "6B"];
 const easy_card_value = ["1A", "2A", "3A", "4A", "1B", "2B", "3B", "4B"];
 
+localStorage.setItem("clickCount", 0);
+
 /*Hard game*/
 const MatchGame = function (targetID) {
   //private variables
@@ -613,30 +615,20 @@ const MatchGameEasy = function (targetID) {
   }, 1000);
 
   //end of game api
-  function gameComplete(seconds, minutes) {
-    if (typeof(Storage) !== "undefined") {
-      if (localStorage.clicktotal) {
-        sessionStorage.clickcount = 0;
-        localStorage.clicktotal = clickcount;
-        localStorage.savesec = seconds;
-        localStorage.savemin = minutes;
-      } else {
-        localStorage.clickcount = 0;
-      }
-    } else {
-      console.log("No Web Storage for you!");
-      alert("Web Storage is not available for your browser!");
-    }
+  function gameComplete() {
+    document.getElementById("results").innerHTML = "Congratulations, You Have WON! " + "</br>" +
+    "Here are the results of your game! " + "</br>" + "Your total time is: ";
   }
 
   function clickCounter() {
     if (typeof(Storage) !== "undefined") {
-      if (sessionStorage.clickcount) {
-        sessionStorage.clickcount = Number(sessionStorage.clickcount)+1;
+      if (localStorage.clickcount) {
+        localStorage.setItem("clickCount", Number(clickCount)+1);
       } else {
-        sessionStorage.clickcount = 1;
+        clickCount = 1;
       }
-      document.getElementById("clickCountResult").innerHTML = "You have clicked " + localStorage.clickcount + " time(s).";
+      document.getElementById("clickCountResult").innerHTML = "You have clicked "
+      + localStorage.clickcount + " time(s).";
     } else {
       console.log("No Web Storage for you!");
       alert("Web Storage is not available for your browser!");
@@ -657,7 +649,9 @@ const MatchGameEasy = function (targetID) {
 
   //exit game button
   exit.innerHTML = "Quit Game";
+
   exit.addEventListener("click", function () {
+    let clickCount = localStorage.getItem("clickCount");
     document.getElementById("felt").remove();
     document.getElementById("exit").remove();
     seconds = 0;
@@ -665,6 +659,8 @@ const MatchGameEasy = function (targetID) {
     sec = 0;
     started = false;
     content.appendChild(hide);
+    document.getElementById("results").remove();
+    clickCount = 0;
   });
 
   //template for card
