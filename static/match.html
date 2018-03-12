@@ -83,16 +83,15 @@
     </section>
 
     <section id="stage">
-      <span id="results"></span>
-      <span id="minutes"></span>:<span id="seconds"></span>
-      <span id="clickCountResult"></span>
+      <!-- The Stage for the game -->
     </section>
 
     <section id="board">
+      <!-- Load game file -->
       <script src="scripts/match.js"></script>
       <script>
 
-      //remove function
+      //remove html elements function
         Element.prototype.remove = function() {
           this.parentElement.removeChild(this);
         }

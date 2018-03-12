@@ -2,8 +2,6 @@ const hard_card_value = ["1A", "2A", "3A", "4A", "5A", "6A", "7A", "8A", "1B", "
 const medi_card_value = ["1A", "2A", "3A", "4A", "5A", "6A", "1B", "2B", "3B", "4B", "5B", "6B"];
 const easy_card_value = ["1A", "2A", "3A", "4A", "1B", "2B", "3B", "4B"];
 
-localStorage.setItem("clickCount", 0);
-
 /*Hard game*/
 const MatchGame = function (targetID) {
   //private variables
@@ -131,48 +129,55 @@ const MatchGame = function (targetID) {
   };
 
   //Timer
+  let minutesDis = document.createElement("span");
+  let secondsDis = document.createElement("span");
+
   function pad(val) {
     return val > 9 ? val : "0" + val;
   };
 
   setInterval(function () {
     if (started) {
-      let seconds = document.getElementById("seconds").innerHTML = pad(++sec % 60);
-      let minutes = document.getElementById("minutes").innerHTML = pad(parseInt(sec / 60, 10));
+      let seconds = secondsDis.innerHTML = " " + pad(++sec % 60);
+      let minutes = minutesDis.innerHTML = "</br>" +pad(parseInt(sec / 60, 10)) + " :";
       started = true;
     }
-    return seconds, minutes
   }, 1000);
 
-  //end of game api
-  function gameComplete(seconds, minutes) {
+  /* Count the clicks that the player does */
+  let clicks = 0;
+  const display = document.createElement('clickResult');
+
+  if(localStorage.getItem('clicks')) {
+    let saveCount = localStorage.getItem('clicks');
+    clicks = localStorage.getItem('clicks');
+    console.log('foo');
+  } else {
+    clicks = 0;
+    localStorage.setItem("clicks", clicks);
+    console.log('bar');
+  }
+
+  display.innerHTML = "</br>" + "You have clicked " + clicks + " time(s).";
+  function clickCounter() {
     if (typeof(Storage) !== "undefined") {
-      if (localStorage.clicktotal) {
-        sessionStorage.clickcount = 0;
-        localStorage.clicktotal = clickcount;
-        localStorage.savesec = seconds;
-        localStorage.savemin = minutes;
+      if (localStorage.getItem('clicks')) {
+        clicks++;
+        localStorage.setItem("clicks", clicks);
       } else {
-        localStorage.clickcount = 0;
+        clicks = 0;
       }
+      display.innerHTML = "</br>" + "You have clicked " + clicks + " time(s).";
     } else {
       console.log("No Web Storage for you!");
       alert("Web Storage is not available for your browser!");
     }
   }
 
-  function clickCounter() {
-    if (typeof(Storage) !== "undefined") {
-      if (sessionStorage.clickcount) {
-        sessionStorage.clickcount = Number(sessionStorage.clickcount)+1;
-      } else {
-        sessionStorage.clickcount = 1;
-      }
-      document.getElementById("clickCountResult").innerHTML = "You have clicked " + localStorage.clickcount + " time(s).";
-    } else {
-      console.log("No Web Storage for you!");
-      alert("Web Storage is not available for your browser!");
-    }
+  //end of game
+  function gameComplete() {
+    document.getElementById('results').innerHTML = "</br>" + "<h2>Congratulations, You Have WON! </h2>" +
+    "<h3>Here are the results of your game! </h3>" + "Your total time is: " ;
   }
 
   //initialise
@@ -180,23 +185,44 @@ const MatchGame = function (targetID) {
   const felt = document.createElement("div");
   const exit = document.createElement("span");
   const hide = document.getElementById("hide");
+  const results = document.createElement("span");
 
   exit.id = "exit";
   stage.appendChild(exit);
+
+  results.id = "results";
+  stage.appendChild(results);
+
+  minutesDis.id = "minutesDis";
+  stage.appendChild(minutesDis);
+
+  secondsDis.id = "secondsDis";
+  stage.appendChild(secondsDis);
+
+  display.id = "display";
+  stage.appendChild(display);
+
 
   felt.id = "felt";
   stage.appendChild(felt);
 
   //exit game button
   exit.innerHTML = "Quit Game";
+
   exit.addEventListener("click", function () {
-    document.getElementById("felt").remove();
-    document.getElementById("exit").remove();
+    let clickCount = localStorage.getItem("clickCount");
+    felt.remove();
+    exit.remove();
+    results.remove();
+    display.remove();
+    minutesDis.remove();
+    secondsDis.remove();
     seconds = 0;
     minutes = 0;
     sec = 0;
     started = false;
     content.appendChild(hide);
+    localStorage.removeItem("clicks");
   });
 
   //template for card
@@ -364,48 +390,55 @@ const MatchGameMedi = function (targetID) {
   };
 
   //Timer
+  let minutesDis = document.createElement("span");
+  let secondsDis = document.createElement("span");
+
   function pad(val) {
     return val > 9 ? val : "0" + val;
   };
 
   setInterval(function () {
     if (started) {
-      let seconds = document.getElementById("seconds").innerHTML = pad(++sec % 60);
-      let minutes = document.getElementById("minutes").innerHTML = pad(parseInt(sec / 60, 10));
+      let seconds = secondsDis.innerHTML = " " + pad(++sec % 60);
+      let minutes = minutesDis.innerHTML = "</br>" +pad(parseInt(sec / 60, 10)) + " :";
       started = true;
     }
-    return seconds, minutes
   }, 1000);
 
-  //end of game api
-  function gameComplete(seconds, minutes) {
+  /* Count the clicks that the player does */
+  let clicks = 0;
+  const display = document.createElement('clickResult');
+
+  if(localStorage.getItem('clicks')) {
+    let saveCount = localStorage.getItem('clicks');
+    clicks = localStorage.getItem('clicks');
+    console.log('foo');
+  } else {
+    clicks = 0;
+    localStorage.setItem("clicks", clicks);
+    console.log('bar');
+  }
+
+  display.innerHTML = "</br>" + "You have clicked " + clicks + " time(s).";
+  function clickCounter() {
     if (typeof(Storage) !== "undefined") {
-      if (localStorage.clicktotal) {
-        sessionStorage.clickcount = 0;
-        localStorage.clicktotal = clickcount;
-        localStorage.savesec = seconds;
-        localStorage.savemin = minutes;
+      if (localStorage.getItem('clicks')) {
+        clicks++;
+        localStorage.setItem("clicks", clicks);
       } else {
-        localStorage.clickcount = 0;
+        clicks = 0;
       }
+      display.innerHTML = "</br>" + "You have clicked " + clicks + " time(s).";
     } else {
       console.log("No Web Storage for you!");
       alert("Web Storage is not available for your browser!");
     }
   }
 
-  function clickCounter() {
-    if (typeof(Storage) !== "undefined") {
-      if (sessionStorage.clickcount) {
-        sessionStorage.clickcount = Number(sessionStorage.clickcount)+1;
-      } else {
-        sessionStorage.clickcount = 1;
-      }
-      document.getElementById("clickCountResult").innerHTML = "You have clicked " + localStorage.clickcount + " time(s).";
-    } else {
-      console.log("No Web Storage for you!");
-      alert("Web Storage is not available for your browser!");
-    }
+  //end of game
+  function gameComplete() {
+    document.getElementById('results').innerHTML = "</br>" + "<h2>Congratulations, You Have WON! </h2>" +
+    "<h3>Here are the results of your game! </h3>" + "Your total time is: " ;
   }
 
   //initialise
@@ -413,23 +446,44 @@ const MatchGameMedi = function (targetID) {
   const felt = document.createElement("div");
   const exit = document.createElement("span");
   const hide = document.getElementById("hide");
+  const results = document.createElement("span");
 
   exit.id = "exit";
   stage.appendChild(exit);
+
+  results.id = "results";
+  stage.appendChild(results);
+
+  minutesDis.id = "minutesDis";
+  stage.appendChild(minutesDis);
+
+  secondsDis.id = "secondsDis";
+  stage.appendChild(secondsDis);
+
+  display.id = "display";
+  stage.appendChild(display);
+
 
   felt.id = "felt";
   stage.appendChild(felt);
 
   //exit game button
   exit.innerHTML = "Quit Game";
+
   exit.addEventListener("click", function () {
-    document.getElementById("felt").remove();
-    document.getElementById("exit").remove();
+    let clickCount = localStorage.getItem("clickCount");
+    felt.remove();
+    exit.remove();
+    results.remove();
+    display.remove();
+    minutesDis.remove();
+    secondsDis.remove();
     seconds = 0;
     minutes = 0;
     sec = 0;
     started = false;
     content.appendChild(hide);
+    localStorage.removeItem("clicks");
   });
 
   //template for card
@@ -601,38 +655,55 @@ const MatchGameEasy = function (targetID) {
   };
 
   //Timer
+  let minutesDis = document.createElement("span");
+  let secondsDis = document.createElement("span");
+
   function pad(val) {
     return val > 9 ? val : "0" + val;
   };
 
   setInterval(function () {
     if (started) {
-      let seconds = document.getElementById("seconds").innerHTML = pad(++sec % 60);
-      let minutes = document.getElementById("minutes").innerHTML = pad(parseInt(sec / 60, 10));
+      let seconds = secondsDis.innerHTML = " " + pad(++sec % 60);
+      let minutes = minutesDis.innerHTML = "</br>" +pad(parseInt(sec / 60, 10)) + " :";
       started = true;
     }
-    return seconds, minutes
   }, 1000);
 
-  //end of game api
-  function gameComplete() {
-    document.getElementById("results").innerHTML = "Congratulations, You Have WON! " + "</br>" +
-    "Here are the results of your game! " + "</br>" + "Your total time is: ";
+  /* Count the clicks that the player does */
+  let clicks = 0;
+  const display = document.createElement('clickResult');
+
+  if(localStorage.getItem('clicks')) {
+    let saveCount = localStorage.getItem('clicks');
+    clicks = localStorage.getItem('clicks');
+    console.log('foo');
+  } else {
+    clicks = 0;
+    localStorage.setItem("clicks", clicks);
+    console.log('bar');
   }
 
+  display.innerHTML = "</br>" + "You have clicked " + clicks + " time(s).";
   function clickCounter() {
     if (typeof(Storage) !== "undefined") {
-      if (localStorage.clickcount) {
-        localStorage.setItem("clickCount", Number(clickCount)+1);
+      if (localStorage.getItem('clicks')) {
+        clicks++;
+        localStorage.setItem("clicks", clicks);
       } else {
-        clickCount = 1;
+        clicks = 0;
       }
-      document.getElementById("clickCountResult").innerHTML = "You have clicked "
-      + localStorage.clickcount + " time(s).";
+      display.innerHTML = "</br>" + "You have clicked " + clicks + " time(s).";
     } else {
       console.log("No Web Storage for you!");
       alert("Web Storage is not available for your browser!");
     }
+  }
+
+  //end of game
+  function gameComplete() {
+    document.getElementById('results').innerHTML = "</br>" + "<h2>Congratulations, You Have WON! </h2>" +
+    "<h3>Here are the results of your game! </h3>" + "Your total time is: " ;
   }
 
   //initialise
@@ -640,9 +711,23 @@ const MatchGameEasy = function (targetID) {
   const felt = document.createElement("div");
   const exit = document.createElement("span");
   const hide = document.getElementById("hide");
+  const results = document.createElement("span");
 
   exit.id = "exit";
   stage.appendChild(exit);
+
+  results.id = "results";
+  stage.appendChild(results);
+
+  minutesDis.id = "minutesDis";
+  stage.appendChild(minutesDis);
+
+  secondsDis.id = "secondsDis";
+  stage.appendChild(secondsDis);
+
+  display.id = "display";
+  stage.appendChild(display);
+
 
   felt.id = "felt";
   stage.appendChild(felt);
@@ -652,15 +737,18 @@ const MatchGameEasy = function (targetID) {
 
   exit.addEventListener("click", function () {
     let clickCount = localStorage.getItem("clickCount");
-    document.getElementById("felt").remove();
-    document.getElementById("exit").remove();
+    felt.remove();
+    exit.remove();
+    results.remove();
+    display.remove();
+    minutesDis.remove();
+    secondsDis.remove();
     seconds = 0;
     minutes = 0;
     sec = 0;
     started = false;
     content.appendChild(hide);
-    document.getElementById("results").remove();
-    clickCount = 0;
+    localStorage.removeItem("clicks");
   });
 
   //template for card
