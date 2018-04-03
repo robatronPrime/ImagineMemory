@@ -192,11 +192,11 @@
     ];
 
     function nextStep(){
+      curStep = 0;
       curStep++;
       if(curStep == steps.length) curStep = 0;
       document.getElementById("titleT").innerHTML = steps[curStep];
       document.getElementById("contentT").innerHTML = text[curStep];
-      console.log("foo");
     }
 
     function prevStep(){
@@ -204,7 +204,6 @@
       if(curStep == -1) curStep = 5;
       document.getElementById("titleT").innerHTML = steps[curStep];
       document.getElementById("contentT").innerHTML = text[curStep];
-      console.log("bar");
     }
   </script>
 
