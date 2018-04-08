@@ -183,24 +183,29 @@ const MatchGame = function (targetID) {
   const felt = document.createElement("div");
   const results = document.createElement("span");
   const gameInfo = document.createElement("section");
-
-  results.id = "results";
-  stage.appendChild(results);
+  const clock  = document.createElement("section");
 
   felt.id = "felt";
   stage.appendChild(felt);
 
   gameInfo.id = "gameInfo";
-  felt.appendChild(gameInfo);
+  stage.appendChild(gameInfo);
+
+  results.id = "results";
+  gameInfo.appendChild(results);
+
+  clock.id = "clock";
+  gameInfo.appendChild(clock);
 
   minutesDis.id = "minutesDis";
-  gameInfo.appendChild(minutesDis);
+  clock.appendChild(minutesDis);
 
   secondsDis.id = "secondsDis";
-  gameInfo.appendChild(secondsDis);
+  clock.appendChild(secondsDis);
 
   display.id = "display";
   gameInfo.appendChild(display);
+
 
   //template for card
   let card = document.createElement("div");
@@ -402,24 +407,28 @@ const MatchGameMedi = function (targetID) {
   const felt = document.createElement("div");
   const results = document.createElement("span");
   const gameInfo = document.createElement("section");
+  const clock  = document.createElement("section");
 
-  results.id = "results";
-  stage.appendChild(results);
+  felt.id = "felt";
+  stage.appendChild(felt);
 
   gameInfo.id = "gameInfo";
   stage.appendChild(gameInfo);
 
+  results.id = "results";
+  gameInfo.appendChild(results);
+
+  clock.id = "clock";
+  gameInfo.appendChild(clock);
+
   minutesDis.id = "minutesDis";
-  gameInfo.appendChild(minutesDis);
+  clock.appendChild(minutesDis);
 
   secondsDis.id = "secondsDis";
-  gameInfo.appendChild(secondsDis);
+  clock.appendChild(secondsDis);
 
   display.id = "display";
   gameInfo.appendChild(display);
-
-  felt.id = "felt";
-  stage.appendChild(felt);
 
   //template for card
   let card = document.createElement("div");
@@ -623,6 +632,9 @@ const MatchGameEasy = function (targetID) {
   const gameInfo = document.createElement("section");
   const clock  = document.createElement("section");
 
+  felt.id = "felt";
+  stage.appendChild(felt);
+
   gameInfo.id = "gameInfo";
   stage.appendChild(gameInfo);
 
@@ -640,9 +652,6 @@ const MatchGameEasy = function (targetID) {
 
   display.id = "display";
   gameInfo.appendChild(display);
-
-  felt.id = "felt";
-  stage.appendChild(felt);
 
   //template for card
   let card = document.createElement("div");

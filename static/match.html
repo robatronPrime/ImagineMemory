@@ -33,8 +33,8 @@
           </span>
         </section>
 
-        <section class="item list side-content">
-          <section class="container list">
+        <section class="item row max-width">
+          <section class="container list max-width">
             <h1 class="item">How to Play Match</h1>
             <section class="item">
               <h2 id="titleT"></h2>
@@ -51,23 +51,9 @@
               </span>
             </section>
           </section>
-
-          <section class="container list">
-            <p class="item greeting">
-              <p class="signed">Signed in as:</p> <span class="name"></span>
-              <button onclick="signOut();"><p>Sign out</p></button>
-            </p>
-          </section>
-
-          <section class="container list">
-            <h1 class="item">Here are you game results for Match!</h1>
-            <p class="item">Easy Games Played: </p><spanid="eWinCount"></span>
-            <p class="item">Medium Games Played: </p><spanid="hWinCount"></span>
-            <p class="item">Hard Games Played: </p><spanid="hWinCount"></span>
-          </section>
         </section>
 
-        <section class="container list game-content" id="stage">
+        <section class="container list game-content max-width center" id="stage">
           <section id="diffSelect" class="item list">
             <h1 class="item center">Difficulty Selection</h1>
             <section class="item row center">
@@ -90,6 +76,9 @@
               } else {
                 clock.remove();
                 display.remove();
+                gameInfo.remove();
+                clicks = 0;
+                localStorage.setItem("clicks", clicks);
                 document.getElementById("felt").remove();
                 var game = new MatchGame("board");
               }
@@ -101,6 +90,9 @@
               } else {
                 clock.remove();
                 display.remove();
+                gameInfo.remove();
+                clicks = 0;
+                localStorage.setItem("clicks", clicks);
                 document.getElementById("felt").remove();
                 var game = new MatchGameMedi("board");
               }
@@ -112,6 +104,9 @@
               } else {
                 clock.remove();
                 display.remove();
+                gameInfo.remove();
+                clicks = 0;
+                localStorage.setItem("clicks", clicks);
                 document.getElementById("felt").remove();
                 var game = new MatchGameEasy("board");
               }
@@ -122,6 +117,20 @@
             </script>
           </section>
         </section>
+        <section class="container list">
+          <p class="item greeting">
+            <p class="signed">Signed in as:</p> <span class="name"></span>
+            <button onclick="signOut();"><p>Sign out</p></button>
+          </p>
+        </section>
+
+        <section class="container list">
+          <h1 class="item">Here are you game results for Match!</h1>
+          <p class="item">Easy Games Played: </p><spanid="eWinCount"></span>
+          <p class="item">Medium Games Played: </p><spanid="hWinCount"></span>
+          <p class="item">Hard Games Played: </p><spanid="hWinCount"></span>
+        </section>
+
       </section>
     </section>
 
