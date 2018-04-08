@@ -1,44 +1,3 @@
-/*viewports*/
-
-@viewport {
-  min-width: 640px;
-  max-width: 800px;
-}
-
-@viewport {
-  zoom: 0.75;
-  min-zoom: 0.5;
-  max-zoom: 0.9;
-}
-
-/*IE10*/
-
-@-ms-viewport {
-  min-width: 640px;
-  max-width: 800px;
-}
-
-@-ms-viewport {
-  zoom: 0.75;
-  min-zoom: 0.5;
-  max-zoom: 0.9;
-}
-
-/*Opera*/
-
-@-o-viewport {
-  min-width: 640px;
-  max-width: 800px;
-}
-
-@-o-viewport {
-  zoom: 0.75;
-  min-zoom: 0.5;
-  max-zoom: 0.9;
-}
-
-/*Main*/
-
 body {
   /* Minimum 16x, and grows more slowly */
   /* (half the rate of screen growth) */
@@ -70,177 +29,69 @@ h2 {
 h1,
 h2,
 h3,
-p {
+p,
+a {
   margin: .5em 0;
+  color: #000000;
+}
+
+.container {
+  display: flex; /* or inline-flex */
+  flex-wrap: wrap;
+  border: 1px outset #ccc;
+  box-shadow: 5px 10px 18px #888888;
+  margin: 0.4em;
+  padding: 0.2em;
+}
+
+
+.item {
+  display: flex; /* or inline-flex */
+  flex-wrap: wrap;
+}
+
+.head{
+  width: 100%;
+  justify-content: center;
 }
 
 .logo {
-  height: 7em;
-  margin-left: 35%;
+  height: 10em;
 }
 
-#nav-links {
-  list-style: none;
-  border: 1px outset #ccc;
-  width: 22em;
-  margin: 0.5em;
-  margin-right: 100%;
-  margin-left: 25%;
-  float: left;
-  box-shadow: 5px 10px 18px #888888;
-}
-
-#nav-links p {
-  font-size: 30px;
-}
-
-#nav-links li {
-  width: 13em;
-  margin-bottom: 15px;
-  margin-top: 15px
-}
-
-#nav-links a {
-  text-decoration: none;
-  font-size: 25px;
-  color: #000000;
-  display: block;
-  transition: 0.3s;
-  padding-left: 3em;
-  padding-right: 3em;
-}
-
-#nav-links a:hover {
-  cursor: pointer;
+.link a:hover{
   background-color: #bcd8c1;
 }
 
-#rules {
-  width: 31.7em;
-  height: 12em;
-  margin: 0px;
-  border: 1px outset #ccc;
-  margin-right: 100%;
-  margin-left: 25%;
-  float: left;
-  box-shadow: 5px 10px 18px #888888;
-}
-
-#contentT {
-  height: 5em;
-}
-
-.ruleArr{
-  padding-left: 5em;
-  padding-right: 5em;
-  font-size: 30px;
-  display: block;
-  transition: 0.3s;
-  float: left;
-}
-
-.ruleArr:hover{
-  cursor: pointer;
-  background-color: #bcd8c1;
-}
-
-#diffSelect {
-  width: 31.7em;
-  margin: 0px;
-  border: 1px outset #ccc;
-  margin-right: 100%;
-  margin-left: 25%;
-  float: left;
-  box-shadow: 5px 10px 18px #888888;
-}
-
-.dif{
-  padding-left: 3em;
-  padding-right: 3em;
-  cursor: default;
-  font-size: larger;
-  float: left;
-  transition: 0.3s;
-
-}
-
-.dif:hover{
-  cursor: pointer;
-  background-color: #bcd8c1;
-}
-
-.auth {
-  list-style: none;
-  border: 1px outset #ccc;
-  width: 22em;
-  margin: 0.5em;
-  margin-right: 100%;
-  margin-left: 25%;
-  float: left;
-  box-shadow: 5px 10px 18px #888888;
-}
-
-#gameResults {
-  list-style: none;
-  border: 1px outset #ccc;
-  width: 22em;
-  margin: 0.5em;
-  margin-right: 100%;
-  margin-left: 25%;
-  float: left;
-  box-shadow: 5px 10px 18px #888888;
-}
-
-#games-list li {
-  list-style: none;
-}
-
-.gameLink {
-  height: 15em;
-}
-
-.gameLink:hover {
-  cursor: pointer;
-  background-color: #bcd8c1;
-}
-
-#games-list {
-  padding-left: 0px;
-  padding-top: 0px;
-  padding-bottom: 0px;
-}
-
-#game-match {
-  float: left;
-  border: 1px outset #ccc;
-  overflow: auto;
-  box-shadow: 5px 10px 18px #888888;
-}
-
-#game-match .gameImg {
-  float: left;
+.game-content{
   width: 50%;
-  position: relative;
-  display: inline-block;
 }
 
-#match-content {
-  float: left;
-  position: relative;
-  color: #000000;
-  width: 48%;
-  display: inline-block;
-  margin: 0.5em;
+.side-content{
+  width: 45%;
 }
 
-#game-match a {
-  text-decoration: none;
-  display: block;
+.game-text{
+  width: 100%;
 }
 
-/* Burger Mobile Navigation*/
-#nav-burg {
+.game-img{
+  height: 12em;
+  align-self: flex-end;
+}
+
+.nav-hide {
   display: none;
+}
+
+.nav-burg {
+  display: none;
+}
+
+.closebtn {
+  top: 0;
+  align-self: flex-end;
+  font-size: 2em;
 }
 
 .sideNav {
@@ -256,49 +107,45 @@ p {
     padding-top: 60px;
 }
 
-.signed {
-  width: 25%;
-  margin: 4px;
-  float: left;
+.button {
+  width: 7em;
+  transition: 0.3s;
+  justify-content: center;
+  padding: 0.5em;
 }
 
-.sideNav a {
-    padding: 8px 8px 8px 9px;
-    text-decoration: none;
-    font-size: 25px;
-    color: #000000;
-    display: block;
-    transition: 0.3s;
+.center {
+  justify-content: center;
 }
 
-.sideNav a:hover {
-    color: #f1f1f1;
+.button:hover {
+  cursor: pointer;
+  background-color: #bcd8c1;
 }
 
-.sideNav li {
-  list-style: none;
+#diffSelect {
+  background: #808f87;
 }
 
-.sideNav .closebtn {
-    position: absolute;
-    top: 0;
-    right: 25px;
-    font-size: 36px;
-    margin-left: 50px;
+#gameInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  height: 100%
 }
 
-/*Match the cards css*/
-#stage {
-  border: 1px outset #ccc;
-  float: left;
-  width: 100%;
-  box-shadow: 5px 10px 18px #888888;
+#display {
+  display: flex;
 }
 
 #felt {
+  display: flex;
+  align-self: flex-end;
   position: relative;
   margin: 0 0 0 10em;
   height: 30em;
+  width: 100%;
   background: green;
   background-image: -webkit-repeating-linear-gradient(bottom right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0) 80px, rgba(255, 255, 255, 0.2) 80px, rgba(255, 255, 255, 0.2) 150px);
   background-image: -moz-repeating-linear-gradient(bottom right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0) 80px, rgba(255, 255, 255, 0.2) 80px, rgba(255, 255, 255, 0.2) 150px);
@@ -321,153 +168,37 @@ p {
   -webkit-transition-timing-function: ease-out, ease-out, ease-in-out;
 }
 
-#exit {
-  padding-left: 4em;
-  padding-right: 4em;
-  padding-top: 0.1em;
-  padding-bottom: 0.1em;
-  width: 2em;
-  margin: 0.2em;
-  cursor: default;
-  transition: 0.3s;
+.no-decoration a{
+  text-decoration: none;
 }
 
-#exit:hover {
-  background-color: #bcd8c1;
+.no-border{
+  border: 0px outset #ccc;
+  box-shadow: 0px 0px 0px #888888;
 }
 
-/*Resposive*/
+.no-padding-margin{
+  margin: 0em;
+  padding: 0em;
+}
+
+.list{
+  flex-direction: column;
+}
+
+.row{
+  flex-direction: row;
+}
+
 @media screen and (max-height: 450px) {
   .sidenav {padding-top: 15px;}
   .sidenav a {font-size: 18px;}
 }
 
 @media (max-width: 640px) {
-  p, h1, h2, h3 {
-    font-size: 30px;
-  }
-
-  #nav-hide {
-    display: none;
-  }
-  #nav-burg {
+  .nav-burg {
     display: block;
     font-size: 30px;
     cursor: pointer;
-  }
-
-  #felt {
-    margin: 6em 0 0 0;
-  }
-
-  #felt div {
-    left: 140px;
-    top: -110px;
-  }
-
-  #rules {
-    width: 19em;
-  }
-
-  .ruleArr {
-    margin: 0px;
-    margin-right: 0.1em;
-    margin-left: 0.1em;
-    padding-left: 2em;
-    padding-right: 2em;
-    background-color: #bcd8c1;
-  }
-
-  .dif {
-    padding-left: 5em;
-    padding-right: 4em;
-    padding-top: 1em;
-    padding-bottom: 1em;
-    background-color: #bcd8c1;
-    width: 6em;
-    margin: 0.2em;
-  }
-
-  #game-match h3 {
-    width: 25em;
-    float: left;
-  }
-
-  #game-match p {
-    width: 18em;
-    float: left;
-  }
-
-  #game-match {
-    height: 25em;
-  }
-
-  #exit {
-    background-color: #bcd8c1;
-  }
-
-  #contentT {
-    height: 2.5em;
-  }
-
-  #game-match .gameImg {
-    width: 30%;
-  }
-}
-
-@media (max-width: 900px) {
-  #nav-links {
-    margin-left: 15%;
-  }
-
-  .auth {
-    margin-left: 15%;
-  }
-
-  #rules {
-    margin-left: 15%;
-  }
-
-  #gameResults {
-    margin-left: 15%;
-  }
-
-  #diffSelect {
-    margin-left: 15%;
-  }
-
-  #game-match .gameImg {
-    width: 70%;
-  }
-}
-
-@media (max-width: 770px) {
-  #nav-links {
-    margin-left: 5%;
-  }
-
-  .auth {
-    margin-left: 5%;
-  }
-
-  #rules {
-    margin-left: 5%;
-  }
-
-  #gameResults {
-    margin-left: 5%;
-  }
-
-  #diffSelect {
-    margin-left: 5%;
-  }
-
-  .ruleArr {
-    padding-left: 3em;
-    padding-right: 3em;
-  }
-
-  #game-match .gameImg {
-    width: 90%;
   }
 }

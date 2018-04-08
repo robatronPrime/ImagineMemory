@@ -10,142 +10,137 @@
   <script defer src="https://use.fontawesome.com/releases/v5.0.2/js/all.js"></script>
   <meta name="google-signin-client_id" content="562468116276-f2bjqopstgrgehc4p51u0q20vilso5v5.apps.googleusercontent.com">
   <script src="https://apis.google.com/js/platform.js" async defer></script>
+  <script src="scripts/match.js"></script>
 </head>
   <body>
-    <section id="content">
-      <section id="hide">
-        <section id="head">
-          <section id="title">
+    <section class="no-padding-margin">
+      <section class="container no-border no-padding-margin">
+        <section class="container head no-border">
+          <section class="item">
             <img class="logo" src="images/Logo.png" alt="Website logo ImagineMemory">
           </section>
-          <span id="nav-hide">
-            <ul id="nav-links">
-              <p>Game Library</p>
-              <li>
-                <a href="index.html">Home Page</a>
-              </li>
-            </ul>
+
+          <span class="item sideNav list no-decoration link" id="sideNav">
+            <a class="item closebtn" href="javascript:void(0)" onclick="closeNav()">
+              Close Menu
+            </a>
+            <p class="item">Game Library</p>
+            <a class="item" href="index.html">Home Page</a>
           </span>
 
-          <div id="sideNav" class="sideNav">
-            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">
-              &times;
-            </a>
-            <ul id="sideNav-links">
-              <p>Game Library</p>
-              <li id="link-home">
-                <a href="index.html">Home Page</a>
-              </li>
-          </div>
-
-          <span id="nav-burg" onclick="openNav();">
+          <span class="item nav-burg" onclick="openNav();">
             <i class="fas fa-bars"></i>
           </span>
         </section>
 
-        <section class="auth">
-          <p class="greeting">
-            <p class="signed">Signed in as:</p> <span class="name">error</span>
-            <button onclick="signOut();"><p>Sign out</p></button>
-          </p>
-        </section>
-
-        <section id="rules">
-          <h1>How to Play Match</h1>
-          <section id="title-sec">
-            <h2 id="titleT"></h2>
+        <section class="item list side-content">
+          <section class="container list">
+            <h1 class="item">How to Play Match</h1>
+            <section class="item">
+              <h2 id="titleT"></h2>
+            </section>
+            <section id="content-sec">
+              <p id="contentT"></p>
+            </section>
+            <section class="item row">
+              <span id="prev" class="item button" onclick="prevStep();">
+                <button class="fas fa-angle-left"></button>
+              </span>
+              <span id="next" class="item button" onclick="nextStep();">
+                <button class="fas fa-angle-right"></button>
+              </span>
+            </section>
           </section>
-          <section id="content-sec">
-            <p id="contentT"></p>
+
+          <section class="container list">
+            <p class="item greeting">
+              <p class="signed">Signed in as:</p> <span class="name"></span>
+              <button onclick="signOut();"><p>Sign out</p></button>
+            </p>
           </section>
 
-          <span id="prev" class="ruleArr" onclick="prevStep();">
-            <button class="fas fa-angle-left"></button>
-          </span>
-          <span id="next" class="ruleArr" onclick="nextStep();">
-            <button class="fas fa-angle-right"></button>
-          </span>
+          <section class="container list">
+            <h1 class="item">Here are you game results for Match!</h1>
+            <p class="item">Easy Games Played: </p><spanid="eWinCount"></span>
+            <p class="item">Medium Games Played: </p><spanid="hWinCount"></span>
+            <p class="item">Hard Games Played: </p><spanid="hWinCount"></span>
+          </section>
         </section>
 
-        <section id="gameResults">
-          <h2>Here are you game results for Match!</h2>
-          <p>Easy Games Played: </p><spanid="eWinCount"></span>
-          <p>Medium Games Played: </p><spanid="hWinCount"></span>
-          <p>Hard Games Played: </p><spanid="hWinCount"></span>
-        </section>
+        <section class="container list game-content" id="stage">
+          <section id="diffSelect" class="item list">
+            <h1 class="item center">Difficulty Selection</h1>
+            <section class="item row center">
+              <span class="item button" onclick="easyGame();">Easy</span>
+              <span class="item button" onclick="mediGame();">Medium</span>
+              <span class="item button" onclick="hardGame();">Hard</span>
+            </section>
+          </section>
+          <!-- The Stage for the game -->
+          <section class="item row" id="board">
+            <!-- Load game file -->
 
+            <script>
+            var content = document.getElementById("content");
 
-        <section id="diffSelect">
-          <h2>Difficulty Selection</h2>
-          <span id="easy" onclick="easyGame();" class="dif">Easy</span>
-          <span id="medi" onclick="mediGame();" class="dif">Medium</span>
-          <span id="hard" onclick="hardGame();" class="dif">Hard</span>
+            //Change Difficulty
+            function hardGame(){
+              if (!document.getElementById("felt")) {
+                var game = new MatchGame("board");
+              } else {
+                clock.remove();
+                display.remove();
+                document.getElementById("felt").remove();
+                var game = new MatchGame("board");
+              }
+            }
+
+            function mediGame(){
+              if (!document.getElementById("felt")) {
+                var game = new MatchGameMedi("board");
+              } else {
+                clock.remove();
+                display.remove();
+                document.getElementById("felt").remove();
+                var game = new MatchGameMedi("board");
+              }
+            }
+
+            function easyGame(){
+              if (!document.getElementById("felt")) {
+                var game = new MatchGameEasy("board");
+              } else {
+                clock.remove();
+                display.remove();
+                document.getElementById("felt").remove();
+                var game = new MatchGameEasy("board");
+              }
+            }
+
+            document.onload = easyGame();
+
+            </script>
+          </section>
         </section>
       </section>
     </section>
 
-    <section id="stage">
-      <!-- The Stage for the game -->
-    </section>
-
-    <section id="board">
-      <!-- Load game file -->
-      <script src="scripts/match.js"></script>
-      <script>
-
-      //remove html elements function
-        Element.prototype.remove = function() {
-          this.parentElement.removeChild(this);
-        }
-        NodeList.prototype.remove = HTMLCollection.prototype.remove = function() {
-          for(var i = this.length - 1; i >= 0; i--) {
-            if(this[i] && this[i].parentElement) {
-              this[i].parentElement.removeChild(this[i]);
-            }
-          }
-        }
-
-        var content = document.getElementById("content");
-
-        //Change Difficulty
-        function hardGame(){
-          if (!document.getElementById("felt")) {
-            var game = new MatchGame("stage");
-            document.getElementById("hide").remove();
-          } else {
-            document.getElementById("felt").remove();
-            document.getElementById("exit").remove();
-            var game = new MatchGame("stage");
-          }
-        }
-
-        function mediGame(){
-          if (!document.getElementById("felt")) {
-            var game = new MatchGameMedi("stage");
-            document.getElementById("hide").remove();
-          } else {
-            document.getElementById("felt").remove();
-            document.getElementById("exit").remove();
-            var game = new MatchGameMedi("stage");
-          }
-        }
-
-        function easyGame(){
-          if (!document.getElementById("felt")) {
-            var game = new MatchGameEasy("stage");
-            document.getElementById("hide").remove();
-          } else {
-            document.getElementById("felt").remove();
-            document.getElementById("exit").remove();
-            var game = new MatchGameEasy("stage");
-          }
-        }
-
-      </script>
-    </section>
   </body>
 
   <script>
+
+  //remove html elements function
+    Element.prototype.remove = function() {
+      this.parentElement.removeChild(this);
+    }
+    NodeList.prototype.remove = HTMLCollection.prototype.remove = function() {
+      for(var i = this.length - 1; i >= 0; i--) {
+        if(this[i] && this[i].parentElement) {
+          this[i].parentElement.removeChild(this[i]);
+        }
+      }
+    }
+
     //Burger navigation menu
     function openNav() {
       document.getElementById("sideNav").style.width = "250px";
@@ -157,7 +152,7 @@
 
     //instrutions
     var titleText = "Step 1";
-    var contentText = "First choose the difficulty you want to play at.";
+    var contentText = "First choose the difficulty you want to play at. You can do this by clicking “Easy”, “Medium”, or “Hard” in the grey highlighted area.";
 
     function updateHTML(id, text) {
       var elem = document.getElementById(id);
@@ -183,26 +178,39 @@
       ['Step 6']
     ];
     var text = [
-      ["First choose the difficulty you want to play at."],
-      ["Click the pack of card to start the game and the timer starts."],
+      ["First choose the difficulty you want to play at. You can do this by clicking “Easy”, “Medium”, or “Hard” in the grey highlighted area."],
+      ["Click the pack of cards to start the game and the timer starts."],
       ["Once the cards are delt, click a card to flip it and show the shape on the card."],
       ["Click an other card to show the shape on that card."],
       ["If it's a match the selected cards go back to the deck. If the cards are not a match they flip back over."],
       ["Once all of the cards are matched the game ends and the timer stops. Try to get a shorter time to improve!"]
     ];
 
-    function nextStep(){
+    function nextStep() {
       curStep++;
       if(curStep == steps.length) curStep = 0;
       document.getElementById("titleT").innerHTML = steps[curStep];
       document.getElementById("contentT").innerHTML = text[curStep];
+      highlightArea();
     }
 
-    function prevStep(){
+    function prevStep() {
       curStep--;
       if(curStep == -1) curStep = 0;
       document.getElementById("titleT").innerHTML = steps[curStep];
       document.getElementById("contentT").innerHTML = text[curStep];
+      highlightArea();
+    }
+
+    function highlightArea(){
+      if(curStep == 0) {
+        document.getElementById('diffSelect').style.background = "#808f87";
+      } else {
+        document.getElementById('diffSelect').style.background = "transparent";
+      }
+      if(curStep == 1) {
+
+      }
     }
   </script>
 
