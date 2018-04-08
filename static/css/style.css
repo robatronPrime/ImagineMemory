@@ -24,6 +24,7 @@ h2 {
 h1,
 h2 {
   font-weight: bold;
+  font-family: 'Oxygen', sans-serif;
 }
 
 h1,
@@ -33,6 +34,7 @@ p,
 a {
   margin: .5em 0;
   color: #000000;
+  font-family: 'Open Sans', sans-serif;
 }
 
 .container {
@@ -72,7 +74,7 @@ a {
 }
 
 .half-width {
-  width: 100%;
+  width: 50%;
 }
 
 .game-text{
@@ -116,6 +118,7 @@ a {
   transition: 0.3s;
   justify-content: center;
   padding: 0.5em;
+  font-size: larger;
 }
 
 .center {
@@ -140,11 +143,31 @@ a {
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  width: 40%;
+  width: 42%;
+}
+
+#results {
+  font-family: 'Open Sans', sans-serif;
+  font-size: larger;
+}
+
+#minutesDis {
+  font-size: 50px;
+  font-family: 'Open Sans', sans-serif;
+  margin: 1 0 1 0em;
+}
+
+#secondsDis {
+  font-size: 50px;
+  font-family: 'Open Sans', sans-serif;
+  margin: 1 0 1 0em;
 }
 
 #display {
   display: flex;
+  font-size: larger;
+  font-family: 'Open Sans', sans-serif;
+  margin: 1em;
 }
 
 #felt {
@@ -183,17 +206,33 @@ a {
   box-shadow: 0px 0px 0px #888888;
 }
 
-.no-padding-margin{
+.no-padding-margin {
   margin: 0em;
   padding: 0em;
 }
 
-.list{
+.list {
   flex-direction: column;
 }
 
-.row{
+.row {
   flex-direction: row;
+}
+
+.flex-end {
+  align-self: flex-end;
+}
+
+.green {
+  color: #1b512d;
+}
+
+.grey {
+  color: #808f87;
+}
+
+.font-os {
+  font-family: 'Open Sans', sans-serif;
 }
 
 @media screen and (max-height: 450px) {

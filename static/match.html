@@ -11,7 +11,6 @@
   <meta name="google-signin-client_id" content="562468116276-f2bjqopstgrgehc4p51u0q20vilso5v5.apps.googleusercontent.com">
   <script src="https://apis.google.com/js/platform.js" async defer></script>
   <script src="scripts/match.js"></script>
-</head>
   <body>
     <section class="no-padding-margin">
       <section class="container no-border no-padding-margin">
@@ -50,8 +49,17 @@
                 <button class="fas fa-angle-right"></button>
               </span>
             </section>
-            <section class="item button no-decoration">
-              <a href="index.html">Home Page</a>
+            <section class="item row no-decoration">
+              <a class="item" href="index.html">
+                <section class="item button">
+                  Home Page
+                </section>
+              </a>
+              <a class="item" href="#">
+                <section class="item button">
+                  Progress Page
+                </section>
+              </a>
             </section>
           </section>
         </section>
@@ -60,9 +68,9 @@
           <section id="diffSelect" class="item list center">
             <h1 class="item center">Difficulty Selection</h1>
             <section class="item row center">
-              <span class="item button" onclick="easyGame();">Easy</span>
-              <span class="item button" onclick="mediGame();">Medium</span>
-              <span class="item button" onclick="hardGame();">Hard</span>
+              <span class="item button font-os" onclick="easyGame();">Easy</span>
+              <span class="item button font-os" onclick="mediGame();">Medium</span>
+              <span class="item button font-os" onclick="hardGame();">Hard</span>
             </section>
           </section>
           <!-- The Stage for the game -->
@@ -127,13 +135,6 @@
           </p>
         </section>
 
-        <section class="container list">
-          <h1 class="item">Here are you game results for Match!</h1>
-          <p class="item">Easy Games Played: </p><spanid="eWinCount"></span>
-          <p class="item">Medium Games Played: </p><spanid="hWinCount"></span>
-          <p class="item">Hard Games Played: </p><spanid="hWinCount"></span>
-        </section>
-
       </section>
     </section>
 
@@ -163,8 +164,8 @@
     }
 
     //instrutions
-    var titleText = "Instruction Conctrols";
-    var contentText = 'To go through the steps of these instruction click the <strong>right arrow</strong> highlighted in grey. To go back a step, click the <strong>left arrow</strong> also highlighted in grey.<br/> Or you can go back to the home page by clicking the <strong>"Home Page"</strong> button.';
+    var titleText = "Instruction Controls";
+    var contentText = 'To go through the steps of these instructions click the <strong>right arrow</strong> highlighted in grey. To go back a step, click the <strong>left arrow</strong> also highlighted in grey.<br/> Or you can go back to the home page by clicking the <strong>"Home Page"</strong> button or to the progress page by pressing the <strong>"Progress Page"</strong> button.';
 
     titleText.toString();
     contentText.toString();
@@ -194,11 +195,11 @@
       ['Step 6']
     ];
     var text = [
-      ['To go through the steps of these instruction click the right arrow highlighted in grey. To go back a step, click the left arrow also highlighted in grey. <br/> Or you can go back to the home page by clicking the <strong>"Home Page"</strong> button.'],
+      ['To go through the steps of these instructions click the right arrow highlighted in grey. To go back a step, click the left arrow also highlighted in grey. <br/> Or you can go back to the home page by clicking the <strong>"Home Page"</strong> button or to the progress page by pressing the <strong>"Progress Page"</strong> button.'],
       ["First choose the difficulty you want to play at. You can do this by clicking <strong>“Easy”</strong>, <strong>“Medium”</strong>, or <strong>“Hard”</strong> in the grey highlighted area."],
       ["Click the pack of cards to start the game and the timer starts."],
-      ["Once the cards are delt, click a card to flip it and show the shape on the card."],
-      ["Click an other card to show the shape on that card."],
+      ["Once the cards are dealt, click a card to flip it and show the shape on the card."],
+      ["Click another card to show the shape on that card."],
       ["If it's a match the selected cards go back to the deck. If the cards are not a match they flip back over."],
       ["Once all of the cards are matched the game ends and the timer stops. Try to get a shorter time to improve!"]
     ];

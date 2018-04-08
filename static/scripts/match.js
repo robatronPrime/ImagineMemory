@@ -34,7 +34,9 @@ const MatchGame = function (targetID) {
 
   /* Count the clicks that the player does */
   let clicks = 0;
-  const display = document.createElement('span');
+  let clicksS = 0;
+  const displayA = document.createElement('span');
+  const displayS = document.createElement('span');
 
   if(localStorage.getItem('clicks')) {
     let saveCount = localStorage.getItem('clicks');
@@ -44,7 +46,7 @@ const MatchGame = function (targetID) {
     localStorage.setItem("clicks", clicks);
   }
 
-  function clickCounter() {
+  function matchAttempts() {
     if (typeof(Storage) !== "undefined") {
       if (localStorage.getItem('clicks')) {
         clicks++;
@@ -52,12 +54,28 @@ const MatchGame = function (targetID) {
       } else {
         clicks = 0;
       }
-      display.innerHTML = "</br>" + "You have clicked " + clicks + " time(s).";
+      displayA.innerHTML = "</br>" + "You have made " + clicks + " unsuccessful attempt(s) to find matches.";
     } else {
       console.log("No Web Storage for you!");
       alert("Web Storage is not available for your browser!");
     }
   }
+
+  function matchSuccess() {
+    if (typeof(Storage) !== "undefined") {
+      if (localStorage.getItem('clicks')) {
+        clicksS++;
+        localStorage.setItem("clicksS", clicksS);
+      } else {
+        clicksS = 0;
+      }
+      displayS.innerHTML = "</br>" + "You have made " + clicksS + " successful attempt(s) to find matches.";
+    } else {
+      console.log("No Web Storage for you!");
+      alert("Web Storage is not available for your browser!");
+    }
+  }
+
 
   //turn card face down
   const hideCard = function (id) {
@@ -115,9 +133,9 @@ const MatchGame = function (targetID) {
 
     if (card1 !== false) {
       card2 = id;
-      clickCounter();
       if (parseInt(hard_card_value[card1]) == parseInt(hard_card_value[card2])) { //match found
         (function (card1, card2) {
+          matchSuccess();
           setTimeout(function () {
             if (w >= 640) {
               moveToPack(card1);
@@ -137,9 +155,11 @@ const MatchGame = function (targetID) {
           gameComplete(seconds, minutes);
           clicks = 0;
           localStorage.setItem("clicks", clicks);
+          localStorage.setItem("clicksS", clicks);
         }
       } else { //no match
         (function (card1, card2) {
+          matchAttempts();
           setTimeout(function () {
             hideCard(card1);
             hideCard(card2);
@@ -194,7 +214,7 @@ const MatchGame = function (targetID) {
 
   gameTitle.id = "gameTitle";
   gameInfo.appendChild(gameTitle);
-  gameTitle.innerHTML = "Hard";
+  gameTitle.innerHTML = "<h2>You Have Selected the Hardest Difficulty!</h2>";
 
   results.id = "results";
   gameInfo.appendChild(results);
@@ -204,13 +224,19 @@ const MatchGame = function (targetID) {
 
   minutesDis.id = "minutesDis";
   clock.appendChild(minutesDis);
+  minutesDis.innerHTML = "00 : "
 
   secondsDis.id = "secondsDis";
   clock.appendChild(secondsDis);
+  secondsDis.innerHTML = "00"
 
-  display.id = "display";
-  gameInfo.appendChild(display);
+  displayA.id = "display";
+  gameInfo.appendChild(displayA);
+  displayA.innerHTML = "You have made 0 unsuccessful attempt(s) to find matches."
 
+  displayS.id = "display";
+  gameInfo.appendChild(displayS);
+  displayS.innerHTML = "You have made 0 successful attempt(s) to find matches."
 
   //template for card
   let card = document.createElement("div");
@@ -263,7 +289,9 @@ const MatchGameMedi = function (targetID) {
 
   /* Count the clicks that the player does */
   let clicks = 0;
-  const display = document.createElement('span');
+  let clicksS = 0;
+  const displayA = document.createElement('span');
+  const displayS = document.createElement('span');
 
   if(localStorage.getItem('clicks')) {
     let saveCount = localStorage.getItem('clicks');
@@ -273,7 +301,7 @@ const MatchGameMedi = function (targetID) {
     localStorage.setItem("clicks", clicks);
   }
 
-  function clickCounter() {
+  function matchAttempts() {
     if (typeof(Storage) !== "undefined") {
       if (localStorage.getItem('clicks')) {
         clicks++;
@@ -281,7 +309,22 @@ const MatchGameMedi = function (targetID) {
       } else {
         clicks = 0;
       }
-      display.innerHTML = "</br>" + "You have clicked " + clicks + " time(s).";
+      displayA.innerHTML = "</br>" + "You have made " + clicks + " unsuccessful attempt(s) to find matches.";
+    } else {
+      console.log("No Web Storage for you!");
+      alert("Web Storage is not available for your browser!");
+    }
+  }
+
+  function matchSuccess() {
+    if (typeof(Storage) !== "undefined") {
+      if (localStorage.getItem('clicks')) {
+        clicksS++;
+        localStorage.setItem("clicksS", clicks);
+      } else {
+        clicksS = 0;
+      }
+      displayS.innerHTML = "</br>" + "You have made " + clicksS + " successful attempt(s) to find matches.";
     } else {
       console.log("No Web Storage for you!");
       alert("Web Storage is not available for your browser!");
@@ -344,9 +387,9 @@ const MatchGameMedi = function (targetID) {
 
     if (card1 !== false) {
       card2 = id;
-      clickCounter();
       if (parseInt(medi_card_value[card1]) == parseInt(medi_card_value[card2])) { //match found
         (function (card1, card2) {
+          matchSuccess();
           setTimeout(function () {
             if (w >= 640) {
               moveToPack(card1);
@@ -366,9 +409,11 @@ const MatchGameMedi = function (targetID) {
           gameComplete(seconds, minutes);
           clicks = 0;
           localStorage.setItem("clicks", clicks);
+          localStorage.setItem("clicksS", clicks);
         }
       } else { //no match
         (function (card1, card2) {
+          matchAttempts();
           setTimeout(function () {
             hideCard(card1);
             hideCard(card2);
@@ -423,7 +468,7 @@ const MatchGameMedi = function (targetID) {
 
   gameTitle.id = "gameTitle";
   gameInfo.appendChild(gameTitle);
-  gameTitle.innerHTML = "Medium";
+  gameTitle.innerHTML = "<h2>You Have Selected Medium Difficulty!</h2>";
 
   results.id = "results";
   gameInfo.appendChild(results);
@@ -433,12 +478,19 @@ const MatchGameMedi = function (targetID) {
 
   minutesDis.id = "minutesDis";
   clock.appendChild(minutesDis);
+  minutesDis.innerHTML = "00 : "
 
   secondsDis.id = "secondsDis";
   clock.appendChild(secondsDis);
+  secondsDis.innerHTML = "00"
 
-  display.id = "display";
-  gameInfo.appendChild(display);
+  displayA.id = "display";
+  gameInfo.appendChild(displayA);
+  displayA.innerHTML = "You have made 0 unsuccessful attempt(s) to find matches."
+
+  displayS.id = "display";
+  gameInfo.appendChild(displayS);
+  displayS.innerHTML = "You have made 0 successful attempt(s) to find matches."
 
   //template for card
   let card = document.createElement("div");
@@ -491,7 +543,9 @@ const MatchGameEasy = function (targetID) {
 
   /* Count the clicks that the player does */
   let clicks = 0;
-  const display = document.createElement('span');
+  let clicksS = 0;
+  const displayA = document.createElement('span');
+  const displayS = document.createElement('span');
 
   if(localStorage.getItem('clicks')) {
     let saveCount = localStorage.getItem('clicks');
@@ -501,7 +555,7 @@ const MatchGameEasy = function (targetID) {
     localStorage.setItem("clicks", clicks);
   }
 
-  function clickCounter() {
+  function matchAttempts() {
     if (typeof(Storage) !== "undefined") {
       if (localStorage.getItem('clicks')) {
         clicks++;
@@ -509,7 +563,22 @@ const MatchGameEasy = function (targetID) {
       } else {
         clicks = 0;
       }
-      display.innerHTML = "</br>" + "You have clicked " + clicks + " time(s).";
+      displayA.innerHTML = "</br>" + "You have made " + clicks + " unsuccessful attempt(s) to find matches.";
+    } else {
+      console.log("No Web Storage for you!");
+      alert("Web Storage is not available for your browser!");
+    }
+  }
+
+  function matchSuccess() {
+    if (typeof(Storage) !== "undefined") {
+      if (localStorage.getItem('clicks')) {
+        clicksS++;
+        localStorage.setItem("clicksS", clicks);
+      } else {
+        clicksS = 0;
+      }
+      displayS.innerHTML = "</br>" + "You have made " + clicksS + " successful attempt(s) to find matches.";
     } else {
       console.log("No Web Storage for you!");
       alert("Web Storage is not available for your browser!");
@@ -572,10 +641,10 @@ const MatchGameEasy = function (targetID) {
 
     if (card1 !== false) {
       card2 = id;
-      clickCounter();
       if (parseInt(easy_card_value[card1]) == parseInt(easy_card_value[card2])) { //match found
         (function (card1, card2) {
           setTimeout(function () {
+            matchSuccess();
             if (w >= 640) {
               moveToPack(card1);
               moveToPack(card2);
@@ -594,10 +663,12 @@ const MatchGameEasy = function (targetID) {
           gameComplete(seconds, minutes);
           clicks = 0;
           localStorage.setItem("clicks", clicks);
+          localStorage.setItem("clicksS", clicks);
         }
       } else { //no match
         (function (card1, card2) {
           setTimeout(function () {
+            matchAttempts();
             hideCard(card1);
             hideCard(card2);
           }, 800);
@@ -651,7 +722,7 @@ const MatchGameEasy = function (targetID) {
 
   gameTitle.id = "gameTitle";
   gameInfo.appendChild(gameTitle);
-  gameTitle.innerHTML = "Easy";
+  gameTitle.innerHTML = "<h2>You Have Selected the Easiest Difficulty!</h2>";
 
   results.id = "results";
   gameInfo.appendChild(results);
@@ -661,12 +732,19 @@ const MatchGameEasy = function (targetID) {
 
   minutesDis.id = "minutesDis";
   clock.appendChild(minutesDis);
+  minutesDis.innerHTML = "00 : "
 
   secondsDis.id = "secondsDis";
   clock.appendChild(secondsDis);
+  secondsDis.innerHTML = "00"
 
-  display.id = "display";
-  gameInfo.appendChild(display);
+  displayA.id = "display";
+  gameInfo.appendChild(displayA);
+  displayA.innerHTML = "You have made 0 unsuccessful attempt(s) to find matches."
+
+  displayS.id = "display";
+  gameInfo.appendChild(displayS);
+  displayS.innerHTML = "You have made 0 successful attempt(s) to find matches."
 
   //template for card
   let card = document.createElement("div");
