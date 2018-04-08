@@ -184,12 +184,17 @@ const MatchGame = function (targetID) {
   const results = document.createElement("span");
   const gameInfo = document.createElement("section");
   const clock  = document.createElement("section");
+  const gameTitle = document.createElement("section");
 
   felt.id = "felt";
   stage.appendChild(felt);
 
   gameInfo.id = "gameInfo";
   stage.appendChild(gameInfo);
+
+  gameTitle.id = "gameTitle";
+  gameInfo.appendChild(gameTitle);
+  gameTitle.innerHTML = "Hard";
 
   results.id = "results";
   gameInfo.appendChild(results);
@@ -408,12 +413,17 @@ const MatchGameMedi = function (targetID) {
   const results = document.createElement("span");
   const gameInfo = document.createElement("section");
   const clock  = document.createElement("section");
+  const gameTitle = document.createElement("section");
 
   felt.id = "felt";
   stage.appendChild(felt);
 
   gameInfo.id = "gameInfo";
   stage.appendChild(gameInfo);
+
+  gameTitle.id = "gameTitle";
+  gameInfo.appendChild(gameTitle);
+  gameTitle.innerHTML = "Medium";
 
   results.id = "results";
   gameInfo.appendChild(results);
@@ -630,13 +640,18 @@ const MatchGameEasy = function (targetID) {
   const felt = document.createElement("div");
   const results = document.createElement("span");
   const gameInfo = document.createElement("section");
-  const clock  = document.createElement("section");
+  const clock = document.createElement("section");
+  const gameTitle = document.createElement("section");
 
   felt.id = "felt";
   stage.appendChild(felt);
 
   gameInfo.id = "gameInfo";
   stage.appendChild(gameInfo);
+
+  gameTitle.id = "gameTitle";
+  gameInfo.appendChild(gameTitle);
+  gameTitle.innerHTML = "Easy";
 
   results.id = "results";
   gameInfo.appendChild(results);

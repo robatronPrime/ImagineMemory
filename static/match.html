@@ -42,7 +42,7 @@
             <section id="content-sec">
               <p id="contentT"></p>
             </section>
-            <section class="item row">
+            <section class="item row center" id="arrows">
               <span id="prev" class="item button" onclick="prevStep();">
                 <button class="fas fa-angle-left"></button>
               </span>
@@ -50,11 +50,14 @@
                 <button class="fas fa-angle-right"></button>
               </span>
             </section>
+            <section class="item button no-decoration">
+              <a href="index.html">Home Page</a>
+            </section>
           </section>
         </section>
 
         <section class="container list game-content max-width center" id="stage">
-          <section id="diffSelect" class="item list">
+          <section id="diffSelect" class="item list center">
             <h1 class="item center">Difficulty Selection</h1>
             <section class="item row center">
               <span class="item button" onclick="easyGame();">Easy</span>
@@ -160,8 +163,11 @@
     }
 
     //instrutions
-    var titleText = "Step 1";
-    var contentText = "First choose the difficulty you want to play at. You can do this by clicking “Easy”, “Medium”, or “Hard” in the grey highlighted area.";
+    var titleText = "Instruction Conctrols";
+    var contentText = 'To go through the steps of these instruction click the <strong>right arrow</strong> highlighted in grey. To go back a step, click the <strong>left arrow</strong> also highlighted in grey.<br/> Or you can go back to the home page by clicking the <strong>"Home Page"</strong> button.';
+
+    titleText.toString();
+    contentText.toString();
 
     function updateHTML(id, text) {
       var elem = document.getElementById(id);
@@ -179,6 +185,7 @@
 
     //text
     var steps = [
+      ['Instruction Controls'],
       ['Step 1'],
       ['Step 2'],
       ['Step 3'],
@@ -187,13 +194,17 @@
       ['Step 6']
     ];
     var text = [
-      ["First choose the difficulty you want to play at. You can do this by clicking “Easy”, “Medium”, or “Hard” in the grey highlighted area."],
+      ['To go through the steps of these instruction click the right arrow highlighted in grey. To go back a step, click the left arrow also highlighted in grey. <br/> Or you can go back to the home page by clicking the <strong>"Home Page"</strong> button.'],
+      ["First choose the difficulty you want to play at. You can do this by clicking <strong>“Easy”</strong>, <strong>“Medium”</strong>, or <strong>“Hard”</strong> in the grey highlighted area."],
       ["Click the pack of cards to start the game and the timer starts."],
       ["Once the cards are delt, click a card to flip it and show the shape on the card."],
       ["Click an other card to show the shape on that card."],
       ["If it's a match the selected cards go back to the deck. If the cards are not a match they flip back over."],
       ["Once all of the cards are matched the game ends and the timer stops. Try to get a shorter time to improve!"]
     ];
+
+    steps.toString();
+    text.toString();
 
     function nextStep() {
       curStep++;
@@ -213,12 +224,14 @@
 
     function highlightArea(){
       if(curStep == 0) {
-        document.getElementById('diffSelect').style.background = "#808f87";
+        document.getElementById('arrows').style.background = "#808f87";
       } else {
-        document.getElementById('diffSelect').style.background = "transparent";
+        document.getElementById('arrows').style.background = "transparent";
       }
       if(curStep == 1) {
-
+        document.getElementById('diffSelect').style.background = "#808f87";
+        } else {
+        document.getElementById('diffSelect').style.background = "transparent";
       }
     }
   </script>

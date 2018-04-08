@@ -127,7 +127,7 @@ a {
   background-color: #bcd8c1;
 }
 
-#diffSelect {
+#arrows {
   background: #808f87;
 }
 
@@ -140,7 +140,7 @@ a {
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  padding: 2em;
+  width: 40%;
 }
 
 #display {
