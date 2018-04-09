@@ -12,22 +12,7 @@
   <script defer src="https://use.fontawesome.com/releases/v5.0.2/js/all.js"></script>
   <script src="scripts/index.js"></script>
   <script type="text/javascript">
-    function getLastWeek(){
-      var today = new Date();
-      var lastWeek = new Date(today.getFullYear(), today.getMonth(), today.getDate() - 7);
-      return lastWeek ;
-    }
 
-    var lastWeek = getLastWeek();
-    var lastWeekMonth = lastWeek.getMonth() + 1;
-    var lastWeekDay = lastWeek.getDate();
-    var lastWeekYear = lastWeek.getFullYear();
-
-    var lastWeekDisplay = lastWeekMonth + "/" + lastWeekDay + "/" + lastWeekYear;
-    var lastWeekDisplayPadded = ("00" + lastWeekMonth.toString()).slice(-2)+ "/" + ("00" + lastWeekDay .toString()).slice(-2)+ "/" + ("0000" + lastWeekYear .toString()).slice(-4);
-
-    alert(lastWeekDisplay);
-    alert(lastWeekDisplayPadded);
   </script>
 </head>
 
@@ -37,6 +22,27 @@
       <section class="item">
         <img class="logo" src="images/Logo.png" alt="Website logo ImagineMemory">
       </section>
+
+      <span class="item sideNav list no-decoration link" id="sideNav">
+        <a class="item closebtn" href="javascript:void(0)" onclick="closeNav()">
+          Close Menu
+        </a>
+        <a class="item" href="index.html">
+          <section class="item button">
+            Home Page
+          </section>
+        </a>
+        <a class="item" href="progress.html">
+          <section class="item button">
+            Progress Page
+          </section>
+        </a>
+      </span>
+
+      <span class="item nav-burg" onclick="openNav();">
+        <i class="fas fa-bars"></i>
+      </span>
+
     </section>
     <section class="container row center no-border">
       <section class="container half-width">
@@ -52,11 +58,18 @@
         </ul>
         <p>The best of these statistics are presented to you so you can see how well you are doing!</p>
         <p>You will find the <strong>Game Library</strong> has a whole bunch of games for you to play! <a class="no-decoration green" href="#gameLibrary"><strong>Click Here</strong></a> to choose a game to play!</p>
+        <section class="item row no-decoration">
+          <a class="item hide-link" href="index.html">
+            <section class="item button">
+              Home Page
+            </section>
+          </a>
+        </section>
       </section>
 
-      <section>
-        <table class="emp-sales">
-          <caption>2009 Employee Sales by Department</caption>
+      <section class="item row max-width">
+        <table class="emp-sales" id="table">
+          <caption style="width: 23em;">You Best Weekly Results</caption>
           <thead>
             <tr>
               <td></td>
@@ -69,7 +82,7 @@
           </thead>
           <tbody>
             <tr>
-              <th scope="row">Mary</th>
+              <th scope="row">Moday</th>
               <td>190</td>
               <td>160</td>
               <td>40</td>
@@ -77,7 +90,7 @@
               <td>30</td>
             </tr>
             <tr>
-              <th scope="row">Tom</th>
+              <th scope="row">Tuesday</th>
               <td>3</td>
               <td>40</td>
               <td>30</td>
@@ -85,7 +98,7 @@
               <td>35</td>
             </tr>
             <tr>
-              <th scope="row">Brad</th>
+              <th scope="row">Wednesday</th>
               <td>10</td>
               <td>180</td>
               <td>10</td>
@@ -93,7 +106,7 @@
               <td>25</td>
             </tr>
             <tr>
-              <th scope="row">Kate</th>
+              <th scope="row">Thursday</th>
               <td>40</td>
               <td>80</td>
               <td>90</td>
@@ -101,7 +114,7 @@
               <td>15</td>
             </tr>
             <tr>
-              <th scope="row">Donald</th>
+              <th scope="row">Friday</th>
               <td>45</td>
               <td>35</td>
               <td>49</td>
@@ -109,7 +122,7 @@
               <td>3</td>
             </tr>
             <tr>
-              <th scope="row">Mark</th>
+              <th scope="row">Saturday</th>
               <td>49</td>
               <td>30</td>
               <td>3</td>
@@ -117,7 +130,7 @@
               <td>30</td>
             </tr>
             <tr>
-              <th scope="row">Samantha</th>
+              <th scope="row">Sunday</th>
               <td>30</td>
               <td>45</td>
               <td>35</td>
@@ -143,14 +156,17 @@
     </section>
   </section>
 </body>
-    <script>
-      //Burger navigation menu
-      function openNav() {
-        document.getElementById("sideNav").style.width = "250px";
-      }
+<script>
+  const table = document.getElementById('table');
+  table.setAttribute('class', 'class');
 
-      function closeNav() {
-        document.getElementById("sideNav").style.width = "0";
-      }
-    </script>
+  //Burger navigation menu
+  function openNav() {
+    document.getElementById("sideNav").style.width = "250px";
+  }
+
+  function closeNav() {
+    document.getElementById("sideNav").style.width = "0";
+  }
+</script>
 </html>

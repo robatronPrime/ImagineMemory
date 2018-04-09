@@ -136,10 +136,10 @@ const MatchGame = function (targetID) {
         (function (card1, card2) {
           matchSuccess();
           setTimeout(function () {
-            if (w >= 640) {
+            if (w >= 700) {
               moveToPack(card1);
               moveToPack(card2);
-            } else if (w <= 640) {
+            } else if (w <= 700) {
               moveToPackMobile(card1);
               moveToPackMobile(card2);
             }
@@ -424,10 +424,10 @@ const MatchGameMedi = function (targetID) {
         (function (card1, card2) {
           matchSuccess();
           setTimeout(function () {
-            if (w >= 640) {
+            if (w >= 700) {
               moveToPack(card1);
               moveToPack(card2);
-            } else if (w <= 640) {
+            } else if (w <= 700) {
               moveToPackMobile(card1);
               moveToPackMobile(card2);
             }
@@ -712,10 +712,10 @@ const MatchGameEasy = function (targetID) {
         (function (card1, card2) {
           matchSuccess();
           setTimeout(function () {
-            if (w >= 640) {
+            if (w >= 700) {
               moveToPack(card1);
               moveToPack(card2);
-            } else if (w <= 640) {
+            } else if (w <= 700) {
               moveToPackMobile(card1);
               moveToPackMobile(card2);
             }
@@ -851,18 +851,35 @@ const MatchGameEasy = function (targetID) {
   let card = document.createElement("div");
   card.innerHTML = "<img src=cards/back.png>";
 
-  for (i = 0; i < 8; i++) {
-    newCard = card.cloneNode(true);
+  if (w <= 700) {
+     for (let i = 0; i < 8; i++) {
+       let newCard = card.cloneNode(true);
 
-    newCard.fromtop = 1 + 7 * Math.floor(i / 4);
-    newCard.fromleft = 1 + 4.5 * (i % 4);
-    (function (idx) {
-      newCard.addEventListener("click", function () {
-        cardClick(idx);
-      }, false);
-    })(i);
+       newCard.fromtop = 1 + 8 * Math.floor(i / 4);
+       newCard.fromleft = 1 + 6 * (i % 4);
+       (function (idx) {
+         newCard.addEventListener("click", function () {
+           cardClick(idx);
+         }, false);
+       })(i);
 
-    felt.appendChild(newCard);
-    cards.push(newCard);
-  }
+       felt.appendChild(newCard);
+       cards.push(newCard);
+     }
+   } else {
+     for (i = 0; i < 8; i++) {
+       newCard = card.cloneNode(true);
+
+       newCard.fromtop = 1 + 7 * Math.floor(i / 4);
+       newCard.fromleft = 1 + 4.5 * (i % 4);
+       (function (idx) {
+         newCard.addEventListener("click", function () {
+           cardClick(idx);
+         }, false);
+       })(i);
+
+       felt.appendChild(newCard);
+       cards.push(newCard);
+     }
+   }
 };

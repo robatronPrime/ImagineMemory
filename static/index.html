@@ -14,11 +14,32 @@
 </head>
 
 <body class="no-padding-margin">
-  <section class="container no-border no-padding-margin">
+  <section class="container no-border no-padding-margin mobile-width">
     <section class="container head no-border">
       <section class="item">
         <img class="logo" src="images/Logo.png" alt="Website logo ImagineMemory">
       </section>
+
+      <span class="item sideNav list no-decoration link" id="sideNav">
+        <a class="item closebtn" href="javascript:void(0)" onclick="closeNav()">
+          Close Menu
+        </a>
+        <a class="item" href="index.html">
+          <section class="item button">
+            Home Page
+          </section>
+        </a>
+        <a class="item" href="progress.html">
+          <section class="item button">
+            Progress Page
+          </section>
+        </a>
+      </span>
+
+      <span class="item nav-burg" onclick="openNav();">
+        <i class="fas fa-bars"></i>
+      </span>
+
     </section>
     <section class="container row center no-border">
       <section class="container half-width">
@@ -28,9 +49,9 @@
         <p>If you want to learn more about Dementia please checkout this <a class="no-decoration green" href="https://www.alzheimers.org.uk"><strong>link</strong></a> to the Alzheimers Society or this <a class="no-decoration green" href="https://www.dementiauk.org"><strong>link</strong></a> to Dementia UK!</p>
         <p>You will find the <strong>Game Library</strong> has a whole bunch of games for you to play! <a class="no-decoration green" href="#gameLibrary"><strong>Click Here</strong></a> to choose a game to play!</p>
         <p>You can <strong>sign up</strong> with your <strong>Google account</strong> in the <strong>login</strong> section on this page. Signing up will allow you to track your progress as you play ImagineMemory’s fun games!</p>
-        <section class="item row no-decoration">          
+        <section class="item row no-decoration">
           <a class="item" href="progress.html">
-            <section class="item button">
+            <section class="item button hide-link">
               Progress Page
             </section>
           </a>
