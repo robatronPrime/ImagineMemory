@@ -275,20 +275,37 @@ const MatchGame = function (targetID) {
   let card = document.createElement("div");
   card.innerHTML = '<img src="cards/back.png">';
 
-  for (i = 0; i < 16; i++) {
-    newCard = card.cloneNode(true);
+if (w <= 640) {
+   for (let i = 0; i < 16; i++) {
+     let newCard = card.cloneNode(true);
 
-    newCard.fromtop = 1 + 7 * Math.floor(i / 4);
-    newCard.fromleft = 1 + 4.5 * (i % 4);
-    (function (idx) {
-      newCard.addEventListener("click", function () {
-        cardClick(idx);
-      }, false);
-    })(i);
+     newCard.fromtop = 1 + 8 * Math.floor(i / 4);
+     newCard.fromleft = 1 + 6 * (i % 4);
+     (function (idx) {
+       newCard.addEventListener("click", function () {
+         cardClick(idx);
+       }, false);
+     })(i);
 
-    felt.appendChild(newCard);
-    cards.push(newCard);
-  }
+     felt.appendChild(newCard);
+     cards.push(newCard);
+   }
+ } else {
+   for (i = 0; i < 16; i++) {
+     newCard = card.cloneNode(true);
+
+     newCard.fromtop = 1 + 7 * Math.floor(i / 4);
+     newCard.fromleft = 1 + 4.5 * (i % 4);
+     (function (idx) {
+       newCard.addEventListener("click", function () {
+         cardClick(idx);
+       }, false);
+     })(i);
+
+     felt.appendChild(newCard);
+     cards.push(newCard);
+   }
+ }
 };
 
 //Medium game
@@ -563,20 +580,37 @@ const MatchGameMedi = function (targetID) {
   let card = document.createElement("div");
   card.innerHTML = "<img src=cards/back.png>";
 
-  for (i = 0; i < 12; i++) {
-    newCard = card.cloneNode(true);
+  if (w <= 640) {
+   for (let i = 0; i < 12; i++) {
+     let newCard = card.cloneNode(true);
 
-    newCard.fromtop = 1 + 7 * Math.floor(i / 4);
-    newCard.fromleft = 1 + 4.5 * (i % 4);
-    (function (idx) {
-      newCard.addEventListener("click", function () {
-        cardClick(idx);
-      }, false);
-    })(i);
+     newCard.fromtop = 1 + 8 * Math.floor(i / 4);
+     newCard.fromleft = 1 + 6 * (i % 4);
+     (function (idx) {
+       newCard.addEventListener("click", function () {
+         cardClick(idx);
+       }, false);
+     })(i);
 
-    felt.appendChild(newCard);
-    cards.push(newCard);
-  }
+     felt.appendChild(newCard);
+     cards.push(newCard);
+   }
+ } else {
+   for (i = 0; i < 12; i++) {
+     newCard = card.cloneNode(true);
+
+     newCard.fromtop = 1 + 7 * Math.floor(i / 4);
+     newCard.fromleft = 1 + 4.5 * (i % 4);
+     (function (idx) {
+       newCard.addEventListener("click", function () {
+         cardClick(idx);
+       }, false);
+     })(i);
+
+     felt.appendChild(newCard);
+     cards.push(newCard);
+   }
+ }
 };
 
 //Easy game
