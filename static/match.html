@@ -239,10 +239,10 @@
     var text = [
       ['To go through the steps of these instructions click the right arrow highlighted in grey. To go back a step, click the left arrow also highlighted in grey. <br/> Or you can go back to the home page by clicking the <strong>"Home Page"</strong> button or to the progress page by pressing the <strong>"Progress Page"</strong> button.'],
       ["First choose the difficulty you want to play at. You can do this by clicking <strong>“Easy”</strong>, <strong>“Medium”</strong>, or <strong>“Hard”</strong> in the grey highlighted area."],
-      ["Click the pack of cards to start the game and the timer starts."],
-      ["Once the cards are dealt, click a card to flip it and show the shape on the card."],
+      ["Click the pack of cards to start the game and the will timer start. The card pack is located in the now grey area on the board."],
+      ["Once the cards are dealt, click a card to flip it over and show the shape on the card."],
       ["Click another card to show the shape on that card."],
-      ["If it's a match the selected cards go back to the deck. If the cards are not a match they flip back over."],
+      ["If it's a match the selected cards go back to the deck and you get one point for a successful match. If the cards are not a match they flip back over."],
       ["Once all of the cards are matched the game ends and the timer stops. Try to get a shorter time to improve!"]
     ];
 
@@ -275,6 +275,12 @@
         document.getElementById('diffSelect').style.background = "#808f87";
         } else {
         document.getElementById('diffSelect').style.background = "transparent";
+      }
+      if(curStep == 2) {
+        document.getElementById('board').style.background = "#808f87";
+        document.getElementById('gameInfo').style.background = "#f0f8ea";
+        } else {
+        document.getElementById('board').style.background = "transparent";
       }
     }
   </script>
