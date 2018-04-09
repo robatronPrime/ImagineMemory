@@ -23,8 +23,23 @@
             <a class="item closebtn" href="javascript:void(0)" onclick="closeNav()">
               Close Menu
             </a>
-            <p class="item">Game Library</p>
-            <a class="item" href="index.html">Home Page</a>
+            <a class="item" href="index.html">
+              <section class="item button">
+                Home Page
+              </section>
+            </a>
+            <a class="item" href="progress.html">
+              <section class="item button">
+                Progress Page
+              </section>
+            </a>
+          </span>
+
+          <span class="item sideNav list no-decoration link" id="sideProg">
+            <a class="item closebtn" href="javascript:void(0)" onclick="closeProg()">
+              Close Menu
+            </a>
+            <section id="sideInfo"></section>
           </span>
 
           <span class="item nav-burg" onclick="openNav();">
@@ -50,12 +65,12 @@
               </span>
             </section>
             <section class="item row no-decoration">
-              <a class="item" href="index.html">
+              <a class="item hide-link" href="index.html">
                 <section class="item button">
                   Home Page
                 </section>
               </a>
-              <a class="item" href="progress.html">
+              <a class="item hide-link" href="progress.html">
                 <section class="item button">
                   Progress Page
                 </section>
@@ -72,6 +87,9 @@
               <span class="item button font-os" onclick="mediGame();">Medium</span>
               <span class="item button font-os" onclick="hardGame();">Hard</span>
             </section>
+            <span class="item nav-burg" onclick="openProg();">
+              <p>Game Results</p>
+            </span>
           </section>
           <!-- The Stage for the game -->
           <section class="item row" id="board">
@@ -88,8 +106,13 @@
                 clock.remove();
                 display.remove();
                 gameInfo.remove();
+                clockSide.remove();
+                displayS.remove();
+                gameTitleSide.remove();
                 clicks = 0;
+                clicksS = 0;
                 localStorage.setItem("clicks", clicks);
+                localStorage.setItem("clicksS", clicksS);
                 document.getElementById("felt").remove();
                 var game = new MatchGame("board");
               }
@@ -102,8 +125,13 @@
                 clock.remove();
                 display.remove();
                 gameInfo.remove();
+                clockSide.remove();
+                displayS.remove();
+                gameTitleSide.remove();
                 clicks = 0;
+                clicksS = 0;
                 localStorage.setItem("clicks", clicks);
+                localStorage.setItem("clicksS", clicksS);
                 document.getElementById("felt").remove();
                 var game = new MatchGameMedi("board");
               }
@@ -116,8 +144,13 @@
                 clock.remove();
                 display.remove();
                 gameInfo.remove();
+                clockSide.remove();
+                displayS.remove();
+                gameTitleSide.remove();
                 clicks = 0;
+                clicksS = 0;
                 localStorage.setItem("clicks", clicks);
+                localStorage.setItem("clicksS", clicksS);
                 document.getElementById("felt").remove();
                 var game = new MatchGameEasy("board");
               }
@@ -162,6 +195,15 @@
     function closeNav() {
       document.getElementById("sideNav").style.width = "0";
     }
+
+    function openProg() {
+      document.getElementById("sideProg").style.width = "250px";
+    }
+
+    function closeProg() {
+      document.getElementById("sideProg").style.width = "0";
+    }
+
 
     //instrutions
     var titleText = "Instruction Controls";

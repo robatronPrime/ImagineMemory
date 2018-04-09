@@ -19,6 +19,8 @@ const MatchGame = function (targetID) {
   //Timer
   let minutesDis = document.createElement("span");
   let secondsDis = document.createElement("span");
+  let minutesSide = document.createElement("span");
+  let secondsSide = document.createElement("span");
 
   function pad(val) {
     return val > 9 ? val : "0" + val;
@@ -28,6 +30,8 @@ const MatchGame = function (targetID) {
     if (started) {
       let seconds = secondsDis.innerHTML = " " + pad(++sec % 60);
       let minutes = minutesDis.innerHTML = "</br>" +pad(parseInt(sec / 60, 10)) + " :";
+      let secondsS = secondsSide.innerHTML = " " + pad(++sec % 60);
+      let minutesS = minutesSide.innerHTML = "</br>" +pad(parseInt(sec / 60, 10)) + " :";
       started = true;
     }
   }, 1000);
@@ -37,14 +41,8 @@ const MatchGame = function (targetID) {
   let clicksS = 0;
   const displayA = document.createElement('span');
   const displayS = document.createElement('span');
-
-  if(localStorage.getItem('clicks')) {
-    let saveCount = localStorage.getItem('clicks');
-    clicks = localStorage.getItem('clicks');
-  } else {
-    clicks = 0;
-    localStorage.setItem("clicks", clicks);
-  }
+  const displaySideA = document.createElement('span');
+  const displaySideS = document.createElement('span');
 
   function matchAttempts() {
     if (typeof(Storage) !== "undefined") {
@@ -54,7 +52,8 @@ const MatchGame = function (targetID) {
       } else {
         clicks = 0;
       }
-      displayA.innerHTML = "</br>" + "You have made " + clicks + " unsuccessful attempt(s) to find matches.";
+      displayA.innerHTML = clicks + " unsuccessful attempt(s) to find matches.";
+      displaySideA.innerHTML = clicks + " unsuccessful attempt(s) to find matches.";
     } else {
       console.log("No Web Storage for you!");
       alert("Web Storage is not available for your browser!");
@@ -63,19 +62,19 @@ const MatchGame = function (targetID) {
 
   function matchSuccess() {
     if (typeof(Storage) !== "undefined") {
-      if (localStorage.getItem('clicks')) {
+      if (localStorage.getItem('clicksS')) {
         clicksS++;
         localStorage.setItem("clicksS", clicksS);
       } else {
         clicksS = 0;
       }
-      displayS.innerHTML = "</br>" + "You have made " + clicksS + " successful attempt(s) to find matches.";
+      displayS.innerHTML = clicksS + " successful attempt(s) to find matches.";
+      displaySideS.innerHTML = clicksS + " successful attempt(s) to find matches.";
     } else {
       console.log("No Web Storage for you!");
       alert("Web Storage is not available for your browser!");
     }
   }
-
 
   //turn card face down
   const hideCard = function (id) {
@@ -90,7 +89,7 @@ const MatchGame = function (targetID) {
     hideCard(id);
     cards[id].matched = true;
     with(cards[id].style) {
-      zIndex = "1000";
+      zIndex = "0";
       top = "100px";
       left = "-140px";
       WebkitTransform = MozTransform = OTransform = msTransform = "rotate(0deg)";
@@ -102,7 +101,7 @@ const MatchGame = function (targetID) {
     hideCard(id);
     cards[id].matched = true;
     with(cards[id].style) {
-      zIndex = "1000";
+      zIndex = "0";
       top = "-110px";
       left = "140px";
       WebkitTransform = MozTransform = OTransform = msTransform = "rotate(0deg)";
@@ -113,7 +112,7 @@ const MatchGame = function (targetID) {
   const moveToPlace = function (id) {
     cards[id].matched = false;
     with(cards[id].style) {
-      zIndex = "1000";
+      zIndex = "0";
       top = cards[id].fromtop + "em";
       left = cards[id].fromleft + "em";
       WebkitTransform = MozTransform = OTransform = msTransform = "rotate(0deg)";
@@ -151,11 +150,15 @@ const MatchGame = function (targetID) {
           started = false;
           seconds = 0;
           minutes = 0;
+          secondsS = 0;
+          minutesS = 0;
           sec = 0;
           gameComplete(seconds, minutes);
+          gameComplete(secondsS, minutesS);
           clicks = 0;
+          clicksS = 0;
           localStorage.setItem("clicks", clicks);
-          localStorage.setItem("clicksS", clicks);
+          localStorage.setItem("clicksS", clicksS);
         }
       } else { //no match
         (function (card1, card2) {
@@ -194,7 +197,7 @@ const MatchGame = function (targetID) {
 
   //end of game
   function gameComplete() {
-    document.getElementById('results').innerHTML = "</br>" + "<h2>Congratulations, You Have WON! </h2>" +
+    document.getElementById('results').innerHTML = "<h2>Congratulations, You Have WON! </h2>" +
     "<h3>Here are the results of your game! </h3>" + "Your total time is: " ;
   }
 
@@ -205,6 +208,10 @@ const MatchGame = function (targetID) {
   const gameInfo = document.createElement("section");
   const clock  = document.createElement("section");
   const gameTitle = document.createElement("section");
+  const sideInfo = document.getElementById('sideInfo');
+  const gameTitleSide = document.createElement("section");
+  const resultsSide = document.createElement("span");
+  const clockSide = document.createElement("section");
 
   felt.id = "felt";
   stage.appendChild(felt);
@@ -216,27 +223,53 @@ const MatchGame = function (targetID) {
   gameInfo.appendChild(gameTitle);
   gameTitle.innerHTML = "<h2>You Have Selected the Hardest Difficulty!</h2>";
 
+  gameTitleSide.id = "gameTitleSide";
+  sideInfo.appendChild(gameTitleSide);
+  gameTitleSide.innerHTML = "<h2>You Have Selected the Hardest Difficulty!</h2>";
+
   results.id = "results";
   gameInfo.appendChild(results);
 
+  resultsSide.id = "resultsSide";
+  sideInfo.appendChild(resultsSide);
+
   clock.id = "clock";
   gameInfo.appendChild(clock);
+
+  clockSide.id = "clockSide";
+  sideInfo.appendChild(clockSide);
 
   minutesDis.id = "minutesDis";
   clock.appendChild(minutesDis);
   minutesDis.innerHTML = "00 : "
 
+  minutesSide.id = "minutesSide";
+  clockSide.appendChild(minutesSide);
+  minutesSide.innerHTML = "00 : ";
+
   secondsDis.id = "secondsDis";
   clock.appendChild(secondsDis);
   secondsDis.innerHTML = "00"
 
+  secondsSide.id = "secondsSide";
+  clockSide.appendChild(secondsSide);
+  secondsSide.innerHTML = "00";
+
   displayA.id = "display";
   gameInfo.appendChild(displayA);
-  displayA.innerHTML = "You have made 0 unsuccessful attempt(s) to find matches."
+  displayA.innerHTML = "0 unsuccessful attempt(s) to find matches."
+
+  displaySideA.id = "display";
+  sideInfo.appendChild(displaySideA);
+  displaySideA.innerHTML = "0 unsuccessful attempt(s) to find matches.";
 
   displayS.id = "display";
   gameInfo.appendChild(displayS);
-  displayS.innerHTML = "You have made 0 successful attempt(s) to find matches."
+  displayS.innerHTML = "0 successful attempt(s) to find matches."
+
+  displaySideS.id = "displayS";
+  sideInfo.appendChild(displaySideS);
+  displaySideS.innerHTML = "0 successful attempt(s) to find matches.";
 
   //template for card
   let card = document.createElement("div");
@@ -274,6 +307,8 @@ const MatchGameMedi = function (targetID) {
   //Timer
   let minutesDis = document.createElement("span");
   let secondsDis = document.createElement("span");
+  let minutesSide = document.createElement("span");
+  let secondsSide = document.createElement("span");
 
   function pad(val) {
     return val > 9 ? val : "0" + val;
@@ -283,6 +318,8 @@ const MatchGameMedi = function (targetID) {
     if (started) {
       let seconds = secondsDis.innerHTML = " " + pad(++sec % 60);
       let minutes = minutesDis.innerHTML = "</br>" +pad(parseInt(sec / 60, 10)) + " :";
+      let secondsS = secondsSide.innerHTML = " " + pad(++sec % 60);
+      let minutesS = minutesSide.innerHTML = "</br>" +pad(parseInt(sec / 60, 10)) + " :";
       started = true;
     }
   }, 1000);
@@ -292,14 +329,8 @@ const MatchGameMedi = function (targetID) {
   let clicksS = 0;
   const displayA = document.createElement('span');
   const displayS = document.createElement('span');
-
-  if(localStorage.getItem('clicks')) {
-    let saveCount = localStorage.getItem('clicks');
-    clicks = localStorage.getItem('clicks');
-  } else {
-    clicks = 0;
-    localStorage.setItem("clicks", clicks);
-  }
+  const displaySideA = document.createElement('span');
+  const displaySideS = document.createElement('span');
 
   function matchAttempts() {
     if (typeof(Storage) !== "undefined") {
@@ -309,7 +340,8 @@ const MatchGameMedi = function (targetID) {
       } else {
         clicks = 0;
       }
-      displayA.innerHTML = "</br>" + "You have made " + clicks + " unsuccessful attempt(s) to find matches.";
+      displayA.innerHTML = clicks + " unsuccessful attempt(s) to find matches.";
+      displaySideA.innerHTML = clicks + " unsuccessful attempt(s) to find matches.";
     } else {
       console.log("No Web Storage for you!");
       alert("Web Storage is not available for your browser!");
@@ -318,13 +350,14 @@ const MatchGameMedi = function (targetID) {
 
   function matchSuccess() {
     if (typeof(Storage) !== "undefined") {
-      if (localStorage.getItem('clicks')) {
+      if (localStorage.getItem('clicksS')) {
         clicksS++;
-        localStorage.setItem("clicksS", clicks);
+        localStorage.setItem("clicksS", clicksS);
       } else {
         clicksS = 0;
       }
-      displayS.innerHTML = "</br>" + "You have made " + clicksS + " successful attempt(s) to find matches.";
+      displayS.innerHTML = clicksS + " successful attempt(s) to find matches.";
+      displaySideS.innerHTML = clicksS + " successful attempt(s) to find matches.";
     } else {
       console.log("No Web Storage for you!");
       alert("Web Storage is not available for your browser!");
@@ -344,7 +377,7 @@ const MatchGameMedi = function (targetID) {
     hideCard(id);
     cards[id].matched = true;
     with(cards[id].style) {
-      zIndex = "1000";
+      zIndex = "0";
       top = "100px";
       left = "-140px";
       WebkitTransform = MozTransform = OTransform = msTransform = "rotate(0deg)";
@@ -356,7 +389,7 @@ const MatchGameMedi = function (targetID) {
     hideCard(id);
     cards[id].matched = true;
     with(cards[id].style) {
-      zIndex = "1000";
+      zIndex = "0";
       top = "-110px";
       left = "140px";
       WebkitTransform = MozTransform = OTransform = msTransform = "rotate(0deg)";
@@ -367,7 +400,7 @@ const MatchGameMedi = function (targetID) {
   const moveToPlace = function (id) {
     cards[id].matched = false;
     with(cards[id].style) {
-      zIndex = "1000";
+      zIndex = "0";
       top = cards[id].fromtop + "em";
       left = cards[id].fromleft + "em";
       WebkitTransform = MozTransform = OTransform = msTransform = "rotate(0deg)";
@@ -405,11 +438,15 @@ const MatchGameMedi = function (targetID) {
           started = false;
           seconds = 0;
           minutes = 0;
+          secondsS = 0;
+          minutesS = 0;
           sec = 0;
           gameComplete(seconds, minutes);
+          gameComplete(secondsS, minutesS);
           clicks = 0;
+          clicksS = 0;
           localStorage.setItem("clicks", clicks);
-          localStorage.setItem("clicksS", clicks);
+          localStorage.setItem("clicksS", clicksS);
         }
       } else { //no match
         (function (card1, card2) {
@@ -448,17 +485,21 @@ const MatchGameMedi = function (targetID) {
 
   //end of game
   function gameComplete() {
-    document.getElementById('results').innerHTML = "</br>" + "<h2>Congratulations, You Have WON! </h2>" +
+    document.getElementById('results').innerHTML = "<h2>Congratulations, You Have WON! </h2>" +
     "<h3>Here are the results of your game! </h3>" + "Your total time is: " ;
   }
 
   //initialise
   const stage = document.getElementById(targetID);
   const felt = document.createElement("div");
-  const results = document.createElement("span");
   const gameInfo = document.createElement("section");
-  const clock  = document.createElement("section");
+  const results = document.createElement("span");
   const gameTitle = document.createElement("section");
+  const clock  = document.createElement("section");
+  const sideInfo = document.getElementById('sideInfo');
+  const gameTitleSide = document.createElement("section");
+  const resultsSide = document.createElement("span");
+  const clockSide = document.createElement("section");
 
   felt.id = "felt";
   stage.appendChild(felt);
@@ -470,27 +511,53 @@ const MatchGameMedi = function (targetID) {
   gameInfo.appendChild(gameTitle);
   gameTitle.innerHTML = "<h2>You Have Selected Medium Difficulty!</h2>";
 
+  gameTitleSide.id = "gameTitleSide";
+  sideInfo.appendChild(gameTitleSide);
+  gameTitleSide.innerHTML = "<h2>You Have Selected the Medium Difficulty!</h2>";
+
   results.id = "results";
   gameInfo.appendChild(results);
 
+  resultsSide.id = "resultsSide";
+  sideInfo.appendChild(resultsSide);
+
   clock.id = "clock";
   gameInfo.appendChild(clock);
+
+  clockSide.id = "clockSide";
+  sideInfo.appendChild(clockSide);
 
   minutesDis.id = "minutesDis";
   clock.appendChild(minutesDis);
   minutesDis.innerHTML = "00 : "
 
+  minutesSide.id = "minutesSide";
+  clockSide.appendChild(minutesSide);
+  minutesSide.innerHTML = "00 : ";
+
   secondsDis.id = "secondsDis";
   clock.appendChild(secondsDis);
   secondsDis.innerHTML = "00"
 
+  secondsSide.id = "secondsSide";
+  clockSide.appendChild(secondsSide);
+  secondsSide.innerHTML = "00";
+
   displayA.id = "display";
   gameInfo.appendChild(displayA);
-  displayA.innerHTML = "You have made 0 unsuccessful attempt(s) to find matches."
+  displayA.innerHTML = "0 unsuccessful attempt(s) to find matches.";
+
+  displaySideA.id = "display";
+  sideInfo.appendChild(displaySideA);
+  displaySideA.innerHTML = "0 unsuccessful attempt(s) to find matches.";
 
   displayS.id = "display";
   gameInfo.appendChild(displayS);
-  displayS.innerHTML = "You have made 0 successful attempt(s) to find matches."
+  displayS.innerHTML = "0 successful attempt(s) to find matches.";
+
+  displaySideS.id = "displayS";
+  sideInfo.appendChild(displaySideS);
+  displaySideS.innerHTML = "0 successful attempt(s) to find matches.";
 
   //template for card
   let card = document.createElement("div");
@@ -528,6 +595,8 @@ const MatchGameEasy = function (targetID) {
   //Timer
   let minutesDis = document.createElement("span");
   let secondsDis = document.createElement("span");
+  let minutesSide = document.createElement("span");
+  let secondsSide = document.createElement("span");
 
   function pad(val) {
     return val > 9 ? val : "0" + val;
@@ -537,6 +606,8 @@ const MatchGameEasy = function (targetID) {
     if (started) {
       let seconds = secondsDis.innerHTML = " " + pad(++sec % 60);
       let minutes = minutesDis.innerHTML = "</br>" +pad(parseInt(sec / 60, 10)) + " :";
+      let secondsS = secondsSide.innerHTML = " " + pad(++sec % 60);
+      let minutesS = minutesSide.innerHTML = "</br>" +pad(parseInt(sec / 60, 10)) + " :";
       started = true;
     }
   }, 1000);
@@ -546,14 +617,8 @@ const MatchGameEasy = function (targetID) {
   let clicksS = 0;
   const displayA = document.createElement('span');
   const displayS = document.createElement('span');
-
-  if(localStorage.getItem('clicks')) {
-    let saveCount = localStorage.getItem('clicks');
-    clicks = localStorage.getItem('clicks');
-  } else {
-    clicks = 0;
-    localStorage.setItem("clicks", clicks);
-  }
+  const displaySideA = document.createElement('span');
+  const displaySideS = document.createElement('span');
 
   function matchAttempts() {
     if (typeof(Storage) !== "undefined") {
@@ -563,7 +628,8 @@ const MatchGameEasy = function (targetID) {
       } else {
         clicks = 0;
       }
-      displayA.innerHTML = "</br>" + "You have made " + clicks + " unsuccessful attempt(s) to find matches.";
+      displayA.innerHTML = clicks + " unsuccessful attempt(s) to find matches.";
+      displaySideA.innerHTML = clicks + " unsuccessful attempt(s) to find matches.";
     } else {
       console.log("No Web Storage for you!");
       alert("Web Storage is not available for your browser!");
@@ -572,13 +638,14 @@ const MatchGameEasy = function (targetID) {
 
   function matchSuccess() {
     if (typeof(Storage) !== "undefined") {
-      if (localStorage.getItem('clicks')) {
+      if (localStorage.getItem('clicksS')) {
         clicksS++;
-        localStorage.setItem("clicksS", clicks);
+        localStorage.setItem("clicksS", clicksS);
       } else {
         clicksS = 0;
       }
-      displayS.innerHTML = "</br>" + "You have made " + clicksS + " successful attempt(s) to find matches.";
+      displayS.innerHTML = clicksS + " successful attempt(s) to find matches.";
+      displaySideS.innerHTML = clicksS + " successful attempt(s) to find matches.";
     } else {
       console.log("No Web Storage for you!");
       alert("Web Storage is not available for your browser!");
@@ -598,7 +665,7 @@ const MatchGameEasy = function (targetID) {
     hideCard(id);
     cards[id].matched = true;
     with(cards[id].style) {
-      zIndex = "1000";
+      zIndex = "0";
       top = "100px";
       left = "-140px";
       WebkitTransform = MozTransform = OTransform = msTransform = "rotate(0deg)";
@@ -610,7 +677,7 @@ const MatchGameEasy = function (targetID) {
     hideCard(id);
     cards[id].matched = true;
     with(cards[id].style) {
-      zIndex = "1000";
+      zIndex = "0";
       top = "-110px";
       left = "140px";
       WebkitTransform = MozTransform = OTransform = msTransform = "rotate(0deg)";
@@ -621,7 +688,7 @@ const MatchGameEasy = function (targetID) {
   const moveToPlace = function (id) {
     cards[id].matched = false;
     with(cards[id].style) {
-      zIndex = "1000";
+      zIndex = "0";
       top = cards[id].fromtop + "em";
       left = cards[id].fromleft + "em";
       WebkitTransform = MozTransform = OTransform = msTransform = "rotate(0deg)";
@@ -643,8 +710,8 @@ const MatchGameEasy = function (targetID) {
       card2 = id;
       if (parseInt(easy_card_value[card1]) == parseInt(easy_card_value[card2])) { //match found
         (function (card1, card2) {
+          matchSuccess();
           setTimeout(function () {
-            matchSuccess();
             if (w >= 640) {
               moveToPack(card1);
               moveToPack(card2);
@@ -659,16 +726,20 @@ const MatchGameEasy = function (targetID) {
           started = false;
           seconds = 0;
           minutes = 0;
+          secondsS = 0;
+          minutesS = 0;
           sec = 0;
           gameComplete(seconds, minutes);
+          gameComplete(secondsS, minutesS);
           clicks = 0;
+          clicksS = 0;
           localStorage.setItem("clicks", clicks);
-          localStorage.setItem("clicksS", clicks);
+          localStorage.setItem("clicksS", clicksS);
         }
       } else { //no match
         (function (card1, card2) {
+          matchAttempts();
           setTimeout(function () {
-            matchAttempts();
             hideCard(card1);
             hideCard(card2);
           }, 800);
@@ -702,17 +773,21 @@ const MatchGameEasy = function (targetID) {
 
   //end of game
   function gameComplete() {
-    document.getElementById('results').innerHTML = "</br>" + "<h2>Congratulations, You Have WON! </h2>" +
+    document.getElementById('results').innerHTML = "<h2>Congratulations, You Have WON! </h2>" +
     "<h3>Here are the results of your game! </h3>" + "Your total time is: " ;
   }
 
   //initialise
   const stage = document.getElementById(targetID);
   const felt = document.createElement("div");
-  const results = document.createElement("span");
   const gameInfo = document.createElement("section");
-  const clock = document.createElement("section");
+  const results = document.createElement("span");
   const gameTitle = document.createElement("section");
+  const clock = document.createElement("section");
+  const sideInfo = document.getElementById('sideInfo');
+  const gameTitleSide = document.createElement("section");
+  const resultsSide = document.createElement("span");
+  const clockSide = document.createElement("section");
 
   felt.id = "felt";
   stage.appendChild(felt);
@@ -724,27 +799,53 @@ const MatchGameEasy = function (targetID) {
   gameInfo.appendChild(gameTitle);
   gameTitle.innerHTML = "<h2>You Have Selected the Easiest Difficulty!</h2>";
 
+  gameTitleSide.id = "gameTitleSide";
+  sideInfo.appendChild(gameTitleSide);
+  gameTitleSide.innerHTML = "<h2>You Have Selected the Easiest Difficulty!</h2>";
+
   results.id = "results";
   gameInfo.appendChild(results);
+
+  resultsSide.id = "resultsSide";
+  sideInfo.appendChild(resultsSide);
 
   clock.id = "clock";
   gameInfo.appendChild(clock);
 
+  clockSide.id = "clockSide";
+  sideInfo.appendChild(clockSide);
+
   minutesDis.id = "minutesDis";
   clock.appendChild(minutesDis);
-  minutesDis.innerHTML = "00 : "
+  minutesDis.innerHTML = "00 : ";
+
+  minutesSide.id = "minutesSide";
+  clockSide.appendChild(minutesSide);
+  minutesSide.innerHTML = "00 : ";
 
   secondsDis.id = "secondsDis";
   clock.appendChild(secondsDis);
-  secondsDis.innerHTML = "00"
+  secondsDis.innerHTML = "00";
+
+  secondsSide.id = "secondsSide";
+  clockSide.appendChild(secondsSide);
+  secondsSide.innerHTML = "00";
 
   displayA.id = "display";
   gameInfo.appendChild(displayA);
-  displayA.innerHTML = "You have made 0 unsuccessful attempt(s) to find matches."
+  displayA.innerHTML = "0 unsuccessful attempt(s) to find matches.";
 
-  displayS.id = "display";
+  displaySideA.id = "display";
+  sideInfo.appendChild(displaySideA);
+  displaySideA.innerHTML = "0 unsuccessful attempt(s) to find matches.";
+
+  displayS.id = "displayS";
   gameInfo.appendChild(displayS);
-  displayS.innerHTML = "You have made 0 successful attempt(s) to find matches."
+  displayS.innerHTML = "0 successful attempt(s) to find matches.";
+
+  displaySideS.id = "displayS";
+  sideInfo.appendChild(displaySideS);
+  displaySideS.innerHTML = "0 successful attempt(s) to find matches.";
 
   //template for card
   let card = document.createElement("div");
