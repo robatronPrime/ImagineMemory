@@ -1,0 +1,156 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+<head>
+  <title>ImagineMemory</title>
+  <meta charset="utf-8">
+  <!--External CSS files-->
+  <link rel="stylesheet" type="text/css" href="css/style.css" />
+  <meta name="viewport" content="width=device-width">
+  <meta name="google-signin-client_id" content="562468116276-f2bjqopstgrgehc4p51u0q20vilso5v5.apps.googleusercontent.com">
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+  <script defer src="https://use.fontawesome.com/releases/v5.0.2/js/all.js"></script>
+  <script src="scripts/index.js"></script>
+  <script type="text/javascript">
+    function getLastWeek(){
+      var today = new Date();
+      var lastWeek = new Date(today.getFullYear(), today.getMonth(), today.getDate() - 7);
+      return lastWeek ;
+    }
+
+    var lastWeek = getLastWeek();
+    var lastWeekMonth = lastWeek.getMonth() + 1;
+    var lastWeekDay = lastWeek.getDate();
+    var lastWeekYear = lastWeek.getFullYear();
+
+    var lastWeekDisplay = lastWeekMonth + "/" + lastWeekDay + "/" + lastWeekYear;
+    var lastWeekDisplayPadded = ("00" + lastWeekMonth.toString()).slice(-2)+ "/" + ("00" + lastWeekDay .toString()).slice(-2)+ "/" + ("0000" + lastWeekYear .toString()).slice(-4);
+
+    alert(lastWeekDisplay);
+    alert(lastWeekDisplayPadded);
+  </script>
+</head>
+
+<body class="no-padding-margin">
+  <section class="container no-border no-padding-margin">
+    <section class="container head no-border">
+      <section class="item">
+        <img class="logo" src="images/Logo.png" alt="Website logo ImagineMemory">
+      </section>
+    </section>
+    <section class="container row center no-border">
+      <section class="container half-width">
+        <h1>Welcome To <span class="green">Imagine</span><span class="grey">Memory's</span> Progress Tracker!</h1>
+        <p>On this page you can track the statistics of the games that you have played!</p>
+        <ul>
+          <p>The stats we track are: </p>
+          <li>The number of games you have played.</li>
+          <li>The number of games you have won.</li>
+          <li>The number of successful moves you have made.</li>
+          <li>The number of unsuccessful moves you have made.</li>
+          <li>Lastly the time taken to complete a game.</li>
+        </ul>
+        <p>The best of these statistics are presented to you so you can see how well you are doing!</p>
+        <p>You will find the <strong>Game Library</strong> has a whole bunch of games for you to play! <a class="no-decoration green" href="#gameLibrary"><strong>Click Here</strong></a> to choose a game to play!</p>
+      </section>
+
+      <section>
+        <table class="emp-sales">
+          <caption>2009 Employee Sales by Department</caption>
+          <thead>
+            <tr>
+              <td></td>
+              <th scope="col">Games Played</th>
+              <th scope="col">Games Won</th>
+              <th scope="col">Successful Matches</th>
+              <th scope="col">Unsuccessful Matches</th>
+              <th scope="col">Time</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Mary</th>
+              <td>190</td>
+              <td>160</td>
+              <td>40</td>
+              <td>120</td>
+              <td>30</td>
+            </tr>
+            <tr>
+              <th scope="row">Tom</th>
+              <td>3</td>
+              <td>40</td>
+              <td>30</td>
+              <td>45</td>
+              <td>35</td>
+            </tr>
+            <tr>
+              <th scope="row">Brad</th>
+              <td>10</td>
+              <td>180</td>
+              <td>10</td>
+              <td>85</td>
+              <td>25</td>
+            </tr>
+            <tr>
+              <th scope="row">Kate</th>
+              <td>40</td>
+              <td>80</td>
+              <td>90</td>
+              <td>25</td>
+              <td>15</td>
+            </tr>
+            <tr>
+              <th scope="row">Donald</th>
+              <td>45</td>
+              <td>35</td>
+              <td>49</td>
+              <td>30</td>
+              <td>3</td>
+            </tr>
+            <tr>
+              <th scope="row">Mark</th>
+              <td>49</td>
+              <td>30</td>
+              <td>3</td>
+              <td>40</td>
+              <td>30</td>
+            </tr>
+            <tr>
+              <th scope="row">Samantha</th>
+              <td>30</td>
+              <td>45</td>
+              <td>35</td>
+              <td>49</td>
+              <td>49</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    </section>
+    </section>
+    <section class="container">
+      <span class="item no-decoration link row" id="gameLibrary">
+        <h1 class="item">Game Library</h1>
+        <a class="item" href="match.html">
+          <span class="item list game-content">
+            <h3 class="item game-text">Click Here to Play Match!</h3>
+            <p class="item game-text">Play a fun game of Match! Where you have to match 2 pairs of cards togeather until you've matched them all!</p>
+          </span>
+          <img class="game-img item" src="images/matchImg.png" alt="match-image">
+        </a>
+      </span>
+    </section>
+  </section>
+</body>
+    <script>
+      //Burger navigation menu
+      function openNav() {
+        document.getElementById("sideNav").style.width = "250px";
+      }
+
+      function closeNav() {
+        document.getElementById("sideNav").style.width = "0";
+      }
+    </script>
+</html>
