@@ -46,7 +46,7 @@
         <h1>Welcome To <span class="green">Imagine</span><span class="grey">Memory</span>!</h1>
         <p>Do you have <strong>Dementia</strong> or some other form of <strong>memory loss</strong> or are you just <strong>bored</strong>? Then <strong>ImagineMemory</strong> is for you!</p>
         <p><strong>ImagineMemory</strong> has games which can help you train your brain and improve your mental fitness!</p>
-        <p>If you want to learn more about Dementia please checkout this <a class="no-decoration green" href="https://www.alzheimers.org.uk"><strong>link</strong></a> to the Alzheimers Society or this <a class="no-decoration green" href="https://www.dementiauk.org"><strong>link</strong></a> to Dementia UK!</p>
+        <p>If you want to learn more about Dementia please checkout this <a class="no-decoration green" href="https://www.alzheimers.org.uk"><strong>link</strong></a> to the Alzheimers Society or this <a class="no-decoration green" href="https://www.dementiauk.org"><strong>link</strong></a>          to Dementia UK!</p>
         <p>You will find the <strong>Game Library</strong> has a whole bunch of games for you to play! <a class="no-decoration green" href="#gameLibrary"><strong>Click Here</strong></a> to choose a game to play!</p>
         <p>You can <strong>sign up</strong> with your <strong>Google account</strong> in the <strong>login</strong> section on this page. Signing up will allow you to track your progress as you play ImagineMemory’s fun games!</p>
         <section class="item row no-decoration">
@@ -66,32 +66,33 @@
         </div>
         <span class="item greeting">
           <p class="signed item">Signed in as: </p> <span class="name"> Please Sign in </span>
-          <button class="item" onclick="signOut();"><span>Sign out</span></button>
+        <button class="item" onclick="signOut();"><span>Sign out</span></button>
         </span>
-      </span>
-    </section>
-    <section class="container">
-      <span class="item no-decoration link row" id="gameLibrary">
+      </section>
+      <section class="container">
+        <span class="item no-decoration link row" id="gameLibrary">
         <h1 class="item">Game Library</h1>
         <a class="item" href="match.html">
           <span class="item list game-content">
             <h3 class="item game-text">Click Here to Play Match!</h3>
             <p class="item game-text">Play a fun game of Match! Where you have to match 2 pairs of cards togeather until you've matched them all!</p>
           </span>
-          <img class="game-img item" src="images/matchImg.png" alt="match-image">
+        <img class="game-img item" src="images/matchImg.png" alt="match-image">
         </a>
-      </span>
+        </span>
+      </section>
     </section>
   </section>
 </body>
-    <script>
-      //Burger navigation menu
-      function openNav() {
-        document.getElementById("sideNav").style.width = "250px";
-      }
+<script>
+  //Side Navigation Menu Functions.
+  function openNav() {
+    document.getElementById("sideNav").style.width = "250px";
+  }
 
-      function closeNav() {
-        document.getElementById("sideNav").style.width = "0";
-      }
-    </script>
+  function closeNav() {
+    document.getElementById("sideNav").style.width = "0";
+  }
+</script>
+
 </html>

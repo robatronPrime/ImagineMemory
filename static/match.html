@@ -11,6 +11,7 @@
   <meta name="google-signin-client_id" content="562468116276-f2bjqopstgrgehc4p51u0q20vilso5v5.apps.googleusercontent.com">
   <script src="https://apis.google.com/js/platform.js" async defer></script>
   <script src="scripts/match.js"></script>
+</head>
   <body>
     <section class="no-padding-margin">
       <section class="container no-border no-padding-margin">
@@ -96,68 +97,69 @@
             <!-- Load game file -->
 
             <script>
-            var content = document.getElementById("content");
+              var content = document.getElementById("content");
 
-            //Change Difficulty
-            function hardGame(){
-              if (!document.getElementById("felt")) {
-                var game = new MatchGame("board");
-              } else {
-                clock.remove();
-                display.remove();
-                gameInfo.remove();
-                clockSide.remove();
-                displayS.remove();
-                gameTitleSide.remove();
-                clicks = 0;
-                clicksS = 0;
-                localStorage.setItem("clicks", clicks);
-                localStorage.setItem("clicksS", clicksS);
-                document.getElementById("felt").remove();
-                var game = new MatchGame("board");
+              /*  Difficulty Functions.  */
+              //Hard Difficulty.
+              function hardGame() {
+                if (!document.getElementById("felt")) {
+                  var game = new MatchGame("board");
+                } else {
+                  clock.remove();
+                  display.remove();
+                  gameInfo.remove();
+                  clockSide.remove();
+                  displayS.remove();
+                  gameTitleSide.remove();
+                  clicks = 0;
+                  clicksS = 0;
+                  localStorage.setItem("clicks", clicks);
+                  localStorage.setItem("clicksS", clicksS);
+                  document.getElementById("felt").remove();
+                  var game = new MatchGame("board");
+                }
               }
-            }
 
-            function mediGame(){
-              if (!document.getElementById("felt")) {
-                var game = new MatchGameMedi("board");
-              } else {
-                clock.remove();
-                display.remove();
-                gameInfo.remove();
-                clockSide.remove();
-                displayS.remove();
-                gameTitleSide.remove();
-                clicks = 0;
-                clicksS = 0;
-                localStorage.setItem("clicks", clicks);
-                localStorage.setItem("clicksS", clicksS);
-                document.getElementById("felt").remove();
-                var game = new MatchGameMedi("board");
+              //Medium Difficulty.
+              function mediGame() {
+                if (!document.getElementById("felt")) {
+                  var game = new MatchGameMedi("board");
+                } else {
+                  clock.remove();
+                  display.remove();
+                  gameInfo.remove();
+                  clockSide.remove();
+                  displayS.remove();
+                  gameTitleSide.remove();
+                  clicks = 0;
+                  clicksS = 0;
+                  localStorage.setItem("clicks", clicks);
+                  localStorage.setItem("clicksS", clicksS);
+                  document.getElementById("felt").remove();
+                  var game = new MatchGameMedi("board");
+                }
               }
-            }
-
-            function easyGame(){
-              if (!document.getElementById("felt")) {
-                var game = new MatchGameEasy("board");
-              } else {
-                clock.remove();
-                display.remove();
-                gameInfo.remove();
-                clockSide.remove();
-                displayS.remove();
-                gameTitleSide.remove();
-                clicks = 0;
-                clicksS = 0;
-                localStorage.setItem("clicks", clicks);
-                localStorage.setItem("clicksS", clicksS);
-                document.getElementById("felt").remove();
-                var game = new MatchGameEasy("board");
+              //Easy Difficulty.
+              function easyGame() {
+                if (!document.getElementById("felt")) {
+                  var game = new MatchGameEasy("board");
+                } else {
+                  clock.remove();
+                  display.remove();
+                  gameInfo.remove();
+                  clockSide.remove();
+                  displayS.remove();
+                  gameTitleSide.remove();
+                  clicks = 0;
+                  clicksS = 0;
+                  localStorage.setItem("clicks", clicks);
+                  localStorage.setItem("clicksS", clicksS);
+                  document.getElementById("felt").remove();
+                  var game = new MatchGameEasy("board");
+                }
               }
-            }
 
-            document.onload = easyGame();
-
+              document.onload = easyGame();
             </script>
           </section>
         </section>
@@ -167,59 +169,13 @@
   </body>
 
   <script>
+    /*  Instrutions  */
+    var titleText = "Instruction Controls"; //Initial title when page loads.
+    //Initial text content when page loads.
+    var contentText =
+      'To go through the steps of these instructions click the <strong>right arrow</strong> highlighted in grey. To go back a step, click the <strong>left arrow</strong> also highlighted in grey.<br/> Or you can go back to the home page by clicking the <strong>"Home Page"</strong> button or to the progress page by pressing the <strong>"Progress Page"</strong> button.';
 
-  //remove html elements function
-    Element.prototype.remove = function() {
-      this.parentElement.removeChild(this);
-    }
-    NodeList.prototype.remove = HTMLCollection.prototype.remove = function() {
-      for(var i = this.length - 1; i >= 0; i--) {
-        if(this[i] && this[i].parentElement) {
-          this[i].parentElement.removeChild(this[i]);
-        }
-      }
-    }
-
-    //Burger navigation menu
-    function openNav() {
-      document.getElementById("sideNav").style.width = "250px";
-    }
-
-    function closeNav() {
-      document.getElementById("sideNav").style.width = "0";
-    }
-
-    function openProg() {
-      document.getElementById("sideProg").style.width = "250px";
-    }
-
-    function closeProg() {
-      document.getElementById("sideProg").style.width = "0";
-    }
-
-
-    //instrutions
-    var titleText = "Instruction Controls";
-    var contentText = 'To go through the steps of these instructions click the <strong>right arrow</strong> highlighted in grey. To go back a step, click the <strong>left arrow</strong> also highlighted in grey.<br/> Or you can go back to the home page by clicking the <strong>"Home Page"</strong> button or to the progress page by pressing the <strong>"Progress Page"</strong> button.';
-
-    titleText.toString();
-    contentText.toString();
-
-    function updateHTML(id, text) {
-      var elem = document.getElementById(id);
-      elem.innerHTML=text;
-    }
-
-    window.onload = updateHTML('titleT', titleText), updateHTML('contentT', contentText);
-
-    //elements
-    var elemT = document.getElementById('titleT');
-    var elemC = document.getElementById('contentT');
-
-    //current steps
-    var curStep = 0;
-
-    //text
+    //Titles array.
     var steps = [
       ['Instruction Controls'],
       ['Step 1'],
@@ -229,8 +185,11 @@
       ['Step 5'],
       ['Step 6']
     ];
+    //Content text array.
     var text = [
-      ['To go through the steps of these instructions click the right arrow highlighted in grey. To go back a step, click the left arrow also highlighted in grey. <br/> Or you can go back to the home page by clicking the <strong>"Home Page"</strong> button or to the progress page by pressing the <strong>"Progress Page"</strong> button.'],
+      [
+        'To go through the steps of these instructions click the right arrow highlighted in grey. To go back a step, click the left arrow also highlighted in grey. <br/> Or you can go back to the home page by clicking the <strong>"Home Page"</strong> button or to the progress page by pressing the <strong>"Progress Page"</strong> button.'
+      ],
       ["First choose the difficulty you want to play at. You can do this by clicking <strong>“Easy”</strong>, <strong>“Medium”</strong>, or <strong>“Hard”</strong> in the grey highlighted area."],
       ["Click the pack of cards to start the game and the will timer start. The card pack is located in the now grey area on the board."],
       ["Once the cards are dealt, click a card to flip it over and show the shape on the card."],
@@ -239,42 +198,88 @@
       ["Once all of the cards are matched the game ends and the timer stops. Try to get a shorter time to improve!"]
     ];
 
+    var curStep = 0; //Current steps
+
+    //Convert to sting.
+    titleText.toString();
+    contentText.toString();
     steps.toString();
     text.toString();
 
+    //A function to take and element id and a character variable.
+    function updateHTML(id, text) {
+      var elem = document.getElementById(id);
+      elem.innerHTML = text;
+    }
+
+    window.onload = updateHTML('titleT', titleText), updateHTML('contentT', contentText); //On page load update the corresponding HTML.
+
+    //Move to next instruction function.
     function nextStep() {
       curStep++;
-      if(curStep == steps.length) curStep = 0;
+      if (curStep == steps.length) curStep = 0;
       document.getElementById("titleT").innerHTML = steps[curStep];
       document.getElementById("contentT").innerHTML = text[curStep];
       highlightArea();
     }
 
+    //Move to previous instruction function.
     function prevStep() {
       curStep--;
-      if(curStep == -1) curStep = 0;
+      if (curStep == -1) curStep = 0;
       document.getElementById("titleT").innerHTML = steps[curStep];
       document.getElementById("contentT").innerHTML = text[curStep];
       highlightArea();
     }
 
-    function highlightArea(){
-      if(curStep == 0) {
+    //Highlight areas on the page.
+    function highlightArea() {
+      if (curStep == 0) {
         document.getElementById('arrows').style.background = "#808f87";
       } else {
         document.getElementById('arrows').style.background = "transparent";
       }
-      if(curStep == 1) {
+      if (curStep == 1) {
         document.getElementById('diffSelect').style.background = "#808f87";
-        } else {
+      } else {
         document.getElementById('diffSelect').style.background = "transparent";
       }
-      if(curStep == 2) {
+      if (curStep == 2) {
         document.getElementById('board').style.background = "#808f87";
         document.getElementById('gameInfo').style.background = "#f0f8ea";
-        } else {
+      } else {
         document.getElementById('board').style.background = "transparent";
       }
+    }
+
+    /*  Remove HTML Elements Function.  */
+    Element.prototype.remove = function() {
+      this.parentElement.removeChild(this);
+    }
+    NodeList.prototype.remove = HTMLCollection.prototype.remove = function() {
+      for (var i = this.length - 1; i >= 0; i--) {
+        if (this[i] && this[i].parentElement) {
+          this[i].parentElement.removeChild(this[i]);
+        }
+      }
+    }
+
+    /*  Side Navigation Menu Functions.  */
+    function openNav() {
+      document.getElementById("sideNav").style.width = "250px";
+    }
+
+    function closeNav() {
+      document.getElementById("sideNav").style.width = "0";
+    }
+
+    /*  Side Progress Menu Functions.  */
+    function openProg() {
+      document.getElementById("sideProg").style.width = "250px";
+    }
+
+    function closeProg() {
+      document.getElementById("sideProg").style.width = "0";
     }
   </script>
 

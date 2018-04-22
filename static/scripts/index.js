@@ -1,15 +1,14 @@
-
 //remove html elements function
-  Element.prototype.remove = function() {
-    this.parentElement.removeChild(this);
-  }
-  NodeList.prototype.remove = HTMLCollection.prototype.remove = function() {
-    for(var i = this.length - 1; i >= 0; i--) {
-      if(this[i] && this[i].parentElement) {
-        this[i].parentElement.removeChild(this[i]);
-      }
+Element.prototype.remove = function() {
+  this.parentElement.removeChild(this);
+}
+NodeList.prototype.remove = HTMLCollection.prototype.remove = function() {
+  for (var i = this.length - 1; i >= 0; i--) {
+    if (this[i] && this[i].parentElement) {
+      this[i].parentElement.removeChild(this[i]);
     }
   }
+}
 
 /* global gapi:false */
 window.addEventListener('load', init);
@@ -216,7 +215,9 @@ async function callAPI(method, path, data) {
     credentials: 'same-origin',
     method: method || 'GET',
     body: data,
-    headers: { Authorization: 'Bearer ' + idToken },
+    headers: {
+      Authorization: 'Bearer ' + idToken
+    },
   };
 
   return fetch(path, fetchOptions);
@@ -225,13 +226,13 @@ async function callAPI(method, path, data) {
 // react to computer sleeps, get a new token, because it seems gapi doesn't do this reliably
 // eslint-disable-next-line max-len
 // adapted from http://stackoverflow.com/questions/4079115/can-any-desktop-browsers-detect-when-the-computer-resumes-from-sleep/4080174#4080174
-(function () {
+(function() {
   const CHECK_DELAY = 2000;
   let lastTime = Date.now();
 
   setInterval(() => {
     const currentTime = Date.now();
-    if (currentTime > (lastTime + (CHECK_DELAY*2))) { // ignore small delays
+    if (currentTime > (lastTime + (CHECK_DELAY * 2))) { // ignore small delays
       gapi.auth2.getAuthInstance().currentUser.get().reloadAuthResponse();
     }
     lastTime = currentTime;
@@ -259,7 +260,9 @@ log.scrolling = false;
 let globalPromiseResolve;
 
 function newGlobalPromise() {
-  return new Promise((resolve) => { globalPromiseResolve = resolve; });
+  return new Promise((resolve) => {
+    globalPromiseResolve = resolve;
+  });
 }
 
 function resolveGlobalPromise() {
@@ -327,7 +330,7 @@ async function testUnorderedArray(response, arr, strictLength) {
   if (!arr.length) strictLength = true;
   const got = await response.json();
   if ((!strictLength || got.length === arr.length) &&
-      arr.every((x) => got.includes(x))) {
+    arr.every((x) => got.includes(x))) {
     log('    ok, got ' + JSON.stringify(got));
   } else if (strictLength && arr.length) {
     throw log(`    expected ${JSON.stringify(arr)} - order does not matter, got ${JSON.stringify(got)}`);
@@ -351,8 +354,8 @@ async function testContainsUser(response, userObj) {
     }
     pass = userObj.every( // eslint-disable-line function-paren-newline
       (user) => data.find((x) => (x.email === user.email &&
-                                  x.roles.length === user.roles.length &&
-                                  user.roles.every((y) => x.roles.includes(y)))));
+        x.roles.length === user.roles.length &&
+        user.roles.every((y) => x.roles.includes(y)))));
   }
   if (pass) {
     log(`    ok, inludes ${JSON.stringify(userObj)}`);
@@ -396,22 +399,25 @@ async function runTests() { // eslint-disable-line no-unused-vars
 
     log('as nobody');
 
-    got = await test(null  , 'GET',    '/api/random',       null, null, 401);
-    got = await test(null  , 'GET',    '/api/user/roles',   null, null, 401);
-    got = await test(null  , 'GET',    '/api/user/request', null, null, 401);
-    got = await test(null  , 'POST',   '/api/user/request', null, null, 401);
+    got = await test(null, 'GET', '/api/random', null, null, 401);
+    got = await test(null, 'GET', '/api/user/roles', null, null, 401);
+    got = await test(null, 'GET', '/api/user/request', null, null, 401);
+    got = await test(null, 'POST', '/api/user/request', null, null, 401);
 
 
     log('as admin');
 
-    got = await test(adminT, 'GET',    '/api/random', null, null, 200, TEXT_T);
+    got = await test(adminT, 'GET', '/api/random', null, null, 200, TEXT_T);
     await testNumber(got);
-    got = await test(adminT, 'GET',    '/api/user/roles', null, null, 200, JSON_T);
+    got = await test(adminT, 'GET', '/api/user/roles', null, null, 200, JSON_T);
     await testUnorderedArray(got, ['admin', 'user'], true);
-    got = await test(adminT, 'GET',    '/api/user/request', null, null, 200, JSON_T);
+    got = await test(adminT, 'GET', '/api/user/request', null, null, 200, JSON_T);
     await testUnorderedArray(got, []);
-    got = await test(adminT, 'GET',    '/api/users', null, null, 200, JSON_T);
-    await testContainsUser(got, [{ email: adminEmail, roles: ['admin','user'] }]);
+    got = await test(adminT, 'GET', '/api/users', null, null, 200, JSON_T);
+    await testContainsUser(got, [{
+      email: adminEmail,
+      roles: ['admin', 'user']
+    }]);
 
     // in case the user was already there, we delete it here so following tests work
     got = await test(adminT, 'DELETE', '/api/user/' + encodeURIComponent(userEmail), null, null, null);
@@ -419,64 +425,80 @@ async function runTests() { // eslint-disable-line no-unused-vars
 
     log('as another user');
 
-    got = await test(userT , 'GET',    '/api/user/roles',   null, null, 200, JSON_T);
+    got = await test(userT, 'GET', '/api/user/roles', null, null, 200, JSON_T);
     await testUnorderedArray(got, []);
-    got = await test(userT , 'GET',    '/api/random',       null, null, 403);
-    got = await test(userT , 'POST',   '/api/user/request', null, null, 202);
-    got = await test(userT , 'GET',    '/api/user/request', null, null, 403);
-    got = await test(userT , 'GET',    '/api/users',        null, null, 403);
+    got = await test(userT, 'GET', '/api/random', null, null, 403);
+    got = await test(userT, 'POST', '/api/user/request', null, null, 202);
+    got = await test(userT, 'GET', '/api/user/request', null, null, 403);
+    got = await test(userT, 'GET', '/api/users', null, null, 403);
 
 
     log('as admin');
 
-    got = await test(adminT, 'GET',    '/api/users', null, null, 200, JSON_T);
-    await testContainsUser(got, [
-      { email: adminEmail, roles: ['admin','user'] },
-      { email: userEmail, roles: [] },
+    got = await test(adminT, 'GET', '/api/users', null, null, 200, JSON_T);
+    await testContainsUser(got, [{
+        email: adminEmail,
+        roles: ['admin', 'user']
+      },
+      {
+        email: userEmail,
+        roles: []
+      },
     ]);
 
-    got = await test(adminT, 'GET',    '/api/user/request', null, null, 200, JSON_T);
+    got = await test(adminT, 'GET', '/api/user/request', null, null, 200, JSON_T);
     await testUnorderedArray(got, [userEmail]);
-    got = await test(adminT, 'POST',   '/api/user/approve', userEmail, TEXT_T, 200, JSON_T);
-    await testContainsUser(got, { email: userEmail, roles: ['user'] });
+    got = await test(adminT, 'POST', '/api/user/approve', userEmail, TEXT_T, 200, JSON_T);
+    await testContainsUser(got, {
+      email: userEmail,
+      roles: ['user']
+    });
 
-    got = await test(adminT, 'GET',    '/api/user/request', null, null, 200, JSON_T);
+    got = await test(adminT, 'GET', '/api/user/request', null, null, 200, JSON_T);
     await testUnorderedArray(got, []);
 
-    got = await test(adminT, 'GET',    '/api/users', null, null, 200, JSON_T);
-    await testContainsUser(got, [
-      { email: adminEmail, roles: ['admin','user'] },
-      { email: userEmail, roles: ['user'] },
+    got = await test(adminT, 'GET', '/api/users', null, null, 200, JSON_T);
+    await testContainsUser(got, [{
+        email: adminEmail,
+        roles: ['admin', 'user']
+      },
+      {
+        email: userEmail,
+        roles: ['user']
+      },
     ]);
 
 
     log('as another user');
 
-    got = await test(userT , 'GET',    '/api/user/roles', null, null, 200, JSON_T);
+    got = await test(userT, 'GET', '/api/user/roles', null, null, 200, JSON_T);
     await testUnorderedArray(got, ['user'], true);
-    got = await test(userT , 'GET',    '/api/random', null, null, 200, TEXT_T);
+    got = await test(userT, 'GET', '/api/random', null, null, 200, TEXT_T);
     await testNumber(got);
-    got = await test(userT , 'POST',   '/api/user/approve', 'ZZZ@a.b', TEXT_T, 403);
+    got = await test(userT, 'POST', '/api/user/approve', 'ZZZ@a.b', TEXT_T, 403);
 
 
     log('as admin');
 
     got = await test(adminT, 'DELETE', '/api/user/' + encodeURIComponent(userEmail), null, null, 204);
-    got = await test(adminT, 'GET',    '/api/users', null, null, 200, JSON_T);
-    await testContainsUser(got, [{ email: adminEmail, roles: ['user','admin'] }]);
+    got = await test(adminT, 'GET', '/api/users', null, null, 200, JSON_T);
+    await testContainsUser(got, [{
+      email: adminEmail,
+      roles: ['user', 'admin']
+    }]);
 
 
     log('as another user');
 
-    got = await test(userT , 'GET',    '/api/user/roles', null, null, 200, JSON_T);
+    got = await test(userT, 'GET', '/api/user/roles', null, null, 200, JSON_T);
     await testUnorderedArray(got, []);
-    got = await test(userT , 'GET',    '/api/random', null, null, 403);
+    got = await test(userT, 'GET', '/api/random', null, null, 403);
 
 
     log('logged out');
 
-    got = await test(null  , 'GET',    '/api/random', null, null, 401);
-    got = await test(null  , 'GET',    '/api/users', null, null, 401);
+    got = await test(null, 'GET', '/api/random', null, null, 401);
+    got = await test(null, 'GET', '/api/users', null, null, 401);
 
 
     log('all OK');

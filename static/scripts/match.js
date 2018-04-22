@@ -4,7 +4,7 @@ const easy_card_value = ["1A", "2A", "3A", "4A", "1B", "2B", "3B", "4B"];
 
 
 /*Hard game*/
-const MatchGame = function (targetID) {
+const MatchGame = function(targetID) {
   //private variables
   let cards = []
   let started = false;
@@ -26,19 +26,22 @@ const MatchGame = function (targetID) {
     return val > 9 ? val : "0" + val;
   };
 
-  setInterval(function () {
+  setInterval(function() {
     if (started) {
       let seconds = secondsDis.innerHTML = " " + pad(++sec % 60);
-      let minutes = minutesDis.innerHTML = "</br>" +pad(parseInt(sec / 60, 10)) + " :";
+      let minutes = minutesDis.innerHTML = "</br>" + pad(parseInt(sec / 60, 10)) + " :";
       let secondsS = secondsSide.innerHTML = " " + pad(++sec % 60);
-      let minutesS = minutesSide.innerHTML = "</br>" +pad(parseInt(sec / 60, 10)) + " :";
+      let minutesS = minutesSide.innerHTML = "</br>" + pad(parseInt(sec / 60, 10)) + " :";
       started = true;
     }
   }, 1000);
 
-  /* Count the clicks that the player does */
+  /* Count the clicks */
   let clicks = 0;
   let clicksS = 0;
+  /* create the local storage elements */
+  localStorage.setItem("clicks", clicks);
+  localStorage.setItem("clicksS", clicksS);
   const displayA = document.createElement('span');
   const displayS = document.createElement('span');
   const displaySideA = document.createElement('span');
@@ -76,16 +79,16 @@ const MatchGame = function (targetID) {
     }
   }
 
-  //turn card face down
-  const hideCard = function (id) {
+  //Turn card face down
+  const hideCard = function(id) {
     cards[id].firstChild.src = "cards/back.png";
     with(cards[id].style) {
       WebkitTransform = MozTransform = OTransform = msTransform = "scale(1.0) rotate(0deg)";
     }
   };
 
-  // move card to pack
-  const moveToPack = function (id) {
+  //Move card to pack.
+  const moveToPack = function(id) {
     hideCard(id);
     cards[id].matched = true;
     with(cards[id].style) {
@@ -96,8 +99,8 @@ const MatchGame = function (targetID) {
     }
   };
 
-  // move card to pack
-  const moveToPackMobile = function (id) {
+  //Move card to pack mobile.
+  const moveToPackMobile = function(id) {
     hideCard(id);
     cards[id].matched = true;
     with(cards[id].style) {
@@ -108,8 +111,8 @@ const MatchGame = function (targetID) {
     }
   };
 
-  // deal card
-  const moveToPlace = function (id) {
+  //Deal card.
+  const moveToPlace = function(id) {
     cards[id].matched = false;
     with(cards[id].style) {
       zIndex = "0";
@@ -119,8 +122,8 @@ const MatchGame = function (targetID) {
     }
   };
 
-  // turn card face up, check for match
-  const showCard = function (id) {
+  //Turn card face up, check for match.
+  const showCard = function(id) {
     if (id === card1) return
     if (cards[id].matched) return;
 
@@ -133,9 +136,9 @@ const MatchGame = function (targetID) {
     if (card1 !== false) {
       card2 = id;
       if (parseInt(hard_card_value[card1]) == parseInt(hard_card_value[card2])) { //match found
-        (function (card1, card2) {
+        (function(card1, card2) {
           matchSuccess();
-          setTimeout(function () {
+          setTimeout(function() {
             if (w >= 700) {
               moveToPack(card1);
               moveToPack(card2);
@@ -161,9 +164,9 @@ const MatchGame = function (targetID) {
           localStorage.setItem("clicksS", clicksS);
         }
       } else { //no match
-        (function (card1, card2) {
+        (function(card1, card2) {
           matchAttempts();
-          setTimeout(function () {
+          setTimeout(function() {
             hideCard(card1);
             hideCard(card2);
           }, 800);
@@ -175,17 +178,17 @@ const MatchGame = function (targetID) {
     }
   };
 
-  const cardClick = function (id) {
+  const cardClick = function(id) {
     if (started) {
       showCard(id);
     } else {
       //shuffle and deal cards
-      hard_card_value.sort(function () {
+      hard_card_value.sort(function() {
         return Math.round(Math.random()) - 0.5;
       });
       for (i = 0; i < 16; i++) {
-        (function (idx) {
-          setTimeout(function () {
+        (function(idx) {
+          setTimeout(function() {
             moveToPlace(idx);
             document.getElementById('results').innerHTML = null;
           }, idx * 100);
@@ -198,15 +201,15 @@ const MatchGame = function (targetID) {
   //end of game
   function gameComplete() {
     document.getElementById('results').innerHTML = "<h2>Congratulations, You Have WON! </h2>" +
-    "<h3>Here are the results of your game! </h3>" + "Your total time is: " ;
+      "<h3>Here are the results of your game! </h3>" + "Your total time is: ";
   }
 
-  //initialise
+  //Initialise
   const stage = document.getElementById(targetID);
   const felt = document.createElement("div");
   const results = document.createElement("span");
   const gameInfo = document.createElement("section");
-  const clock  = document.createElement("section");
+  const clock = document.createElement("section");
   const gameTitle = document.createElement("section");
   const sideInfo = document.getElementById('sideInfo');
   const gameTitleSide = document.createElement("section");
@@ -275,42 +278,42 @@ const MatchGame = function (targetID) {
   let card = document.createElement("div");
   card.innerHTML = '<img src="cards/back.png">';
 
-if (w <= 640) {
-   for (let i = 0; i < 16; i++) {
-     let newCard = card.cloneNode(true);
+  if (w <= 640) {
+    for (let i = 0; i < 16; i++) {
+      let newCard = card.cloneNode(true);
 
-     newCard.fromtop = 1 + 8 * Math.floor(i / 4);
-     newCard.fromleft = 1 + 6 * (i % 4);
-     (function (idx) {
-       newCard.addEventListener("click", function () {
-         cardClick(idx);
-       }, false);
-     })(i);
+      newCard.fromtop = 1 + 8 * Math.floor(i / 4);
+      newCard.fromleft = 1 + 6 * (i % 4);
+      (function(idx) {
+        newCard.addEventListener("click", function() {
+          cardClick(idx);
+        }, false);
+      })(i);
 
-     felt.appendChild(newCard);
-     cards.push(newCard);
-   }
- } else {
-   for (i = 0; i < 16; i++) {
-     newCard = card.cloneNode(true);
+      felt.appendChild(newCard);
+      cards.push(newCard);
+    }
+  } else {
+    for (i = 0; i < 16; i++) {
+      newCard = card.cloneNode(true);
 
-     newCard.fromtop = 1 + 7 * Math.floor(i / 4);
-     newCard.fromleft = 1 + 4.5 * (i % 4);
-     (function (idx) {
-       newCard.addEventListener("click", function () {
-         cardClick(idx);
-       }, false);
-     })(i);
+      newCard.fromtop = 1 + 7 * Math.floor(i / 4);
+      newCard.fromleft = 1 + 4.5 * (i % 4);
+      (function(idx) {
+        newCard.addEventListener("click", function() {
+          cardClick(idx);
+        }, false);
+      })(i);
 
-     felt.appendChild(newCard);
-     cards.push(newCard);
-   }
- }
+      felt.appendChild(newCard);
+      cards.push(newCard);
+    }
+  }
 };
 
 //Medium game
-const MatchGameMedi = function (targetID) {
-  //private variables
+const MatchGameMedi = function(targetID) {
+  //Private variables.
   let cards = []
   let started = false;
   let matches_found = 0;
@@ -331,12 +334,12 @@ const MatchGameMedi = function (targetID) {
     return val > 9 ? val : "0" + val;
   };
 
-  setInterval(function () {
+  setInterval(function() {
     if (started) {
       let seconds = secondsDis.innerHTML = " " + pad(++sec % 60);
-      let minutes = minutesDis.innerHTML = "</br>" +pad(parseInt(sec / 60, 10)) + " :";
+      let minutes = minutesDis.innerHTML = "</br>" + pad(parseInt(sec / 60, 10)) + " :";
       let secondsS = secondsSide.innerHTML = " " + pad(++sec % 60);
-      let minutesS = minutesSide.innerHTML = "</br>" +pad(parseInt(sec / 60, 10)) + " :";
+      let minutesS = minutesSide.innerHTML = "</br>" + pad(parseInt(sec / 60, 10)) + " :";
       started = true;
     }
   }, 1000);
@@ -344,6 +347,9 @@ const MatchGameMedi = function (targetID) {
   /* Count the clicks that the player does */
   let clicks = 0;
   let clicksS = 0;
+  /* create the local storage elements */
+  localStorage.setItem("clicks", clicks);
+  localStorage.setItem("clicksS", clicksS);
   const displayA = document.createElement('span');
   const displayS = document.createElement('span');
   const displaySideA = document.createElement('span');
@@ -382,7 +388,7 @@ const MatchGameMedi = function (targetID) {
   }
 
   //turn card face down
-  const hideCard = function (id) {
+  const hideCard = function(id) {
     cards[id].firstChild.src = "cards/back.png";
     with(cards[id].style) {
       WebkitTransform = MozTransform = OTransform = msTransform = "scale(1.0) rotate(0deg)";
@@ -390,7 +396,7 @@ const MatchGameMedi = function (targetID) {
   };
 
   // move card to pack
-  const moveToPack = function (id) {
+  const moveToPack = function(id) {
     hideCard(id);
     cards[id].matched = true;
     with(cards[id].style) {
@@ -402,7 +408,7 @@ const MatchGameMedi = function (targetID) {
   };
 
   // move card to pack
-  const moveToPackMobile = function (id) {
+  const moveToPackMobile = function(id) {
     hideCard(id);
     cards[id].matched = true;
     with(cards[id].style) {
@@ -414,7 +420,7 @@ const MatchGameMedi = function (targetID) {
   };
 
   // deal card
-  const moveToPlace = function (id) {
+  const moveToPlace = function(id) {
     cards[id].matched = false;
     with(cards[id].style) {
       zIndex = "0";
@@ -425,7 +431,7 @@ const MatchGameMedi = function (targetID) {
   };
 
   // turn card face up, check for match
-  const showCard = function (id) {
+  const showCard = function(id) {
     if (id === card1) return
     if (cards[id].matched) return;
 
@@ -438,9 +444,9 @@ const MatchGameMedi = function (targetID) {
     if (card1 !== false) {
       card2 = id;
       if (parseInt(medi_card_value[card1]) == parseInt(medi_card_value[card2])) { //match found
-        (function (card1, card2) {
+        (function(card1, card2) {
           matchSuccess();
-          setTimeout(function () {
+          setTimeout(function() {
             if (w >= 700) {
               moveToPack(card1);
               moveToPack(card2);
@@ -466,9 +472,9 @@ const MatchGameMedi = function (targetID) {
           localStorage.setItem("clicksS", clicksS);
         }
       } else { //no match
-        (function (card1, card2) {
+        (function(card1, card2) {
           matchAttempts();
-          setTimeout(function () {
+          setTimeout(function() {
             hideCard(card1);
             hideCard(card2);
           }, 800);
@@ -480,17 +486,17 @@ const MatchGameMedi = function (targetID) {
     }
   };
 
-  const cardClick = function (id) {
+  const cardClick = function(id) {
     if (started) {
       showCard(id);
     } else {
       //shuffle and deal cards
-      medi_card_value.sort(function () {
+      medi_card_value.sort(function() {
         return Math.round(Math.random()) - 0.5;
       });
       for (i = 0; i < 12; i++) {
-        (function (idx) {
-          setTimeout(function () {
+        (function(idx) {
+          setTimeout(function() {
             moveToPlace(idx);
             document.getElementById('results').innerHTML = null;
           }, idx * 100);
@@ -503,7 +509,7 @@ const MatchGameMedi = function (targetID) {
   //end of game
   function gameComplete() {
     document.getElementById('results').innerHTML = "<h2>Congratulations, You Have WON! </h2>" +
-    "<h3>Here are the results of your game! </h3>" + "Your total time is: " ;
+      "<h3>Here are the results of your game! </h3>" + "Your total time is: ";
   }
 
   //initialise
@@ -512,7 +518,7 @@ const MatchGameMedi = function (targetID) {
   const gameInfo = document.createElement("section");
   const results = document.createElement("span");
   const gameTitle = document.createElement("section");
-  const clock  = document.createElement("section");
+  const clock = document.createElement("section");
   const sideInfo = document.getElementById('sideInfo');
   const gameTitleSide = document.createElement("section");
   const resultsSide = document.createElement("span");
@@ -581,40 +587,40 @@ const MatchGameMedi = function (targetID) {
   card.innerHTML = "<img src=cards/back.png>";
 
   if (w <= 640) {
-   for (let i = 0; i < 12; i++) {
-     let newCard = card.cloneNode(true);
+    for (let i = 0; i < 12; i++) {
+      let newCard = card.cloneNode(true);
 
-     newCard.fromtop = 1 + 8 * Math.floor(i / 4);
-     newCard.fromleft = 1 + 6 * (i % 4);
-     (function (idx) {
-       newCard.addEventListener("click", function () {
-         cardClick(idx);
-       }, false);
-     })(i);
+      newCard.fromtop = 1 + 8 * Math.floor(i / 4);
+      newCard.fromleft = 1 + 6 * (i % 4);
+      (function(idx) {
+        newCard.addEventListener("click", function() {
+          cardClick(idx);
+        }, false);
+      })(i);
 
-     felt.appendChild(newCard);
-     cards.push(newCard);
-   }
- } else {
-   for (i = 0; i < 12; i++) {
-     newCard = card.cloneNode(true);
+      felt.appendChild(newCard);
+      cards.push(newCard);
+    }
+  } else {
+    for (i = 0; i < 12; i++) {
+      newCard = card.cloneNode(true);
 
-     newCard.fromtop = 1 + 7 * Math.floor(i / 4);
-     newCard.fromleft = 1 + 4.5 * (i % 4);
-     (function (idx) {
-       newCard.addEventListener("click", function () {
-         cardClick(idx);
-       }, false);
-     })(i);
+      newCard.fromtop = 1 + 7 * Math.floor(i / 4);
+      newCard.fromleft = 1 + 4.5 * (i % 4);
+      (function(idx) {
+        newCard.addEventListener("click", function() {
+          cardClick(idx);
+        }, false);
+      })(i);
 
-     felt.appendChild(newCard);
-     cards.push(newCard);
-   }
- }
+      felt.appendChild(newCard);
+      cards.push(newCard);
+    }
+  }
 };
 
 //Easy game
-const MatchGameEasy = function (targetID) {
+const MatchGameEasy = function(targetID) {
   //private variables
   let cards = []
   let started = false;
@@ -636,12 +642,12 @@ const MatchGameEasy = function (targetID) {
     return val > 9 ? val : "0" + val;
   };
 
-  setInterval(function () {
+  setInterval(function() {
     if (started) {
       let seconds = secondsDis.innerHTML = " " + pad(++sec % 60);
-      let minutes = minutesDis.innerHTML = "</br>" +pad(parseInt(sec / 60, 10)) + " :";
+      let minutes = minutesDis.innerHTML = "</br>" + pad(parseInt(sec / 60, 10)) + " :";
       let secondsS = secondsSide.innerHTML = " " + pad(++sec % 60);
-      let minutesS = minutesSide.innerHTML = "</br>" +pad(parseInt(sec / 60, 10)) + " :";
+      let minutesS = minutesSide.innerHTML = "</br>" + pad(parseInt(sec / 60, 10)) + " :";
       started = true;
     }
   }, 1000);
@@ -649,6 +655,8 @@ const MatchGameEasy = function (targetID) {
   /* Count the clicks that the player does */
   let clicks = 0;
   let clicksS = 0;
+  localStorage.setItem("clicks", clicks);
+  localStorage.setItem("clicksS", clicksS);
   const displayA = document.createElement('span');
   const displayS = document.createElement('span');
   const displaySideA = document.createElement('span');
@@ -687,7 +695,7 @@ const MatchGameEasy = function (targetID) {
   }
 
   //turn card face down
-  const hideCard = function (id) {
+  const hideCard = function(id) {
     cards[id].firstChild.src = "cards/back.png";
     with(cards[id].style) {
       WebkitTransform = MozTransform = OTransform = msTransform = "scale(1.0) rotate(0deg)";
@@ -695,7 +703,7 @@ const MatchGameEasy = function (targetID) {
   };
 
   // move card to pack
-  const moveToPack = function (id) {
+  const moveToPack = function(id) {
     hideCard(id);
     cards[id].matched = true;
     with(cards[id].style) {
@@ -707,7 +715,7 @@ const MatchGameEasy = function (targetID) {
   };
 
   // move card to pack
-  const moveToPackMobile = function (id) {
+  const moveToPackMobile = function(id) {
     hideCard(id);
     cards[id].matched = true;
     with(cards[id].style) {
@@ -719,7 +727,7 @@ const MatchGameEasy = function (targetID) {
   };
 
   // deal card
-  const moveToPlace = function (id) {
+  const moveToPlace = function(id) {
     cards[id].matched = false;
     with(cards[id].style) {
       zIndex = "0";
@@ -730,7 +738,7 @@ const MatchGameEasy = function (targetID) {
   };
 
   // turn card face up, check for match
-  const showCard = function (id) {
+  const showCard = function(id) {
     if (id === card1) return
     if (cards[id].matched) return;
 
@@ -743,9 +751,9 @@ const MatchGameEasy = function (targetID) {
     if (card1 !== false) {
       card2 = id;
       if (parseInt(easy_card_value[card1]) == parseInt(easy_card_value[card2])) { //match found
-        (function (card1, card2) {
+        (function(card1, card2) {
           matchSuccess();
-          setTimeout(function () {
+          setTimeout(function() {
             if (w >= 700) {
               moveToPack(card1);
               moveToPack(card2);
@@ -771,9 +779,9 @@ const MatchGameEasy = function (targetID) {
           localStorage.setItem("clicksS", clicksS);
         }
       } else { //no match
-        (function (card1, card2) {
+        (function(card1, card2) {
           matchAttempts();
-          setTimeout(function () {
+          setTimeout(function() {
             hideCard(card1);
             hideCard(card2);
           }, 800);
@@ -785,17 +793,17 @@ const MatchGameEasy = function (targetID) {
     }
   };
 
-  const cardClick = function (id) {
+  const cardClick = function(id) {
     if (started) {
       showCard(id);
     } else {
       //shuffle and deal cards
-      easy_card_value.sort(function () {
+      easy_card_value.sort(function() {
         return Math.round(Math.random()) - 0.5;
       });
       for (i = 0; i < 8; i++) {
-        (function (idx) {
-          setTimeout(function () {
+        (function(idx) {
+          setTimeout(function() {
             moveToPlace(idx);
             document.getElementById('results').innerHTML = null;
           }, idx * 100);
@@ -808,7 +816,7 @@ const MatchGameEasy = function (targetID) {
   //end of game
   function gameComplete() {
     document.getElementById('results').innerHTML = "<h2>Congratulations, You Have WON! </h2>" +
-    "<h3>Here are the results of your game! </h3>" + "Your total time is: " ;
+      "<h3>Here are the results of your game! </h3>" + "Your total time is: ";
   }
 
   //initialise
@@ -886,34 +894,34 @@ const MatchGameEasy = function (targetID) {
   card.innerHTML = "<img src=cards/back.png>";
 
   if (w <= 700) {
-     for (let i = 0; i < 8; i++) {
-       let newCard = card.cloneNode(true);
+    for (let i = 0; i < 8; i++) {
+      let newCard = card.cloneNode(true);
 
-       newCard.fromtop = 1 + 8 * Math.floor(i / 4);
-       newCard.fromleft = 1 + 6 * (i % 4);
-       (function (idx) {
-         newCard.addEventListener("click", function () {
-           cardClick(idx);
-         }, false);
-       })(i);
+      newCard.fromtop = 1 + 8 * Math.floor(i / 4);
+      newCard.fromleft = 1 + 6 * (i % 4);
+      (function(idx) {
+        newCard.addEventListener("click", function() {
+          cardClick(idx);
+        }, false);
+      })(i);
 
-       felt.appendChild(newCard);
-       cards.push(newCard);
-     }
-   } else {
-     for (i = 0; i < 8; i++) {
-       newCard = card.cloneNode(true);
+      felt.appendChild(newCard);
+      cards.push(newCard);
+    }
+  } else {
+    for (i = 0; i < 8; i++) {
+      newCard = card.cloneNode(true);
 
-       newCard.fromtop = 1 + 7 * Math.floor(i / 4);
-       newCard.fromleft = 1 + 4.5 * (i % 4);
-       (function (idx) {
-         newCard.addEventListener("click", function () {
-           cardClick(idx);
-         }, false);
-       })(i);
+      newCard.fromtop = 1 + 7 * Math.floor(i / 4);
+      newCard.fromleft = 1 + 4.5 * (i % 4);
+      (function(idx) {
+        newCard.addEventListener("click", function() {
+          cardClick(idx);
+        }, false);
+      })(i);
 
-       felt.appendChild(newCard);
-       cards.push(newCard);
-     }
-   }
+      felt.appendChild(newCard);
+      cards.push(newCard);
+    }
+  }
 };
