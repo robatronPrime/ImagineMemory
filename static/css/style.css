@@ -271,6 +271,10 @@ caption {
   margin: 1em;
 }
 
+#out {
+  display: none;
+}
+
 #felt {
   position: relative;
   margin: 0 0 0 10em;
