@@ -106,26 +106,18 @@
         </section>
       </section>
 
-      <section class="container">
-        <section class="item">
-          <p>Do you have <strong>Dementia</strong> or some other form of <strong>memory loss</strong> or are you just <strong>bored</strong>? Then <strong><span class="green">Imagine</span><span class="grey">Memory</span></strong> is for you!</p>
-          <p><strong>ImagineMemory</strong> has games which can help you train your brain and improve your mental fitness!</p>
-          <p class="item game-text">Play a fun game of Match! Where you have to match 2 pairs of cards togeather until you've matched them all!</p>
-          <img class="game-img item" src="images/matchImg.png" alt="match-image">
-        </section>
-      </section>
+    <section class="container list flex-end auth">
+      <h2 class="item">Login</h2>
+      <div class="item">
+        <p class="item">Press the button to sign in:</p>
+        <span class="g-signin2 item" data-onsuccess="onSignIn"></span>
+      </div>
+      <span class="item greeting">
+        <p class="signed item">Signed in as: </p> <span class="name"> Please Sign in </span>
+        <button class="item" onclick="signOut();"><span>Sign out</span></button>
+      </span>
     </section>
   </section>
 </body>
-<script>
-  //Side Navigation Menu Functions.
-  function openNav() {
-    document.getElementById("sideNav").style.width = "250px";
-  }
-
-  function closeNav() {
-    document.getElementById("sideNav").style.width = "0";
-  }
-</script>
 
 </html>

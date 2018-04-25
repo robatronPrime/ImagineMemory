@@ -11,276 +11,336 @@
   <meta name="google-signin-client_id" content="562468116276-f2bjqopstgrgehc4p51u0q20vilso5v5.apps.googleusercontent.com">
   <script src="https://apis.google.com/js/platform.js" async defer></script>
   <script src="scripts/match.js"></script>
+  <link rel="apple-touch-icon" sizes="57x57" href="images/Icon/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="images/Icon/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="images/Icon/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="images/Icon/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="images/Icon/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="images/Icon/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="images/Icon/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="images/Icon/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="images/Icon/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="images/Icon/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="images/Icon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="images/Icon/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="images/Icon/favicon-16x16.png">
+  <link rel="manifest" href="images/Icon/manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="images/Icon/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
 </head>
-  <body>
-    <section class="no-padding-margin">
-      <section class="container no-border no-padding-margin">
+
+<body>
+  <section class="no-padding-margin">
+    <section class="container no-border no-padding-margin">
+      <section class="container head no-border">
         <section class="container head no-border">
-          <section class="item">
-            <img class="logo" src="images/Logo.png" alt="Website logo ImagineMemory">
+          <span class="item sideNav list no-decoration link" id="sideNav">
+              <a class="item closebtn" href="javascript:void(0)" onclick="closeNav()">
+                Close Menu
+              </a>
+              <a class="container" href="index.html">
+                <section class="item button">
+                  Home Page
+                </section>
+              </a>
+
+              <a class="container" href="match.html">
+                <section class="item button">
+                  Game Page
+                </section>
+              </a>
+
+              <a class="container" href="progress.html">
+                <section class="item button">
+                  Progress Page
+                </section>
+              </a>
+
+              <a class="container" href="about.html">
+                <section class="item button">
+                  About Page
+                </section>
+              </a>
+            </span>
+
+          <span class="item nav-burg" onclick="openNav();">
+              <i class="fas fa-bars"></i>
+            </span>
+        </section>
+
+        <section class="container max-width no-border">
+          <section class="item max-width">
+            <h1>Welcome To <span class="green">Imagine</span><span class="grey">Memory</span>!</h1>
           </section>
 
-          <span class="item sideNav list no-decoration link" id="sideNav">
-            <a class="item closebtn" href="javascript:void(0)" onclick="closeNav()">
-              Close Menu
-            </a>
-            <a class="item" href="index.html">
-              <section class="item button">
+          <section class="item row no-decoration">
+            <a class="container hide-link" href="index.html">
+              <section class="item button hide-link">
                 Home Page
               </section>
             </a>
-            <a class="item" href="progress.html">
-              <section class="item button">
+
+            <a class="container hide-link" href="match.html">
+              <section class="item button hide-link">
+                Game Page
+              </section>
+            </a>
+
+            <a class="container hide-link" href="progress.html">
+              <section class="item button hide-link">
                 Progress Page
               </section>
             </a>
-          </span>
 
-          <span class="item sideNav list no-decoration link" id="sideProg">
+            <a class="container hide-link" href="about.html">
+              <section class="item button hide-link">
+                About Page
+              </section>
+            </a>
+
+            <a class="container hide-link" href="login.html">
+              <section class="item button hide-link">
+                Login Page
+              </section>
+            </a>
+          </section>
+        </section>
+
+
+        <span class="item sideNav list no-decoration link" id="sideProg">
             <a class="item closebtn" href="javascript:void(0)" onclick="closeProg()">
               Close Menu
             </a>
             <section id="sideInfo"></section>
           </span>
 
-          <span class="item nav-burg" onclick="openNav();">
+        <span class="item nav-burg" onclick="openNav();">
             <i class="fas fa-bars"></i>
           </span>
-        </section>
+      </section>
 
-        <section class="item row max-width">
-          <section class="container list max-width">
-            <h1 class="item">How to Play Match</h1>
-            <section class="item">
-              <h2 id="titleT"></h2>
-            </section>
-            <section id="content-sec">
-              <p id="contentT"></p>
-            </section>
-            <section class="item row center" id="arrows">
-              <span id="prev" class="item button" onclick="prevStep();">
+      <section class="item row max-width">
+        <section class="container list max-width">
+          <h1 class="item">How to Play Match</h1>
+          <section class="item">
+            <h2 id="titleT"></h2>
+          </section>
+          <section id="content-sec">
+            <p id="contentT"></p>
+          </section>
+          <section class="item row center" id="arrows">
+            <span id="prev" class="container button" onclick="prevStep();">
                 <button class="fas fa-angle-left"></button>
               </span>
-              <span id="next" class="item button" onclick="nextStep();">
+            <span id="next" class="container button" onclick="nextStep();">
                 <button class="fas fa-angle-right"></button>
               </span>
-            </section>
-            <section class="item row no-decoration">
-              <a class="item hide-link" href="index.html">
-                <section class="item button">
-                  Home Page
-                </section>
-              </a>
-              <a class="item hide-link" href="progress.html">
-                <section class="item button">
-                  Progress Page
-                </section>
-              </a>
-            </section>
-          </section>
-        </section>
-
-        <section class="container list game-content max-width center" id="stage">
-          <section id="diffSelect" class="item list center">
-            <h1 class="item center">Difficulty Selection</h1>
-            <section class="item row center">
-              <span class="item button font-os" onclick="easyGame();">Easy</span>
-              <span class="item button font-os" onclick="mediGame();">Medium</span>
-              <span class="item button font-os" onclick="hardGame();">Hard</span>
-            </section>
-            <span class="item nav-burg" onclick="openProg();">
-              <p>Game Results</p>
-            </span>
-          </section>
-          <!-- The Stage for the game -->
-          <section class="item row" id="board">
-            <!-- Load game file -->
-
-            <script>
-              var content = document.getElementById("content");
-
-              /*  Difficulty Functions.  */
-              //Hard Difficulty.
-              function hardGame() {
-                if (!document.getElementById("felt")) {
-                  var game = new MatchGame("board");
-                } else {
-                  clock.remove();
-                  display.remove();
-                  gameInfo.remove();
-                  clockSide.remove();
-                  displayS.remove();
-                  gameTitleSide.remove();
-                  clicks = 0;
-                  clicksS = 0;
-                  localStorage.setItem("clicks", clicks);
-                  localStorage.setItem("clicksS", clicksS);
-                  document.getElementById("felt").remove();
-                  var game = new MatchGame("board");
-                }
-              }
-
-              //Medium Difficulty.
-              function mediGame() {
-                if (!document.getElementById("felt")) {
-                  var game = new MatchGameMedi("board");
-                } else {
-                  clock.remove();
-                  display.remove();
-                  gameInfo.remove();
-                  clockSide.remove();
-                  displayS.remove();
-                  gameTitleSide.remove();
-                  clicks = 0;
-                  clicksS = 0;
-                  localStorage.setItem("clicks", clicks);
-                  localStorage.setItem("clicksS", clicksS);
-                  document.getElementById("felt").remove();
-                  var game = new MatchGameMedi("board");
-                }
-              }
-              //Easy Difficulty.
-              function easyGame() {
-                if (!document.getElementById("felt")) {
-                  var game = new MatchGameEasy("board");
-                } else {
-                  clock.remove();
-                  display.remove();
-                  gameInfo.remove();
-                  clockSide.remove();
-                  displayS.remove();
-                  gameTitleSide.remove();
-                  clicks = 0;
-                  clicksS = 0;
-                  localStorage.setItem("clicks", clicks);
-                  localStorage.setItem("clicksS", clicksS);
-                  document.getElementById("felt").remove();
-                  var game = new MatchGameEasy("board");
-                }
-              }
-
-              document.onload = easyGame();
-            </script>
           </section>
         </section>
       </section>
+
+      <section class="container list game-content max-width center" id="stage">
+        <section id="diffSelect" class="item list center">
+          <h1 class="item center">Difficulty Selection</h1>
+          <section class="item row center">
+            <span class="container button font-os" onclick="easyGame();">Easy</span>
+            <span class="container button font-os" onclick="mediGame();">Medium</span>
+            <span class="container button font-os" onclick="hardGame();">Hard</span>
+          </section>
+          <span class="item nav-burg" onclick="openProg();">
+              <p>Game Results</p>
+            </span>
+        </section>
+        <!-- The Stage for the game -->
+        <section class="item row" id="board">
+          <!-- Load game file -->
+
+          <script>
+            var content = document.getElementById("content");
+
+            /*  Difficulty Functions.  */
+            //Hard Difficulty.
+            function hardGame() {
+              if (!document.getElementById("felt")) {
+                var game = new MatchGame("board");
+              } else {
+                clock.remove();
+                display.remove();
+                gameInfo.remove();
+                clockSide.remove();
+                displayS.remove();
+                gameTitleSide.remove();
+                clicks = 0;
+                clicksS = 0;
+                localStorage.setItem("clicks", clicks);
+                localStorage.setItem("clicksS", clicksS);
+                document.getElementById("felt").remove();
+                var game = new MatchGame("board");
+              }
+            }
+
+            //Medium Difficulty.
+            function mediGame() {
+              if (!document.getElementById("felt")) {
+                var game = new MatchGameMedi("board");
+              } else {
+                clock.remove();
+                display.remove();
+                gameInfo.remove();
+                clockSide.remove();
+                displayS.remove();
+                gameTitleSide.remove();
+                clicks = 0;
+                clicksS = 0;
+                localStorage.setItem("clicks", clicks);
+                localStorage.setItem("clicksS", clicksS);
+                document.getElementById("felt").remove();
+                var game = new MatchGameMedi("board");
+              }
+            }
+            //Easy Difficulty.
+            function easyGame() {
+              if (!document.getElementById("felt")) {
+                var game = new MatchGameEasy("board");
+              } else {
+                clock.remove();
+                display.remove();
+                gameInfo.remove();
+                clockSide.remove();
+                displayS.remove();
+                gameTitleSide.remove();
+                clicks = 0;
+                clicksS = 0;
+                localStorage.setItem("clicks", clicks);
+                localStorage.setItem("clicksS", clicksS);
+                document.getElementById("felt").remove();
+                var game = new MatchGameEasy("board");
+              }
+            }
+
+            document.onload = easyGame();
+          </script>
+        </section>
+      </section>
     </section>
+  </section>
 
-  </body>
+</body>
 
-  <script>
-    /*  Instrutions  */
-    var titleText = "Instruction Controls"; //Initial title when page loads.
-    //Initial text content when page loads.
-    var contentText =
-      'To go through the steps of these instructions click the <strong>right arrow</strong> highlighted in grey. To go back a step, click the <strong>left arrow</strong> also highlighted in grey.<br/> Or you can go back to the home page by clicking the <strong>"Home Page"</strong> button or to the progress page by pressing the <strong>"Progress Page"</strong> button.';
+<script>
+  /*  Instrutions  */
+  var titleText = "Instruction Controls"; //Initial title when page loads.
+  //Initial text content when page loads.
+  var contentText =
+    'To go through the steps of these instructions click the <strong>right arrow</strong> highlighted in grey. To go back a step, click the <strong>left arrow</strong> also highlighted in grey.<br/> Or you can go back to the home page by clicking the <strong>"Home Page"</strong> button or to the progress page by pressing the <strong>"Progress Page"</strong> button.';
 
-    //Titles array.
-    var steps = [
-      ['Instruction Controls'],
-      ['Step 1'],
-      ['Step 2'],
-      ['Step 3'],
-      ['Step 4'],
-      ['Step 5'],
-      ['Step 6']
-    ];
-    //Content text array.
-    var text = [
-      [
-        'To go through the steps of these instructions click the right arrow highlighted in grey. To go back a step, click the left arrow also highlighted in grey. <br/> Or you can go back to the home page by clicking the <strong>"Home Page"</strong> button or to the progress page by pressing the <strong>"Progress Page"</strong> button.'
-      ],
-      ["First choose the difficulty you want to play at. You can do this by clicking <strong>“Easy”</strong>, <strong>“Medium”</strong>, or <strong>“Hard”</strong> in the grey highlighted area."],
-      ["Click the pack of cards to start the game and the will timer start. The card pack is located in the now grey area on the board."],
-      ["Once the cards are dealt, click a card to flip it over and show the shape on the card."],
-      ["Click another card to show the shape on that card."],
-      ["If it's a match the selected cards go back to the deck and you get one point for a successful match. If the cards are not a match they flip back over."],
-      ["Once all of the cards are matched the game ends and the timer stops. Try to get a shorter time to improve!"]
-    ];
+  //Titles array.
+  var steps = [
+    ['Instruction Controls'],
+    ['Step 1'],
+    ['Step 2'],
+    ['Step 3'],
+    ['Step 4'],
+    ['Step 5'],
+    ['Step 6']
+  ];
+  //Content text array.
+  var text = [
+    [
+      'To go through the steps of these instructions click the right arrow highlighted in grey. To go back a step, click the left arrow also highlighted in grey. <br/> Or you can go back to the home page by clicking the <strong>"Home Page"</strong> button or to the progress page by pressing the <strong>"Progress Page"</strong> button.'
+    ],
+    ["First choose the difficulty you want to play at. You can do this by clicking <strong>“Easy”</strong>, <strong>“Medium”</strong>, or <strong>“Hard”</strong> in the grey highlighted area."],
+    ["Click the pack of cards to start the game and the will timer start. The card pack is located in the now grey area on the board."],
+    ["Once the cards are dealt, click a card to flip it over and show the shape on the card."],
+    ["Click another card to show the shape on that card."],
+    ["If it's a match the selected cards go back to the deck and you get one point for a successful match. If the cards are not a match they flip back over."],
+    ["Once all of the cards are matched the game ends and the timer stops. Try to get a shorter time to improve!"]
+  ];
 
-    var curStep = 0; //Current steps
+  var curStep = 0; //Current steps
 
-    //Convert to sting.
-    titleText.toString();
-    contentText.toString();
-    steps.toString();
-    text.toString();
+  //Convert to sting.
+  titleText.toString();
+  contentText.toString();
+  steps.toString();
+  text.toString();
 
-    //A function to take and element id and a character variable.
-    function updateHTML(id, text) {
-      var elem = document.getElementById(id);
-      elem.innerHTML = text;
+  //A function to take and element id and a character variable.
+  function updateHTML(id, text) {
+    var elem = document.getElementById(id);
+    elem.innerHTML = text;
+  }
+
+  window.onload = updateHTML('titleT', titleText), updateHTML('contentT', contentText); //On page load update the corresponding HTML.
+
+  //Move to next instruction function.
+  function nextStep() {
+    curStep++;
+    if (curStep == steps.length) curStep = 0;
+    document.getElementById("titleT").innerHTML = steps[curStep];
+    document.getElementById("contentT").innerHTML = text[curStep];
+    highlightArea();
+  }
+
+  //Move to previous instruction function.
+  function prevStep() {
+    curStep--;
+    if (curStep == -1) curStep = 0;
+    document.getElementById("titleT").innerHTML = steps[curStep];
+    document.getElementById("contentT").innerHTML = text[curStep];
+    highlightArea();
+  }
+
+  //Highlight areas on the page.
+  function highlightArea() {
+    if (curStep == 0) {
+      document.getElementById('arrows').style.background = "#808f87";
+    } else {
+      document.getElementById('arrows').style.background = "transparent";
     }
-
-    window.onload = updateHTML('titleT', titleText), updateHTML('contentT', contentText); //On page load update the corresponding HTML.
-
-    //Move to next instruction function.
-    function nextStep() {
-      curStep++;
-      if (curStep == steps.length) curStep = 0;
-      document.getElementById("titleT").innerHTML = steps[curStep];
-      document.getElementById("contentT").innerHTML = text[curStep];
-      highlightArea();
+    if (curStep == 1) {
+      document.getElementById('diffSelect').style.background = "#808f87";
+    } else {
+      document.getElementById('diffSelect').style.background = "transparent";
     }
-
-    //Move to previous instruction function.
-    function prevStep() {
-      curStep--;
-      if (curStep == -1) curStep = 0;
-      document.getElementById("titleT").innerHTML = steps[curStep];
-      document.getElementById("contentT").innerHTML = text[curStep];
-      highlightArea();
+    if (curStep == 2) {
+      document.getElementById('board').style.background = "#808f87";
+      document.getElementById('gameInfo').style.background = "#f0f8ea";
+    } else {
+      document.getElementById('board').style.background = "transparent";
     }
+  }
 
-    //Highlight areas on the page.
-    function highlightArea() {
-      if (curStep == 0) {
-        document.getElementById('arrows').style.background = "#808f87";
-      } else {
-        document.getElementById('arrows').style.background = "transparent";
+  /*  Remove HTML Elements Function.  */
+  Element.prototype.remove = function() {
+    this.parentElement.removeChild(this);
+  }
+  NodeList.prototype.remove = HTMLCollection.prototype.remove = function() {
+    for (var i = this.length - 1; i >= 0; i--) {
+      if (this[i] && this[i].parentElement) {
+        this[i].parentElement.removeChild(this[i]);
       }
-      if (curStep == 1) {
-        document.getElementById('diffSelect').style.background = "#808f87";
-      } else {
-        document.getElementById('diffSelect').style.background = "transparent";
-      }
-      if (curStep == 2) {
-        document.getElementById('board').style.background = "#808f87";
-        document.getElementById('gameInfo').style.background = "#f0f8ea";
-      } else {
-        document.getElementById('board').style.background = "transparent";
-      }
     }
+  }
 
-    /*  Remove HTML Elements Function.  */
-    Element.prototype.remove = function() {
-      this.parentElement.removeChild(this);
-    }
-    NodeList.prototype.remove = HTMLCollection.prototype.remove = function() {
-      for (var i = this.length - 1; i >= 0; i--) {
-        if (this[i] && this[i].parentElement) {
-          this[i].parentElement.removeChild(this[i]);
-        }
-      }
-    }
+  /*  Side Navigation Menu Functions.  */
+  function openNav() {
+    document.getElementById("sideNav").style.width = "250px";
+  }
 
-    /*  Side Navigation Menu Functions.  */
-    function openNav() {
-      document.getElementById("sideNav").style.width = "250px";
-    }
+  function closeNav() {
+    document.getElementById("sideNav").style.width = "0";
+  }
 
-    function closeNav() {
-      document.getElementById("sideNav").style.width = "0";
-    }
+  /*  Side Progress Menu Functions.  */
+  function openProg() {
+    document.getElementById("sideProg").style.width = "250px";
+  }
 
-    /*  Side Progress Menu Functions.  */
-    function openProg() {
-      document.getElementById("sideProg").style.width = "250px";
-    }
-
-    function closeProg() {
-      document.getElementById("sideProg").style.width = "0";
-    }
-  </script>
+  function closeProg() {
+    document.getElementById("sideProg").style.width = "0";
+  }
+</script>
 
 </html>
