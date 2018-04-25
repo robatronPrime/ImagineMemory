@@ -111,10 +111,15 @@
         <p class="item">Press the button to sign in:</p>
         <span class="g-signin2 item" data-onsuccess="onSignIn" onclick="signInHide()"></span>
       </div>
-      <span class="item greeting" id="logout">
-        <p class="signed item">Signed in as: </p> <p class="name"> Please Sign in </p>
-        <button class="item" onclick="signOut(); signOutHide();"><span>Sign out</span></button>
-      </span>
+      <section class="item greeting" id="logout">
+        <section class="item">
+          <p class="signed item">Signed in as: </p> <p class="name"> Please Sign in </p>
+        </section>
+        
+        <section class="item">
+          <button class="item" onclick="signOut(); signOutHide();"><span>Sign out</span></button>
+        </section>
+      </section>
     </section>
   </section>
 </body>
