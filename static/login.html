@@ -107,13 +107,13 @@
       </section>
 
     <section class="container list flex-end auth max-width">
-      <div class="item" id="in">
+      <div class="item" id="login">
         <p class="item">Press the button to sign in:</p>
-        <span class="g-signin2 item" data-onsuccess="onSignIn" onclick="signHide(in)"></span>
+        <span class="g-signin2 item" data-onsuccess="onSignIn" onclick="signInHide()"></span>
       </div>
-      <span class="item greeting" id="out">
+      <span class="item greeting" id="logout">
         <p class="signed item">Signed in as: </p> <span class="name"> Please Sign in </span>
-        <button class="item" onclick="signOut(); signHide(out)"><span>Sign out</span></button>
+        <button class="item" onclick="signOut(); signOutHide()"><span>Sign out</span></button>
       </span>
     </section>
   </section>
@@ -132,13 +132,19 @@
     }
   }
 
-  function signHide(atrib) {
-    if (atrib == "in") {
-      in.remove();
-    } else if (atrib == out) {
-      out.remove();
-    }
+  var login = getElementById('login');
+  var logout = getElementById('logout');
+
+  function signInHide() {
+    login.remove();
+    logout.style.display = "flex";
   }
+
+  function signOutHide() {
+    logout.remove();
+    login.style.display = "flex";
+  }
+
 </script>
 
 </html>
