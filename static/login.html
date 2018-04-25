@@ -32,7 +32,7 @@
 
 <body class="no-padding-margin">
   <section class="container no-border no-padding-margin mobile-width">
-    <span class="item sideNav list no-decoration link no-padding-margin" id="sideNav">
+    <span class="item sideNav list no-decoration link" id="sideNav">
       <a class="item closebtn" href="javascript:void(0)" onclick="closeNav()">
         Close Menu
       </a>
@@ -57,6 +57,12 @@
       <a class="container" href="about.html">
         <section class="item button">
           About Page
+        </section>
+      </a>
+
+      <a class="container" href="login.html">
+        <section class="item button">
+          Login Page
         </section>
       </a>
     </span>
@@ -137,6 +143,14 @@
     login.style.display = "flex";
   }
 
+  //Side Navigation Menu Functions.
+  function openNav() {
+    document.getElementById("sideNav").style.width = "315px";
+  }
+
+  function closeNav() {
+    document.getElementById("sideNav").style.width = "0";
+  }
 </script>
 
 </html>

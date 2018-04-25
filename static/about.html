@@ -60,6 +60,12 @@
             About Page
           </section>
         </a>
+
+        <a class="container" href="login.html">
+          <section class="item button">
+            Login Page
+          </section>
+        </a>
       </span>
 
       <span class="item nav-burg" onclick="openNav();">
@@ -116,4 +122,15 @@
     <p class="item game-text">Play a fun game of Match! Where you have to match 2 pairs of cards togeather until you've matched them all!</p>
     <img class="game-img item" src="images/matchImg.png" alt="match-image">
   </section>
+
+  <script type="text/javascript">
+    //Side Navigation Menu Functions.
+    function openNav() {
+      document.getElementById("sideNav").style.width = "315px";
+    }
+
+    function closeNav() {
+      document.getElementById("sideNav").style.width = "0";
+    }
+  </script>
 </html>
