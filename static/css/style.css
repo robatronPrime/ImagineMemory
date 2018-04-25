@@ -275,6 +275,10 @@ caption {
   display: none;
 }
 
+#login {
+  display: flex;
+}
+
 #felt {
   position: relative;
   margin: 0 0 0 10em;
