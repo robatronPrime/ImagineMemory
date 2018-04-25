@@ -113,35 +113,23 @@
       </div>
       <span class="item greeting" id="logout">
         <p class="signed item">Signed in as: </p> <span class="name"> Please Sign in </span>
-        <button class="item" onclick="signOut(); signOutHide()"><span>Sign out</span></button>
+        <button class="item" onclick="signOut(); signOutHide();"><span>Sign out</span></button>
       </span>
     </section>
   </section>
 </body>
 
 <script type="text/javascript">
-  /*  Remove HTML Elements Function.  */
-  Element.prototype.remove = function() {
-    this.parentElement.removeChild(this);
-  }
-  NodeList.prototype.remove = HTMLCollection.prototype.remove = function() {
-    for (var i = this.length - 1; i >= 0; i--) {
-      if (this[i] && this[i].parentElement) {
-        this[i].parentElement.removeChild(this[i]);
-      }
-    }
-  }
-
   var login = document.getElementById('login');
   var logout = document.getElementById('logout');
 
   function signInHide() {
-    login.remove();
+    login.style.display = "none";
     logout.style.display = "flex";
   }
 
   function signOutHide() {
-    logout.remove();
+    logout.style.display = "none";
     login.style.display = "flex";
   }
 
