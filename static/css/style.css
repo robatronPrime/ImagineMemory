@@ -80,7 +80,6 @@ caption {
   padding: 0.2em;
 }
 
-
 .item {
   display: flex; /* or inline-flex */
   flex-wrap: wrap;
@@ -202,6 +201,10 @@ caption {
 
 .font-os {
   font-family: 'Open Sans', sans-serif;
+}
+
+.item-signin {
+      padding: .5em;
 }
 
 #arrows {
