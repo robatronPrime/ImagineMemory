@@ -31,102 +31,102 @@
 </head>
 
 <body class="no-padding-margin">
-  <section class="container no-border no-padding-margin mobile-width">
-    <span class="item sideNav list no-decoration link" id="sideNav">
-      <a class="item closebtn" href="javascript:void(0)" onclick="closeNav()">
-        Close Menu
-      </a>
-      <a class="container" href="index.html">
-        <section class="item button">
-          Home Page
-        </section>
-      </a>
+  <main class="container row center no-border">
+    <aside class="container no-border no-padding-margin mobile-width">
+      <div class="item sideNav list no-decoration link" id="sideNav">
+        <a class="item closebtn" href="javascript:void(0)" onclick="closeNav()">
+          Close Menu
+        </a>
+        <a class="container" href="index.html">
+          <span class="item button">
+            Home Page
+          </span>
+        </a>
 
-      <a class="container" href="match.html">
-        <section class="item button">
-          Game Page
-        </section>
-      </a>
+        <a class="container" href="match.html">
+          <span class="item button">
+            Game Page
+          </span>
+        </a>
 
-      <a class="container" href="progress.html">
-        <section class="item button">
-          Progress Page
-        </section>
-      </a>
+        <a class="container" href="progress.html">
+          <span class="item button">
+            Progress Page
+          </span>
+        </a>
 
-      <a class="container" href="about.html">
-        <section class="item button">
-          About Page
-        </section>
-      </a>
+        <a class="container" href="about.html">
+          <span class="item button">
+            About Page
+          </span>
+        </a>
 
-      <a class="container" href="login.html">
-        <section class="item button">
-          Login Page
-        </section>
-      </a>
-    </span>
+        <a class="container" href="login.html">
+          <span class="item button">
+            Login Page
+          </span>
+        </a>
+      </div>
+    </aside>
 
-    <span class="item nav-burg" onclick="openNav();">
-      <i class="fas fa-bars"></i>
-    </span>
-  </section>
+    <header class="container max-width no-border">
+      <span class="item nav-burg" onclick="openNav();">
+        <i class="fas fa-bars"></i>
+      </span>
 
-    <section class="container row center no-border">
-      <section class="container max-width no-border">
-        <section class="item max-width">
-          <h1><span class="green">Imagine</span><span class="grey">Memory</span> Login Page!</h1>
-        </section>
-
-        <section class="item row no-decoration">
-          <a class="container hide-link" href="index.html">
-            <section class="item button hide-link">
-              Home Page
-            </section>
-          </a>
-
-          <a class="container hide-link" href="match.html">
-            <section class="item button hide-link">
-              Game Page
-            </section>
-          </a>
-
-          <a class="container hide-link" href="progress.html">
-            <section class="item button hide-link">
-              Progress Page
-            </section>
-          </a>
-
-          <a class="container hide-link" href="about.html">
-            <section class="item button hide-link">
-              About Page
-            </section>
-          </a>
-
-          <a class="container hide-link" href="login.html">
-            <section class="item button hide-link">
-              Login Page
-            </section>
-          </a>
-        </section>
+      <section class="item max-width">
+        <h1><span class="green">Imagine</span><span class="grey">Memory</span> Login Page!</h1>
       </section>
 
-    <section class="container list flex-end auth max-width">
+      <nav class="item row no-decoration">
+        <a class="container hide-link" href="index.html">
+          <section class="item button hide-link">
+            Home Page
+          </section>
+        </a>
+
+        <a class="container hide-link" href="match.html">
+          <section class="item button hide-link">
+            Game Page
+          </section>
+        </a>
+
+        <a class="container hide-link" href="progress.html">
+          <section class="item button hide-link">
+            Progress Page
+          </section>
+        </a>
+
+        <a class="container hide-link" href="about.html">
+          <section class="item button hide-link">
+            About Page
+          </section>
+        </a>
+
+        <a class="container hide-link" href="login.html">
+          <section class="item button hide-link">
+            Login Page
+          </section>
+        </a>
+      </nav>
+    </header>
+
+    <div class="container list flex-end auth max-width">
       <div class="item" id="login">
         <p class="item">Press the button to sign in:</p>
         <span class="g-signin2 item item-signin" data-onsuccess="onSignIn" onclick="signInHide()"></span>
       </div>
-      <section class="item greeting" id="logout">
-        <section class="item">
+      <div class="item greeting" id="logout">
+        <div class="item">
           <p class="signed item">Signed in as: </p> <p class="name item"> Please Sign in </p>
-        </section>
+        </div>
 
-        <section class="item column">
+        <div class="item column">
           <button class="item" onclick="signOut(); signOutHide();"><span>Sign out</span></button>
-        </section>
-      </section>
-    </section>
-  </section>
+        </div>
+      </div>
+    </div>
+  </main>
 </body>
 
 <script type="text/javascript">

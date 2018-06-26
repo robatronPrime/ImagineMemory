@@ -30,204 +30,199 @@
   <meta name="theme-color" content="#ffffff">
 </head>
 
-<body>
-  <section class="no-padding-margin">
-    <section class="container no-border no-padding-margin">
-      <section class="container head no-border no-padding-margin">
-        <section class="container head no-border">
-          <span class="item sideNav list no-decoration link" id="sideNav">
-              <a class="item closebtn" href="javascript:void(0)" onclick="closeNav()">
-                Close Menu
-              </a>
-              <a class="container" href="index.html">
-                <section class="item button">
-                  Home Page
-                </section>
-              </a>
-
-              <a class="container" href="match.html">
-                <section class="item button">
-                  Game Page
-                </section>
-              </a>
-
-              <a class="container" href="progress.html">
-                <section class="item button">
-                  Progress Page
-                </section>
-              </a>
-
-              <a class="container" href="about.html">
-                <section class="item button">
-                  About Page
-                </section>
-              </a>
-
-              <a class="container" href="login.html">
-                <section class="item button">
-                  Login Page
-                </section>
-              </a>
+<body class="no-padding-margin">
+  <main class="container no-border no-padding-margin">
+    <aside class="container head no-border">
+      <div class="item sideNav list no-decoration link" id="sideNav">
+          <a class="item closebtn" href="javascript:void(0)" onclick="closeNav()">
+            Close Menu
+          </a>
+          <a class="container" href="index.html">
+            <span class="item button">
+              Home Page
             </span>
+          </a>
 
-          <span class="item nav-burg" onclick="openNav();">
-              <i class="fas fa-bars"></i>
+          <a class="container" href="match.html">
+            <span class="item button">
+              Game Page
             </span>
-        </section>
+          </a>
 
-        <section class="container max-width no-border">
-          <section class="item max-width">
-            <h1><span class="green">Imagine</span><span class="grey">Memory</span> Game Page!</h1>
-          </section>
+          <a class="container" href="progress.html">
+            <span class="item button">
+              Progress Page
+            </span>
+          </a>
 
-          <section class="item row no-decoration">
-            <a class="container hide-link" href="index.html">
-              <section class="item button hide-link">
-                Home Page
-              </section>
-            </a>
+          <a class="container" href="about.html">
+            <span class="item button">
+              About Page
+            </span>
+          </a>
 
-            <a class="container hide-link" href="match.html">
-              <section class="item button hide-link">
-                Game Page
-              </section>
-            </a>
+          <a class="container" href="login.html">
+            <span class="item button">
+              Login Page
+            </span>
+          </a>
+        </div>
 
-            <a class="container hide-link" href="progress.html">
-              <section class="item button hide-link">
-                Progress Page
-              </section>
-            </a>
+    </aside>
 
-            <a class="container hide-link" href="about.html">
-              <section class="item button hide-link">
-                About Page
-              </section>
-            </a>
+    <header class="container max-width no-border">
+      <span class="item nav-burg" onclick="openNav();">
+        <i class="fas fa-bars"></i>
+      </span>
 
-            <a class="container hide-link" href="login.html">
-              <section class="item button hide-link">
-                Login Page
-              </section>
-            </a>
-          </section>
-        </section>
+      <span class="item max-width">
+        <h1><span class="green">Imagine</span><span class="grey">Memory</span> Game Page!</h1>
+      </span>
 
-
-        <span class="item sideNav list no-decoration link" id="sideProg">
-            <a class="item closebtn" href="javascript:void(0)" onclick="closeProg()">
-              Close Menu
-            </a>
-            <section id="sideInfo"></section>
+      <nav class="item row no-decoration">
+        <a class="container hide-link" href="index.html">
+          <span class="item button hide-link">
+            Home Page
           </span>
+        </a>
+
+        <a class="container hide-link" href="match.html">
+          <span class="item button hide-link">
+            Game Page
+          </span>
+        </a>
+
+        <a class="container hide-link" href="progress.html">
+          <span class="item button hide-link">
+            Progress Page
+          </span>
+        </a>
+
+        <a class="container hide-link" href="about.html">
+          <span class="item button hide-link">
+            About Page
+          </span>
+        </a>
+
+        <a class="container hide-link" href="login.html">
+          <span class="item button hide-link">
+            Login Page
+          </span>
+        </a>
+      </nav>
+
+      <div class="item sideNav list no-decoration link" id="sideProg">
+        <a class="item closebtn" href="javascript:void(0)" onclick="closeProg()">
+          Close Menu
+        </a>
+        <div id="sideInfo"></div>
+      </div>
+    </header>
+
+    <div class="item row max-width">
+      <section class="container list max-width">
+        <h1 class="item">How to Play Match</h1>
+        <section class="item">
+          <h2 id="titleT"></h2>
+        </section>
+        <div id="content-sec">
+          <p id="contentT"></p>
+        </div>
+        <div class="item row center" id="arrows">
+          <span id="prev" class="container button" onclick="prevStep();">
+            <button class="fas fa-angle-left"></button>
+          </span>
+          <span id="next" class="container button" onclick="nextStep();">
+            <button class="fas fa-angle-right"></button>
+          </span>
+        </div>
+      </section>
+    </div>
+
+    <div class="container list game-content max-width center" id="stage">
+      <section id="diffSelect" class="item list center">
+        <h1 class="item center">Difficulty Selection</h1>
+        <div class="item row center">
+          <span class="container button font-os" onclick="easyGame();">Easy</span>
+          <span class="container button font-os" onclick="mediGame();">Medium</span>
+          <span class="container button font-os" onclick="hardGame();">Hard</span>
+        </div>
+        <span class="container nav-burg" onclick="openProg();">
+          <p>Game Results</p>
+        </span>
       </section>
 
-      <section class="item row max-width">
-        <section class="container list max-width">
-          <h1 class="item">How to Play Match</h1>
-          <section class="item">
-            <h2 id="titleT"></h2>
-          </section>
-          <section id="content-sec">
-            <p id="contentT"></p>
-          </section>
-          <section class="item row center" id="arrows">
-            <span id="prev" class="container button" onclick="prevStep();">
-                <button class="fas fa-angle-left"></button>
-              </span>
-            <span id="next" class="container button" onclick="nextStep();">
-                <button class="fas fa-angle-right"></button>
-              </span>
-          </section>
-        </section>
-      </section>
-
-      <section class="container list game-content max-width center" id="stage">
-        <section id="diffSelect" class="item list center">
-          <h1 class="item center">Difficulty Selection</h1>
-          <section class="item row center">
-            <span class="container button font-os" onclick="easyGame();">Easy</span>
-            <span class="container button font-os" onclick="mediGame();">Medium</span>
-            <span class="container button font-os" onclick="hardGame();">Hard</span>
-          </section>
-          <span class="container nav-burg" onclick="openProg();">
-              <p>Game Results</p>
-            </span>
-        </section>
+      <div class="item row" id="board">
         <!-- The Stage for the game -->
-        <section class="item row" id="board">
-          <!-- Load game file -->
+        <!-- Load game files -->
+        <script>
+          var content = document.getElementById("content");
 
-          <script>
-            var content = document.getElementById("content");
-
-            /*  Difficulty Functions.  */
-            //Hard Difficulty.
-            function hardGame() {
-              if (!document.getElementById("felt")) {
-                var game = new MatchGame("board");
-              } else {
-                clock.remove();
-                display.remove();
-                gameInfo.remove();
-                clockSide.remove();
-                displayS.remove();
-                gameTitleSide.remove();
-                clicks = 0;
-                clicksS = 0;
-                localStorage.setItem("clicks", clicks);
-                localStorage.setItem("clicksS", clicksS);
-                document.getElementById("felt").remove();
-                var game = new MatchGame("board");
-              }
+          /*  Difficulty Functions.  */
+          //Hard Difficulty.
+          function hardGame() {
+            if (!document.getElementById("felt")) {
+              var game = new MatchGame("board");
+            } else {
+              clock.remove();
+              display.remove();
+              gameInfo.remove();
+              clockSide.remove();
+              displayS.remove();
+              gameTitleSide.remove();
+              clicks = 0;
+              clicksS = 0;
+              localStorage.setItem("clicks", clicks);
+              localStorage.setItem("clicksS", clicksS);
+              document.getElementById("felt").remove();
+              var game = new MatchGame("board");
             }
+          }
 
-            //Medium Difficulty.
-            function mediGame() {
-              if (!document.getElementById("felt")) {
-                var game = new MatchGameMedi("board");
-              } else {
-                clock.remove();
-                display.remove();
-                gameInfo.remove();
-                clockSide.remove();
-                displayS.remove();
-                gameTitleSide.remove();
-                clicks = 0;
-                clicksS = 0;
-                localStorage.setItem("clicks", clicks);
-                localStorage.setItem("clicksS", clicksS);
-                document.getElementById("felt").remove();
-                var game = new MatchGameMedi("board");
-              }
+          //Medium Difficulty.
+          function mediGame() {
+            if (!document.getElementById("felt")) {
+              var game = new MatchGameMedi("board");
+            } else {
+              clock.remove();
+              display.remove();
+              gameInfo.remove();
+              clockSide.remove();
+              displayS.remove();
+              gameTitleSide.remove();
+              clicks = 0;
+              clicksS = 0;
+              localStorage.setItem("clicks", clicks);
+              localStorage.setItem("clicksS", clicksS);
+              document.getElementById("felt").remove();
+              var game = new MatchGameMedi("board");
             }
-            //Easy Difficulty.
-            function easyGame() {
-              if (!document.getElementById("felt")) {
-                var game = new MatchGameEasy("board");
-              } else {
-                clock.remove();
-                display.remove();
-                gameInfo.remove();
-                clockSide.remove();
-                displayS.remove();
-                gameTitleSide.remove();
-                clicks = 0;
-                clicksS = 0;
-                localStorage.setItem("clicks", clicks);
-                localStorage.setItem("clicksS", clicksS);
-                document.getElementById("felt").remove();
-                var game = new MatchGameEasy("board");
-              }
+          }
+          //Easy Difficulty.
+          function easyGame() {
+            if (!document.getElementById("felt")) {
+              var game = new MatchGameEasy("board");
+            } else {
+              clock.remove();
+              display.remove();
+              gameInfo.remove();
+              clockSide.remove();
+              displayS.remove();
+              gameTitleSide.remove();
+              clicks = 0;
+              clicksS = 0;
+              localStorage.setItem("clicks", clicks);
+              localStorage.setItem("clicksS", clicksS);
+              document.getElementById("felt").remove();
+              var game = new MatchGameEasy("board");
             }
+          }
 
-            document.onload = easyGame();
-          </script>
-        </section>
-      </section>
-    </section>
-  </section>
-
+          document.onload = easyGame();
+        </script>
+      </div>
+    </div>
+  </main>
 </body>
 
 <script>

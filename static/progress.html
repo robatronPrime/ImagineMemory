@@ -31,85 +31,87 @@
 </head>
 
 <body class="no-padding-margin">
-  <section class="container no-border no-padding-margin">
-    <section class="container head no-border">
-      <span class="item sideNav list no-decoration link" id="sideNav">
+  <main class="container no-border no-padding-margin">
+    <aside class="container head no-border">
+      <div class="item sideNav list no-decoration link" id="sideNav">
         <a class="item closebtn" href="javascript:void(0)" onclick="closeNav()">
           Close Menu
         </a>
         <a class="container" href="index.html">
-          <section class="item button">
+          <span class="item button">
             Home Page
-          </section>
+          </span>
         </a>
 
         <a class="container" href="match.html">
-          <section class="item button">
+          <span class="item button">
             Game Page
-          </section>
+          </span>
         </a>
 
         <a class="container" href="progress.html">
-          <section class="item button">
+          <span class="item button">
             Progress Page
-          </section>
+          </span>
         </a>
 
         <a class="container" href="about.html">
-          <section class="item button">
+          <span class="item button">
             About Page
-          </section>
+          </span>
         </a>
 
         <a class="container" href="login.html">
-          <section class="item button">
+          <span class="item button">
             Login Page
-          </section>
+          </span>
         </a>
-      </span>
+      </div>
+    </aside>
 
+    <header class="container max-width no-border">
       <span class="item nav-burg" onclick="openNav();">
         <i class="fas fa-bars"></i>
       </span>
-    </section>
-    <section class="container max-width no-border">
+
       <section class="item max-width">
         <h1><span class="green">Imagine</span><span class="grey">Memory</span> Progress Page!</h1>
       </section>
 
-      <section class="item row no-decoration">
+      <nav class="item row no-decoration">
         <a class="container hide-link" href="index.html">
-          <section class="item button hide-link">
+          <span class="item button hide-link">
             Home Page
-          </section>
+          </span>
         </a>
 
         <a class="container hide-link" href="match.html">
-          <section class="item button hide-link">
+          <span class="item button hide-link">
             Game Page
-          </section>
+          </span>
         </a>
 
         <a class="container hide-link" href="progress.html">
-          <section class="item button hide-link">
+          <span class="item button hide-link">
             Progress Page
-          </section>
+          </span>
         </a>
 
         <a class="container hide-link" href="about.html">
-          <section class="item button hide-link">
+          <span class="item button hide-link">
             About Page
-          </section>
+          </span>
         </a>
 
         <a class="container hide-link" href="login.html">
-          <section class="item button hide-link">
+          <span class="item button hide-link">
             Login Page
-          </section>
+          </span>
         </a>
-      </section>
-    </section>
-    <section class="container row center no-border">
+      </nav>
+    </header>
+    
+    <div class="container row center no-border">
       <section class="container half-width">
         <h1>Welcome To <span class="green">Imagine</span><span class="grey">Memory's</span> Progress Tracker!</h1>
         <p>On this page you can track the statistics of the games that you have played!</p>
@@ -124,7 +126,7 @@
         <p>The best of these statistics are presented to you so you can see how well you are doing!</p>
       </section>
 
-      <section class="item row max-width">
+      <div class="item row max-width">
         <table class="emp-sales" id="table">
           <caption>Your Best Weekly Results</caption>
           <thead>
@@ -196,9 +198,9 @@
             </tr>
           </tbody>
         </table>
-      </section>
-    </section>
-  </section>
+      </div>
+    </div>
+  </main>
 </body>
 
 <script>

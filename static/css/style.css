@@ -144,6 +144,7 @@ caption {
     overflow-x: hidden;
     transition: 0.5s;
 }
+
 .button {
   width: 7em;
   transition: 0.3s;
