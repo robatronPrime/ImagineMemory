@@ -76,7 +76,7 @@
       </span>
 
       <span class="item max-width">
-        <h1><span class="green">Imagine</span><span class="grey">Memory</span> Game Page!</h1>
+        <h1>Welcome to <span class="green">Imagine</span><span class="grey">Memory's</span> Game Page!</h1>
       </span>
 
       <nav class="item row no-decoration">
@@ -121,9 +121,9 @@
 
     <div class="item row max-width">
       <section class="container list max-width">
-        <h1 class="item">How to Play Match</h1>
+        <h2 class="item">How to Play Match</h2>
         <section class="item">
-          <h2 id="titleT"></h2>
+          <h2 id="titleT">Title</h2>
         </section>
         <div id="content-sec">
           <p id="contentT"></p>
@@ -141,15 +141,15 @@
 
     <div class="container list game-content max-width center" id="stage">
       <section id="diffSelect" class="item list center">
-        <h1 class="item center">Difficulty Selection</h1>
+        <h2 class="item center">Difficulty Selection</h2>
         <div class="item row center">
           <span class="container button font-os" onclick="easyGame();">Easy</span>
           <span class="container button font-os" onclick="mediGame();">Medium</span>
           <span class="container button font-os" onclick="hardGame();">Hard</span>
         </div>
-        <span class="container nav-burg" onclick="openProg();">
+        <div class="container nav-burg" onclick="openProg();">
           <p>Game Results</p>
-        </span>
+        </div>
       </section>
 
       <div class="item row" id="board">
@@ -223,14 +223,13 @@
       </div>
     </div>
   </main>
-</body>
 
-<script>
+  <script>
   /*  Instrutions  */
   var titleText = "Instruction Controls"; //Initial title when page loads.
   //Initial text content when page loads.
   var contentText =
-    'To go through the steps of these instructions click the <strong>right arrow</strong> highlighted in grey. To go back a step, click the <strong>left arrow</strong> also highlighted in grey.<br/> Or you can go back to the home page by clicking the <strong>"Home Page"</strong> button or to the progress page by pressing the <strong>"Progress Page"</strong> button.';
+  'To go through the steps of these instructions click the <strong>right arrow</strong> highlighted in grey. To go back a step, click the <strong>left arrow</strong> also highlighted in grey.<br/> Or you can go back to the home page by clicking the <strong>"Home Page"</strong> button or to the progress page by pressing the <strong>"Progress Page"</strong> button.';
 
   //Titles array.
   var steps = [
@@ -339,5 +338,5 @@
     document.getElementById("sideProg").style.width = "0";
   }
 </script>
-
+</body>
 </html>
